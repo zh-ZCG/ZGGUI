@@ -1,0 +1,322 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  box-sizing: border-box;
+  color: @colorRegularText !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+// button {
+//   -webkit-tap-highlight-color: rgba(0, 0, 0, 0.5)
+// }
+
+
+/* 常用的css */
+
+/* 布局有关 */
+.f1 {
+  flex: 1;
+}
+
+.df {
+  display: flex;
+}
+
+.db {
+  display: block;
+}
+
+.dib {
+  display: inline-block;
+}
+
+.dfr {
+  display: flex;
+  flex-direction: row;
+}
+
+.dfc {
+  display: flex;
+  flex-direction: column;
+}
+
+.jcc {
+  justify-content: center;
+}
+
+.jcfs {
+  justify-content: flex-start;
+}
+
+.jcfe {
+  justify-content: flex-end;
+}
+
+.jcsb {
+  justify-content: space-between;
+}
+
+.jcsa {
+  justify-content: space-around;
+}
+
+.jcse {
+  justify-content: space-evenly;
+}
+
+.aic {
+  align-items: center;
+}
+
+.aifs {
+  align-items: flex-start;
+}
+
+.aife {
+  align-items: flex-end;
+}
+
+.ais {
+  align-items: stretch;
+}
+
+.fww {
+  flex-wrap: wrap;
+}
+
+.fwnw {
+  flex-wrap: nowrap;
+}
+
+/* 图片 */
+.off {
+  object-fit: fill;
+}
+
+.ofc {
+  object-fit: contain;
+}
+
+.ofcover {
+  object-fit: cover;
+}
+
+/* 文字换行 */
+.wbba {
+  word-break: break-all;
+}
+
+.lba {
+  line-break: anywhere;
+}
+
+.wsnw {
+  white-space: nowrap; //防止内容换行
+}
+
+.tofe {
+  text-overflow: ellipsis; //显示省略号
+}
+
+/* 边框阴影颜色 */
+.bs {
+  box-shadow: 0 0 5 5 #eeeeee;
+}
+
+.borderc {
+  border: 1px solid #cccccc;
+}
+
+.bordertc {
+  border-top: 1px solid #cccccc;
+}
+
+.borderbc {
+  border-bottom: 1px solid #cccccc;
+}
+
+.br1 {
+  border-radius: 5px;
+}
+
+.br2 {
+  border-radius: 12.5px;
+}
+
+.br3 {
+  border-radius: 50%;
+}
+
+/* 上下边框*/
+.bt {
+  border-top: 1rpx solid #eeeeee
+}
+
+.bb {
+  border-bottom: 1rpx solid #eeeeee
+}
+
+
+/* 绝对定位的图层顺序 */
+.pr {
+  position: relative;
+}
+
+.pa {
+  position: absolute;
+}
+
+.pf {
+  position: fixed;
+}
+
+.z1 {
+  z-index: 1;
+}
+
+.z2 {
+  z-index: 2;
+}
+
+.z3 {
+  z-index: 3;
+}
+
+.z4 {
+  z-index: 4;
+}
+
+.z5 {
+  z-index: 5;
+}
+
+.z6 {
+  z-index: 6;
+}
+
+.z7 {
+  z-index: 7;
+}
+
+.z8 {
+  z-index: 8;
+}
+
+.z9 {
+  z-index: 9;
+}
+
+.z10 {
+  z-index: 10;
+}
+
+/* 文本对齐 */
+.tac {
+  text-align: center;
+}
+
+.tal {
+  text-align: left;
+}
+
+.tar {
+  text-align: right;
+}
+
+.toe {
+  text-overflow: ellipsis;
+}
+
+/* 溢出隐藏 */
+.ofh {
+  overflow: hidden;
+}
+
+/* 字体大小 */
+.fs1 {
+  font-size: 40rpx;
+}
+
+.fs2 {
+  font-size: 36rpx;
+}
+
+.fs3 {
+  font-size: 32rpx;
+}
+
+.fs4 {
+  font-size: 28rpx;
+}
+
+.fs5 {
+  font-size: 24rpx;
+}
+
+.fs6 {
+  font-size: 20rpx;
+}
+
+.fs7 {
+  font-size: 16rpx;
+}
+
+.fwb {
+  font-weight: bolder;
+}
+
+.fwn {
+  font-weight: normal;
+}
+
+/* 动画设置 */
+.tst {
+  transition: 0.3s all ease-in-out;
+}
+
+/* 点击效果 */
+.tap {
+  opacity: 0.87;
+}
+
+/* 间隔0.5vh 1vh 1.5vh 2vh */
+.h1 {
+  height: 0.5vh;
+}
+
+.h2 {
+  height: 1vh;
+}
+
+.h3 {
+  height: 1.5vh;
+}
+
+.h4 {
+  height: 2vh;
+}
+
+
+/* 复合样式 */
+.rpage {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+/**
+用于加载时的旋转动画
+*/
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

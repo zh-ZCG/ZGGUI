@@ -1,0 +1,989 @@
+// 全局背景颜色和文字颜色样式
+
+/* 以下5种颜色为主题色 其中5这种程度是原色，减少就变浅，增加变深，当背景颜色为5（包括5）以下时，字体颜色推荐使用这种颜色的9，
+当背景颜色为5以上时推荐使用白色#fff为字体颜色*/
+
+.cw {
+  color: #fff
+}
+
+.bgw {
+  background-color: #fff;
+}
+
+.cb {
+  color: #1a1a1a
+}
+
+.bgb {
+  background-color: #1a1a1a;
+}
+
+.cf8 {
+  color: #f8f8f8
+}
+
+.bgf8 {
+  background-color: #f8f8f8;
+}
+
+.cf6 {
+  color: #f6f6f6
+}
+
+.bgf6 {
+  background-color: #f6f6f6;
+}
+
+.cf4 {
+  color: #f4f5f9
+}
+
+.bgf6 {
+  background-color: #f4f5f9;
+}
+
+/** ZCGUI 主题色*/
+@primary: #409eff;
+@success: #62B51B;
+@info: #909399;
+@warning: #FFC23F;
+@error: #FF543A;
+@cw: #fff;
+@cb: #1a1a1a;
+@bgDefault: #f3f4f6;
+@grayLight: #f8f7f8;
+/** 功能颜色 */
+@colorInfo: #909399;
+@colorPrimary: #409eff;
+@colorPrimaryLight: rgb(236, 245, 255);
+@colorPrimaryText: #303133;
+// 常规字
+@colorRegularText: #606266;
+@colorBorderBase: #dcefe6;
+@colorBorderLighter: #ebeef5;
+@colorError: #f56c6c;
+@colorBackgroundBase: #f5f7fa;
+@colorSuccess: #67c23a;
+@colorWarning: #e6a23c;
+@colorPlaceholder: #c0c4cc;
+//滑动条默认颜色
+@colorSliderDefault: #e4e9ec;
+/** 普通颜色 */
+@colorGray: rgb(228, 231, 237);
+@colorRed: red;
+@colorOrange: rgb(248, 108, 2);
+@colorPurple: rgb(192 29 221);
+@colorCyan: rgb(93, 252, 225);
+@colorlightcyan: rgb(0, 207, 253);
+
+/* 颜色样式 */
+.bgprimary {
+  background-color: @primary;
+  color: @cw;
+}
+
+.bginfo {
+  background-color: @info;
+  color: @cw;
+}
+
+.bgsuccess {
+  background-color: @success;
+  color: @cw;
+}
+
+.bgerror {
+  background-color: @error;
+  color: @cw;
+}
+
+.bgwarning {
+  background-color: @warning;
+  color: @cw;
+}
+
+.cprimary {
+  color: @primary;
+  background-color: @cw;
+}
+
+.cinfo {
+  color: @info;
+  background-color: @cw;
+}
+
+.csuccess {
+  color: @success;
+  background-color: @cw;
+}
+
+.cerror {
+  color: @error;
+  background-color: @cw;
+}
+
+.cwarning {
+  color: @warning;
+  background-color: @cw;
+}
+
+/* Primary Colors */
+.cp1 {
+  color: #D8F3FF
+}
+
+.bgp1 {
+  background-color: #D8F3FF
+}
+
+.cp2 {
+  color: #B2E3FF
+}
+
+.bgp2 {
+  background-color: #B2E3FF
+}
+
+.cp3 {
+  color: #8CD0FF
+}
+
+.bgp3 {
+  background-color: #8CD0FF
+}
+
+.cp4 {
+  color: #6FBDFF
+}
+
+.bgp4 {
+  background-color: #6FBDFF
+}
+
+.cp5 {
+  color: #409EFF
+}
+
+.bgp5 {
+  background-color: #409EFF
+}
+
+.cp6 {
+  color: #2E7BDB
+}
+
+.bgp6 {
+  background-color: #2E7BDB
+}
+
+.cp7 {
+  color: #205BB7
+}
+
+.bgp7 {
+  background-color: #205BB7
+}
+
+.cp8 {
+  color: #144093
+}
+
+.bgp8 {
+  background-color: #144093
+}
+
+.cp9 {
+  color: #0C2C7A
+}
+
+.bgp9 {
+  background-color: #0C2C7A
+}
+
+/* Success Colors */
+.cs1 {
+  color: #EDFBD0
+}
+
+.bgs1 {
+  background-color: #EDFBD0
+}
+
+.cs2 {
+  color: #D7F7A3
+}
+
+.bgs2 {
+  background-color: #D7F7A3
+}
+
+.cs3 {
+  color: #B5E871
+}
+
+.bgs3 {
+  background-color: #B5E871
+}
+
+.cs4 {
+  color: #91D24C
+}
+
+.bgs4 {
+  background-color: #91D24C
+}
+
+.cs5 {
+  color: #62B51B
+}
+
+.bgs5 {
+  background-color: #62B51B
+}
+
+.cs6 {
+  color: #4B9B13
+}
+
+.bgs6 {
+  background-color: #4B9B13
+}
+
+.cs7 {
+  color: #36820D
+}
+
+.bgs7 {
+  background-color: #36820D
+}
+
+.cs8 {
+  color: #256808
+}
+
+.bgs8 {
+  background-color: #256808
+}
+
+.cs9 {
+  color: #195605
+}
+
+.bgs9 {
+  background-color: #195605
+}
+
+/* Info Colors */
+.ci1 {
+  color: #FDFDFD
+}
+
+.bgi1 {
+  background-color: #FDFDFD
+}
+
+.ci2 {
+  color: #FCFCFC
+}
+
+.bgi2 {
+  background-color: #FCFCFC
+}
+
+.ci3 {
+  color: #F7F7F7
+}
+
+.bgi3 {
+  background-color: #F7F7F7
+}
+
+.ci4 {
+  color: #F0F0F0
+}
+
+.bgi4 {
+  background-color: #F0F0F0
+}
+
+.ci5 {
+  color: #e6e6e6
+}
+
+.bgi5 {
+  background-color: #e6e6e6
+}
+
+.ci6 {
+  color: #000000
+}
+
+.bgi6 {
+  background-color: #000000
+}
+
+.ci7 {
+  color: #000000
+}
+
+.bgi7 {
+  background-color: #000000
+}
+
+.ci8 {
+  color: #000000
+}
+
+.bgi8 {
+  background-color: #000000
+}
+
+.ci9 {
+  color: #000000
+}
+
+.bgi9 {
+  background-color: #000000
+}
+
+/* Warning Colors */
+.cw1 {
+  color: #FFF7D8
+}
+
+.bgw1 {
+  background-color: #FFF7D8
+}
+
+.cw2 {
+  color: #FFEEB2
+}
+
+.bgw2 {
+  background-color: #FFEEB2
+}
+
+.cw3 {
+  color: #FFE18B
+}
+
+.bgw3 {
+  background-color: #FFE18B
+}
+
+.cw4 {
+  color: #FFD56F
+}
+
+.bgw4 {
+  background-color: #FFD56F
+}
+
+.cw5 {
+  color: #FFC23F
+}
+
+.bgw5 {
+  background-color: #FFC23F
+}
+
+.cw6 {
+  color: #DB9E2E
+}
+
+.bgw6 {
+  background-color: #DB9E2E
+}
+
+.cw7 {
+  color: #B77D1F
+}
+
+.bgw7 {
+  background-color: #B77D1F
+}
+
+.cw8 {
+  color: #935E14
+}
+
+.bgw8 {
+  background-color: #935E14
+}
+
+.cw9 {
+  color: #7A480C
+}
+
+.bgw9 {
+  background-color: #7A480C
+}
+
+/* Error Colors */
+.ce1 {
+  color: #FFE9D7
+}
+
+.bge1 {
+  background-color: #FFE9D7
+}
+
+.ce2 {
+  color: #FFCDB0
+}
+
+.bge2 {
+  background-color: #FFCDB0
+}
+
+.ce3 {
+  color: #FFAB88
+}
+
+.bge3 {
+  background-color: #FFAB88
+}
+
+.ce4 {
+  color: #FF8A6B
+}
+
+.bge4 {
+  background-color: #FF8A6B
+}
+
+.ce5 {
+  color: #FF543A
+}
+
+.bge5 {
+  background-color: #FF543A
+}
+
+.ce6 {
+  color: #DB332A
+}
+
+.bge6 {
+  background-color: #DB332A
+}
+
+.ce7 {
+  color: #B71D21
+}
+
+.bge7 {
+  background-color: #B71D21
+}
+
+.ce8 {
+  color: #931220
+}
+
+.bge8 {
+  background-color: #931220
+}
+
+.ce9 {
+  color: #7A0B1F
+}
+
+.bge9 {
+  background-color: #7A0B1F
+}
+
+
+/* 以下颜色为常见的颜色，可直接进行替换 */
+
+/* 黑色 */
+.bgblack1 {
+  background-color: #000000
+}
+
+.cblack1 {
+  color: #000000
+}
+
+.bgblack2 {
+  background-color: #1a1a1a
+}
+
+.cblack2 {
+  color: #1a1a1a
+}
+
+.bgblack3 {
+  background-color: #333333
+}
+
+.cblack3 {
+  color: #333333
+}
+
+.bgblack4 {
+  background-color: #4d4d4d
+}
+
+.cblack4 {
+  color: #4d4d4d
+}
+
+.bgblack5 {
+  background-color: #666666
+}
+
+.cblack5 {
+  color: #666666
+}
+
+/* 灰色 */
+.bggray1 {
+  background-color: #808080
+}
+
+.cgray1 {
+  color: #808080
+}
+
+.bggray2 {
+  background-color: #999999
+}
+
+.cgray2 {
+  color: #999999
+}
+
+.bggray3 {
+  background-color: #b3b3b3
+}
+
+.cgray3 {
+  color: #b3b3b3
+}
+
+.bggray4 {
+  background-color: #cccccc
+}
+
+.cgray4 {
+  color: #cccccc
+}
+
+.bggray5 {
+  background-color: #e6e6e6
+}
+
+.cgray5 {
+  color: #e6e6e6
+}
+
+/* 红色 */
+.bgred1 {
+  background-color: #ff0000
+}
+
+.cred1 {
+  color: #ff0000
+}
+
+.bgred2 {
+  background-color: #FF503F
+}
+
+.cred2 {
+  color: #FF503F
+}
+
+.bgred3 {
+  background-color: #FF8066
+}
+
+.cred3 {
+  color: #FF8066
+}
+
+.bgred4 {
+  background-color: #FFB399
+}
+
+.cred4 {
+  color: #FFB399
+}
+
+.bgred5 {
+  background-color: #FFDDCC
+}
+
+.cred5 {
+  color: #FFDDCC
+}
+
+/* 粉色 */
+.bgpink1 {
+  background-color: #FFC0CB
+}
+
+.cpink1 {
+  color: #FFC0CB
+}
+
+.bgpink2 {
+  background-color: #FFCFD3
+}
+
+.cpink2 {
+  color: #FFCFD3
+}
+
+.bgpink3 {
+  background-color: #FFD9D9
+}
+
+.cpink3 {
+  color: #FFD9D9
+}
+
+.bgpink4 {
+  background-color: #FFE8E5
+}
+
+.cpink4 {
+  color: #FFE8E5
+}
+
+.bgpink5 {
+  background-color: #FFF4F2
+}
+
+.cpink5 {
+  color: #FFF4F2
+}
+
+/* 橙色 */
+.bgorange1 {
+  background-color: #FFA500
+}
+
+.corange1 {
+  color: #FFA500
+}
+
+.bgorange2 {
+  background-color: #FFC23F
+}
+
+.corange2 {
+  color: #FFC23F
+}
+
+.bgorange3 {
+  background-color: #FFD466
+}
+
+.corange3 {
+  color: #FFD466
+}
+
+.bgorange4 {
+  background-color: #FFE699
+}
+
+.corange4 {
+  color: #FFE699
+}
+
+.bgorange5 {
+  background-color: #FFF4CC
+}
+
+.corange5 {
+  color: #FFF4CC
+}
+
+/* 黄色 */
+.bgyellow1 {
+  background-color: #FFFF00
+}
+
+.cyellow1 {
+  color: #FFFF00
+}
+
+.bgyellow2 {
+  background-color: #FFFF3F
+}
+
+.cyellow2 {
+  color: #FFFF3F
+}
+
+.bgyellow3 {
+  background-color: #FFFF66
+}
+
+.cyellow3 {
+  color: #FFFF66
+}
+
+.bgyellow4 {
+  background-color: #ffff99
+}
+
+.cyellow4 {
+  color: #ffff99
+}
+
+.bgyellow5 {
+  background-color: #ffffcc
+}
+
+.cyellow5 {
+  color: #ffffcc
+}
+
+/* 绿色 */
+.bggreen1 {
+  background-color: #38B73D
+}
+
+.cgreen1 {
+  color: #38B73D
+}
+
+.bggreen2 {
+  background-color: #6AD365
+}
+
+.cgreen2 {
+  color: #6AD365
+}
+
+.bggreen3 {
+  background-color: #95E988
+}
+
+.cgreen3 {
+  color: #95E988
+}
+
+.bggreen4 {
+  background-color: #C2F7B3
+}
+
+.cgreen4 {
+  color: #C2F7B3
+}
+
+.bggreen5 {
+  background-color: #E3FBD8
+}
+
+.cgreen5 {
+  color: #E3FBD8
+}
+
+/* 蓝色 */
+.bgblue1 {
+  background-color: #409eff
+}
+
+.cblue1 {
+  color: #409eff
+}
+
+.bgblue2 {
+  background-color: #6FBDFF
+}
+
+.cblue2 {
+  color: #6FBDFF
+}
+
+.bgblue3 {
+  background-color: #8CD0FF
+}
+
+.cblue3 {
+  color: #8CD0FF
+}
+
+.bgblue4 {
+  background-color: #B2E3FF
+}
+
+.cblue4 {
+  color: #B2E3FF
+}
+
+.bgblue5 {
+  background-color: #D8F3FF
+}
+
+.cblue5 {
+  color: #D8F3FF
+}
+
+/* 蓝灰色 */
+.bgbluegray1 {
+  background-color: #668cff
+}
+
+.cbluegray1 {
+  color: #668cff
+}
+
+.bgbluegray2 {
+  background-color: #8CABFF
+}
+
+.cbluegray2 {
+  color: #8CABFF
+}
+
+.bgbluegray3 {
+  background-color: #A3BEFF
+}
+
+.cbluegray3 {
+  color: #A3BEFF
+}
+
+.bgbluegray4 {
+  background-color: #C1D5FF
+}
+
+.cbluegray4 {
+  color: #C1D5FF
+}
+
+.bgbluegray5 {
+  background-color: #E0EBFF
+}
+
+.cbluegray5 {
+  color: #E0EBFF
+}
+
+/* 青色 */
+.bgcyan1 {
+  background-color: #00ffff
+}
+
+.ccyan1 {
+  color: #00ffff
+}
+
+.bgcyan2 {
+  background-color: #3FFFEE
+}
+
+.ccyan2 {
+  color: #3FFFEE
+}
+
+.bgcyan3 {
+  background-color: #66FFE4
+}
+
+.ccyan3 {
+  color: #66FFE4
+}
+
+.bgcyan4 {
+  background-color: #99FFE4
+}
+
+.ccyan4 {
+  color: #99FFE4
+}
+
+.bgcyan5 {
+  background-color: #CCFFED
+}
+
+.ccyan5 {
+  color: #CCFFED
+}
+
+/* 紫色 */
+.bgpurple1 {
+  background-color: #800080
+}
+
+.cpurple1 {
+  color: #800080
+}
+
+.bgpurple2 {
+  background-color: #B22CA7
+}
+
+.cpurple2 {
+  color: #B22CA7
+}
+
+.bgpurple3 {
+  background-color: #D856C2
+}
+
+.cpurple3 {
+  color: #D856C2
+}
+
+.bgpurple4 {
+  background-color: #F291D9
+}
+
+.cpurple4 {
+  color: #F291D9
+}
+
+.bgpurple5 {
+  background-color: #F8C6E7
+}
+
+.cpurple5 {
+  color: #F8C6E7
+}
+
+/* 棕色 */
+.bgbrown1 {
+  background-color: #8b4513
+}
+
+.cbrown1 {
+  color: #8b4513
+}
+
+.bgbrown2 {
+  background-color: #a05a2a
+}
+
+.cbrown2 {
+  color: #a05a2a
+}
+
+.bgbrown3 {
+  background-color: #b87333
+}
+
+.cbrown3 {
+  color: #b87333
+}
+
+.bgbrown4 {
+  background-color: #cc9966
+}
+
+.cbrown4 {
+  color: #cc9966
+}
+
+.bgbrown5 {
+  background-color: #e6b886
+}
+
+.cbrown5 {
+  color: #e6b886
+}

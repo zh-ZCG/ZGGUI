@@ -1,0 +1,128 @@
+/**
+ * vue版本动画内置的动画模式有如下：
+ * fade：淡入
+ * zoom：缩放
+ * fade-zoom：缩放淡入
+ * fade-up：上滑淡入
+ * fade-down：下滑淡入
+ * fade-left：左滑淡入
+ * fade-right：右滑淡入
+ * slide-up：上滑进入
+ * slide-down：下滑进入
+ * slide-left：左滑进入
+ * slide-right：右滑进入
+ */
+
+/* 可以根据自己的需要添加合适的动画效果，分为四个状态 enter/enter-to/leave/leave-to,
+active为前两种状态或者后两种状态之间的过程状态，也会自动加入到标签中，具体参考z-transition组件，
+class名称请设置为z-{{name}}-状态，avtive设置为 z-{{name}}-状态-active、具体参考z-transition组件*/
+
+.z-fade-enter-active,
+.z-fade-leave-active {
+  transition-property: opacity;
+}
+
+.z-fade-enter,
+.z-fade-leave-to {
+  opacity: 0;
+}
+
+.z-fade-zoom-enter-active,
+.z-fade-zoom-leave-active {
+  transition-property: transform, opacity;
+}
+
+.z-fade-down-enter-active,
+.z-fade-down-leave-active,
+.z-fade-left-enter-active,
+.z-fade-left-leave-active,
+.z-fade-right-enter-active,
+.z-fade-right-leave-active,
+.z-fade-up-enter-active,
+.z-fade-up-leave-active {
+  transition-property: opacity, transform;
+}
+
+.z-fade-up-enter,
+.z-fade-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+}
+
+.z-fade-down-enter,
+.z-fade-down-leave-to {
+  transform: translate3d(0, -100%, 0);
+  opacity: 0;
+}
+
+.z-fade-left-enter,
+.z-fade-left-leave-to {
+  transform: translate3d(-100%, 0, 0);
+  opacity: 0;
+}
+
+.z-fade-right-enter,
+.z-fade-right-leave-to {
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+}
+
+.z-slide-down-enter-active,
+.z-slide-down-leave-active,
+.z-slide-left-enter-active,
+.z-slide-left-leave-active,
+.z-slide-right-enter-active,
+.z-slide-right-leave-active,
+.z-slide-up-enter-active,
+.z-slide-up-leave-active {
+  transition-property: transform;
+}
+
+.z-slide-up-enter,
+.z-slide-up-leave-to {
+  transform: translate3d(0, 100%, 0);
+}
+
+.z-slide-down-enter,
+.z-slide-down-leave-to {
+  transform: translate3d(0, -100%, 0);
+}
+
+.z-slide-left-enter,
+.z-slide-left-leave-to {
+  transform: translate3d(-100%, 0, 0);
+}
+
+.z-slide-right-enter,
+.z-slide-right-leave-to {
+  transform: translate3d(100%, 0, 0);
+}
+
+.z-zoom-enter-active,
+.z-zoom-leave-active {
+  transition-property: transform;
+}
+
+@keyframes tabbarItemAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes show-image-animation {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
