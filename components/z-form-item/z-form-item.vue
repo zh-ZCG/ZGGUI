@@ -1,6 +1,6 @@
 <!--
  * @Description: z-form-item 表单子组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -60,7 +60,7 @@ import AsyncValidator from '../../libs/async-validator'
  * @param: size  控制表单组件尺寸
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

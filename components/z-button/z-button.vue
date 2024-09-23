@@ -1,6 +1,6 @@
 <!--
  * @Description: z-button 按钮组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -51,7 +51,7 @@ import zIcon from '../../components/z-icon/z-icon.vue'
  * @event:	error			当使用开放能力时，发生错误的回调
  * @event:	opensetting		在打开授权设置页并关闭后回调
  * @event:	launchapp		打开 APP 成功的回调
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

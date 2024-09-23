@@ -1,6 +1,6 @@
 <!--
  * @Description: z-load-more 获取更多组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -42,7 +42,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param		dashed		与css border-style属性一致 可填solid（默认实线），dashed（虚线），dotted（圆点）等
  *
  * @event {Function} loadmore status为loadmore时，点击组件会发出此事件
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

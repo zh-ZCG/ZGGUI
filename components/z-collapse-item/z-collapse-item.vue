@@ -1,6 +1,6 @@
 <!--
  * @Description: z-collapse-item 折叠面板子组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -36,7 +36,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: title CollapseItem标题
  * @param: disabled	CollapseItem是否禁用
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

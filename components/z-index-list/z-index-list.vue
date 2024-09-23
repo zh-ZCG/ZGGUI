@@ -1,6 +1,6 @@
 <!--
  * @Description: z-index-list 索引列表组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -43,7 +43,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: showKeysList  是否显示右侧索引列表
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 const indexListKeys = [

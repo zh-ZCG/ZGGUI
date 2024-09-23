@@ -1,6 +1,6 @@
 <!--
  * @Description: z-link 超链接组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -22,7 +22,7 @@ import zColor from '../../libs/zColor'
  * @param: otherstyle 其他样式
  *
  * @event: click 点击链接
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

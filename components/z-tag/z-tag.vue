@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tag 标签组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -33,7 +33,7 @@ import zColor from '../../libs/zColor'
  *
  * @event: click 点击列表触发（disabled时无效）
  * @event: close 点击关闭按钮触发（disabled时无效）
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

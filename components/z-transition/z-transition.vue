@@ -1,6 +1,6 @@
 <!--
  * @Description: z-transition 动画组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -21,7 +21,7 @@ import { ref, watch, nextTick, computed } from 'vue'
  * @event: beforeLeave 动画结束前
  * @event: leave 动画结束中
  * @event: afterLeave 动画结束后
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

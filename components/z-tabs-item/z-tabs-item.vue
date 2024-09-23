@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabs-item 标签栏子组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -50,7 +50,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: otherStyle 其他的样式
  *
  * @event: click
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

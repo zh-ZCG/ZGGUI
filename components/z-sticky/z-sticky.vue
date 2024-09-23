@@ -21,7 +21,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: zIndex	zIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

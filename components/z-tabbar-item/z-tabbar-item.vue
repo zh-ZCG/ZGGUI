@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabbar-item 自定义底部导航组件的子组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -49,7 +49,7 @@ import zColor from '../../libs/zColor'
  * @param: otherStyle 其他样式
  *
  * @event: click 点击回调
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

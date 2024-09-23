@@ -1,6 +1,6 @@
 <!--
  * @Description: z-search-box 搜索框组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -43,7 +43,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: throllteTime  节流延迟时间，单位毫秒
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

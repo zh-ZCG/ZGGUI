@@ -1,6 +1,6 @@
 <!--
  * @Description: z-icon 图标组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -34,7 +34,7 @@ import z from '../../libs/z'
  *
  * @slot: 具名插槽badge,与z-badge用法一样，最好使用absolute和position字段控制位置
  * @event: click 点击图标，只判断是否点击，如果是循环请在父组件或页面中接收想要传入的index，不进行组件的传入传出
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

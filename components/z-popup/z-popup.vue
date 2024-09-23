@@ -1,6 +1,6 @@
 <!--
  * @Description: z-popup 弹出层组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -33,7 +33,7 @@ import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
  * @event close 点击遮罩关闭事件回调，请在这个回调中关闭遮罩
  * @event click 点击动画进行回调
  * @event open 遮罩层已打开完成的回调
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

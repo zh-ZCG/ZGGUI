@@ -1,6 +1,6 @@
 <!--
  * @Description: z-lazy-load  懒加载组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: transition 是否开启过渡效果(默认true)
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

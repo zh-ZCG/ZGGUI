@@ -1,6 +1,6 @@
 <!--
  * @Description: z-popup-bar 弹出层的操作栏
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -24,7 +24,7 @@ import z from '../../libs/z'
  *
  * @event: clickLeft 点击操作栏左侧
  * @event: clickRight 点击操作栏右侧
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-subsection-item 分段器子组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 
@@ -46,7 +46,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: title  标题
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

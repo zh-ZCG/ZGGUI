@@ -1,6 +1,6 @@
 <!--
  * @Description: z-upload 上传组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -44,7 +44,7 @@ import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
  * @event: beforeRead		读取前的处理函数
  * @event: oversize		文件超出大小限制
  * @event: delete 		删除图片
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 

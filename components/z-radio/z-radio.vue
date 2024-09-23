@@ -1,6 +1,6 @@
 <!--
  * @Description: z-radio 单选框组件
- * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -32,7 +32,7 @@ import { useFormDisabled, useFormSize } from '../../components/z-form/types'
  * @param: label radio单选框的值，在使用单选组时，radio的值就是label
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
 
