@@ -2,7 +2,7 @@ import { getCurrentInstance } from 'vue'
 
 import type { ComponentInternalInstance } from 'vue'
 
-import z from '../../libs/z'
+import z from '../libs/z'
 //组件的共同方法
 
 interface PropsTypeHook {
