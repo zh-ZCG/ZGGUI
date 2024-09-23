@@ -1,6 +1,6 @@
 <!--
  * @Description: z-column-notice-bar 纵向通知栏组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,12 +15,12 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { noticeBarKey } from '@/ZCGUI/components/z-notice-bar/index'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { noticeBarKey } from '@/ZGGUI/components/z-notice-bar/index'
 /**
  * @description:z-column-notice-bar 纵向通知栏组件传参
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -40,7 +40,9 @@ const noticeBar = inject(noticeBarKey, null)
 const data = computed<string[]>(() => (noticeBar?.data ? noticeBar?.data : []))
 
 // 通知切换时间
-const interval = computed<number>(() => (noticeBar?.speed ? noticeBar?.speed : 3000))
+const interval = computed<number>(() =>
+  noticeBar?.speed ? noticeBar?.speed : 3000
+)
 
 // 是否播放
 const play = computed<boolean>(() => (noticeBar?.play ? noticeBar?.play : true))

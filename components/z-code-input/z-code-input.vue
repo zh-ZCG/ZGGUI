@@ -1,6 +1,6 @@
 <!--
  * @Description: z-code-input 验证码输入组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,8 +14,8 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-code-input 验证码输入组件传参
  * @param: 	maxlength			最大输入长度
@@ -34,7 +34,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: 	disabledDot			是否禁止输入"."符号
  * @param:  otherStyle   其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  *
  * @event	change	输入内容发生改变时触发
  * @event	finish	输入字符个数达maxlength值时触发
@@ -91,7 +91,7 @@ const isFocus = ref(props.focus)
 
 watch(
   () => props.value,
-  val => {
+  (val) => {
     inputValue.value = String(val).substring(0, props.maxlength)
   },
   { immediate: true }

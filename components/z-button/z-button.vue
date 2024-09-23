@@ -1,15 +1,15 @@
 <!--
  * @Description: z-button 按钮组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zLoadingIcon from '@/ZCGUI/components/z-loading-icon/z-loading-icon.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 
 /**
  * @description: z-button 按钮组件传参
@@ -51,7 +51,7 @@ import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
  * @event:	error			当使用开放能力时，发生错误的回调
  * @event:	opensetting		在打开授权设置页并关闭后回调
  * @event:	launchapp		打开 APP 成功的回调
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-gap 间隔组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,8 +14,8 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-gap 间隔传参
  * @param: bgColor 背景颜色 （默认 'transparent' ）
@@ -24,7 +24,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: marginBottom  与下一个组件的距离，（默认 0px ）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 

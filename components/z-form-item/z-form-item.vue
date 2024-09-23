@@ -1,6 +1,6 @@
 <!--
  * @Description: z-form-item 表单子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -21,12 +21,12 @@ import {
   inject,
   Slots,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import { Arrayable } from '@/ZCGUI/libs/zType'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { castArray, debounce } from '@/ZCGUI/libs/lodash'
-import { getProp } from '@/ZCGUI/libs/utils/zObject'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import { Arrayable } from '@/ZGGUI/libs/zType'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { castArray, debounce } from '@/ZGGUI/libs/lodash'
+import { getProp } from '@/ZGGUI/libs/utils/zObject'
 import {
   FormRules,
   formContextKey,
@@ -38,14 +38,14 @@ import {
   FormItemRule,
   useFormSize,
   useFormDisabled,
-} from '@/ZCGUI/components/z-form/types'
+} from '@/ZGGUI/components/z-form/types'
 import type {
   RuleItem,
   ValidateError,
   ValidateFieldsError,
-} from '@/ZCGUI/libs/async-validator'
+} from '@/ZGGUI/libs/async-validator'
 
-import AsyncValidator from '@/ZCGUI/libs/async-validator'
+import AsyncValidator from '@/ZGGUI/libs/async-validator'
 /**
  * @description: z-form-item 表单子组件传参
  * @param: label label文本
@@ -60,7 +60,7 @@ import AsyncValidator from '@/ZCGUI/libs/async-validator'
  * @param: size  控制表单组件尺寸
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -173,7 +173,9 @@ const normalizedRules = computed(() => {
 const validateEnabled = computed(() => normalizedRules.value.length > 0)
 
 // 是否为必填
-const isRequired = computed(() => normalizedRules.value.some(rule => rule.required))
+const isRequired = computed(() =>
+  normalizedRules.value.some((rule) => rule.required)
+)
 
 // 是否显示错误信息
 const shouldShowError = computed(
@@ -193,7 +195,7 @@ const getFilterRule = (trigger: string) => {
   const rules = normalizedRules.value
   return (
     rules
-      .filter(rule => {
+      .filter((rule) => {
         if (!rule.trigger || !trigger) return true
         if (Array.isArray(rule.trigger)) {
           return rule.trigger.includes(trigger)
@@ -318,7 +320,7 @@ watch(
 
 watch(
   () => props.error,
-  val => {
+  (val) => {
     validateMessage.value = val || ''
     setValidateState(val ? 'error' : '')
   },
@@ -329,7 +331,7 @@ watch(
 
 watch(
   () => props.validateStatus,
-  val => {
+  (val) => {
     setValidateState((val as formItemValidateStates) || '')
   }
 )
@@ -365,7 +367,7 @@ const labelId = `z-label-${instance?.uid}`
 // 获取label标签的宽度
 const initLabelContainerWidth = () => {
   if (!hasLabel.value) return
-  z.getDomInfo(`#${labelId}`, instance).then(res => {
+  z.getDomInfo(`#${labelId}`, instance).then((res) => {
     labelContainerWidth.value = res?.width || 0
   })
 }

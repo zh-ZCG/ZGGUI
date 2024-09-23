@@ -1,15 +1,15 @@
 <!--
  * @Description: z-image 图片组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zTransition from '@/ZCGUI/components/z-transition/z-transition.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { zImage } from '@/ZCGUI/libs/types/zImage'
+import z from '@/ZGGUI/libs/z'
+import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { zImage } from '@/ZGGUI/libs/types/zImage'
 
 /**
  * @description: z-image 图片组件传参
@@ -34,7 +34,7 @@ import { zImage } from '@/ZCGUI/libs/types/zImage'
  * @event: click 点击图片
  * @event: error 加载图片失败触发
  * @event: success 加载图片成功触发
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {

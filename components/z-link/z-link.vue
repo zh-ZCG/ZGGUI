@@ -1,13 +1,13 @@
 <!--
  * @Description: z-link 超链接组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
 
 /**
  * @description: z-link 超链接组件，小程序为复制到剪贴板，h5为打开超链接，app为用内置浏览器打开链接
@@ -22,7 +22,7 @@ import zColor from '@/ZCGUI/libs/zColor'
  * @param: otherstyle 其他样式
  *
  * @event: click 点击链接
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {

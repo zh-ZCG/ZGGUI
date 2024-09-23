@@ -1,6 +1,6 @@
 <!--
  * @Description: z-empty 空白组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,11 +15,11 @@ import {
   CSSProperties,
   useSlots,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { useComponentSize } from '@/ZCGUI/libs/use-component-size/use-component-size'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-size'
 /**
  * @description: z-empty 空白组件传参
  * @param: mode 空白提示类型
@@ -28,7 +28,7 @@ import { useComponentSize } from '@/ZCGUI/libs/use-component-size/use-component-
  * @param: showTips  是否显示提示
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 type TextIconStyleType = (type: 'icon' | 'tips') => CSSProperties
@@ -100,7 +100,8 @@ const emptyClass = computed<string>(() => {
   const cls: string[] = ['z-empty']
 
   // 设置尺寸
-  if (props.size && sizeType.value === 'inner') cls.push(`z-empty-${props.size}`)
+  if (props.size && sizeType.value === 'inner')
+    cls.push(`z-empty-${props.size}`)
 
   return cls.join(' ')
 })

@@ -1,21 +1,21 @@
 <!--
  * @Description: z-swipe-action 滑动菜单组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, CSSProperties, provide, toRefs, shallowRef, reactive } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import { swipeActionContextKey } from '@/ZCGUI/components/z-swipe-action/z-swipe-action'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import { swipeActionContextKey } from '@/ZGGUI/components/z-swipe-action/z-swipe-action'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-swipe-action 滑动菜单组件传参
  * @param: autoClose 自动关闭菜单
  * @param: exclusive	只允许一个item处于打开状态
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -47,7 +47,9 @@ const useOrderedChildren = <T extends { uid: number }>() => {
   }
   const removeChild = (uid: number) => {
     delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(child => child.uid !== uid)
+    orderedChildren.value = orderedChildren.value.filter(
+      (child) => child.uid !== uid
+    )
   }
 
   return {
@@ -72,7 +74,7 @@ const activeUid = ref<number[]>([])
 
 // 设置当前激活的item
 const setActiveItem = (uid: number) => {
-  const itemIndex = items.value.findIndex(item => item.uid === uid)
+  const itemIndex = items.value.findIndex((item) => item.uid === uid)
   const index = activeUid.value.indexOf(uid)
   if (props.exclusive) {
     activeUid.value = index !== -1 ? [] : [uid]
@@ -94,7 +96,7 @@ const closeAllItemOption = () => {
 
 // 回调当前点击的选项
 const optionClick = (uid: number, optionIndex: number) => {
-  const itemIndex = items.value.findIndex(item => item.uid === uid)
+  const itemIndex = items.value.findIndex((item) => item.uid === uid)
   emits('select', itemIndex, optionIndex)
 }
 

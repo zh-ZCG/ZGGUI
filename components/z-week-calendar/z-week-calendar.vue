@@ -1,6 +1,6 @@
 <!--
  * @Description: z-weekCalendar 周日历组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import dayjs from '@/ZCGUI/libs/dayjs'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import dayjs from '@/ZGGUI/libs/dayjs'
 /**
  * @description: z-weekCalendar 周日历传参
  * @param: modelValue 绑定月份选中日期的值
@@ -30,7 +30,7 @@ import dayjs from '@/ZCGUI/libs/dayjs'
  * @param: customData  自定义数据
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -144,7 +144,7 @@ const maxDate = computed<number>(() =>
 // 用户自定义日期描述数据
 const customDescData = computed<Map<number, string>>(() => {
   const map = new Map<number, string>()
-  props.customData.forEach(item => {
+  props.customData.forEach((item) => {
     map.set(item.date, item.desc)
   })
   return map
@@ -165,8 +165,8 @@ const currentSwiperIndex = ref<number>(0)
 
 // 更新指定的日期为激活状态
 const updateActiveDate = (date: number) => {
-  weekCalendarData.value.forEach(week => {
-    week.forEach(item => {
+  weekCalendarData.value.forEach((week) => {
+    week.forEach((item) => {
       if (item.status !== 'disabled') {
         if (item.date === date) {
           item.status = 'active'
@@ -193,7 +193,9 @@ const updateModelValue = (value: number, changeEmits = true) => {
 const generateWeekCalendarData = () => {
   const data: WeekCalendarItem[] = []
 
-  const generateMonthDayjs = dayjs(`${currentYear.value}/${currentMonth.value}/01`)
+  const generateMonthDayjs = dayjs(
+    `${currentYear.value}/${currentMonth.value}/01`
+  )
   const dates = generateMonthDayjs.daysInMonth()
   const firstDayWeek = generateMonthDayjs.day()
 
@@ -325,7 +327,11 @@ const itemStyle = computed<WeekCalendarItemStyle>(() => {
   <div class="pr z-week-calendar">
     <!-- 星期中文数据 -->
     <div class="pr df fwnw weeks">
-      <div v-for="(item, index) in weekText" :key="index" class="week df jcc aic">
+      <div
+        v-for="(item, index) in weekText"
+        :key="index"
+        class="week df jcc aic"
+      >
         {{ item }}
       </div>
     </div>
@@ -375,7 +381,10 @@ const itemStyle = computed<WeekCalendarItemStyle>(() => {
                 @tap.stop="dateItemClick(dateItem)"
               >
                 <div class="dateItem pr" :style="itemStyle(dateItem.status)">
-                  <div v-if="dateItem.date" class="dateItemValue pa dfc aic jcc">
+                  <div
+                    v-if="dateItem.date"
+                    class="dateItemValue pa dfc aic jcc"
+                  >
                     <div class="value">
                       {{ dateItem.date }}
                     </div>

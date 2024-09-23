@@ -1,16 +1,23 @@
 <!--
  * @Description: z-picker 滚动选择器
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
-import { ref, getCurrentInstance, watch, PropType, computed, nextTick } from 'vue'
-import zPopup from '@/ZCGUI/components/z-popup/z-popup.vue'
+import {
+  ref,
+  getCurrentInstance,
+  watch,
+  PropType,
+  computed,
+  nextTick,
+} from 'vue'
+import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
 import type { CSSProperties } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import { isArray } from '@/ZCGUI/libs/lodash/is-array'
-import { isObject } from '@/ZCGUI/libs/lodash/is-object'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import { isArray } from '@/ZGGUI/libs/lodash/is-array'
+import { isObject } from '@/ZGGUI/libs/lodash/is-object'
 /**
  * @description: z-picker 滚动选择器
  * @param: modelValue picker绑定的值
@@ -29,7 +36,7 @@ import { isObject } from '@/ZCGUI/libs/lodash/is-object'
  * @param: mask  显示遮罩
  * @param: zIndex zIndex
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -130,7 +137,7 @@ showPicker.value = false
 // #endif
 watch(
   () => props.open,
-  value => {
+  (value) => {
     openPopup.value = value
     // #ifdef MP-ALIPAY
     if (value) {
@@ -191,11 +198,16 @@ const _generateOrUpdateCascadeData = (
   // 判断生成的的级联数据是否已经有数据，如果有数据则更新，否则生成
   if (pickerData.value.length < generateIndex) {
     pickerData.value.push(
-      ...Array.from({ length: generateIndex - pickerData.value.length }, () => [])
+      ...Array.from(
+        { length: generateIndex - pickerData.value.length },
+        () => []
+      )
     )
   }
 
-  pickerData.value[generateIndex - 1] = [...data.map(item => _generateData(item))]
+  pickerData.value[generateIndex - 1] = [
+    ...data.map((item) => _generateData(item)),
+  ]
   // 判断从第几个子级开始生成级联数据
   let childrenIndex = 0
   if (defaultValue.length) {
@@ -236,7 +248,7 @@ const initDefaultPickerIndex = () => {
         let pickerIndex = 0
         if (!(props.modelValue as (string | number)[])[index]) pickerIndex = 0
         else {
-          pickerIndex = (item as PickerDataType[]).findIndex(childItem => {
+          pickerIndex = (item as PickerDataType[]).findIndex((childItem) => {
             return (
               (childItem as any).value ===
               (props.modelValue as (string | number)[])[index]
@@ -271,7 +283,7 @@ const splitUserPickerData = () => {
     pickerMode = 'multiple'
     pickerData.value = (data as PickerDataType[][]).reduce(
       (prev: PickerData, cur: Array<PickerDataType>) => {
-        prev.push(cur.map(item => _generateData(item)))
+        prev.push(cur.map((item) => _generateData(item)))
         return prev
       },
       []
@@ -291,7 +303,7 @@ const splitUserPickerData = () => {
   } else {
     // 单列选择器
     pickerMode = 'signle'
-    pickerData.value = [(data as PickerData).map(item => _generateData(item))]
+    pickerData.value = [(data as PickerData).map((item) => _generateData(item))]
   }
   // console.log(JSON.stringify(pickerData.value))
   nextTick(() => {
@@ -327,7 +339,8 @@ const _getCurrentPickerValue = (): PickerValueType => {
 // 根据用户选中的索引获取当前用户传入的数据
 const _getCurrentPickerOriginData = (): any => {
   if (pickerMode === 'signle' && !isArray((props.data as any[])[0])) {
-    return (pickerData.value as any)[0][currentPickerIndex.value[0]].originalData
+    return (pickerData.value as any)[0][currentPickerIndex.value[0]]
+      .originalData
   } else {
     // currentPickerIndex.value.splice(pickerData.value.length)
     const pickerIndex = z.deepClone(currentPickerIndex.value)
@@ -359,7 +372,7 @@ const _generatePickerViewData = (val: any) => {
 let isInnerUpdate = false
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (isInnerUpdate) {
       isInnerUpdate = false
       return
@@ -388,7 +401,9 @@ const pickerViewChangeEvent = (e: any) => {
   let changePickerColumnIndex = currentPickerIndex.value.findIndex(
     (item, index) => item !== e.detail.value[index]
   )
-  changePickerColumnIndex = ~changePickerColumnIndex ? changePickerColumnIndex : 0
+  changePickerColumnIndex = ~changePickerColumnIndex
+    ? changePickerColumnIndex
+    : 0
   currentPickerIndex.value = e.detail.value
 
   // 如果是级联选择器，对应的列有children的值，则需要更新后面的数据，并且重置后面选中的索引
@@ -408,7 +423,9 @@ const pickerViewChangeEvent = (e: any) => {
         changePickerColumnIndex + 2
       )
       currentPickerIndex.value = pickerData.value.map((item, index) => {
-        return index <= changePickerColumnIndex ? currentPickerIndex.value[index] : 0
+        return index <= changePickerColumnIndex
+          ? currentPickerIndex.value[index]
+          : 0
       })
     }
   }
@@ -522,7 +539,11 @@ function pickend() {
             :key="index"
             class="bgw"
           >
-            <div v-for="(dItem, dIndex) in item" :key="dIndex" class="df jcc aic">
+            <div
+              v-for="(dItem, dIndex) in item"
+              :key="dIndex"
+              class="df jcc aic"
+            >
               <div class="tac" style="height: fit-content; width: 100%">
                 {{ dItem['label'] }}
               </div>

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-image-upload 仅图片上传组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -24,15 +24,15 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import {
   useUploadHandleFunction,
   ImageUploadList,
-} from '@/ZCGUI/components/z-image-upload/z-image-upload'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { useFormItem } from '@/ZCGUI/components/z-form/types'
+} from '@/ZGGUI/components/z-image-upload/z-image-upload'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { useFormItem } from '@/ZGGUI/components/z-form/types'
 import {
   ImageUploadFile,
   ImageUploadListItem,
@@ -42,7 +42,7 @@ import {
   ImageBeforeRemoveFunction,
   ImageUploadSizeTypes,
   ImageUploadSources,
-} from '@/ZCGUI/components/z-image-upload/z-image-upload'
+} from '@/ZGGUI/components/z-image-upload/z-image-upload'
 /**
  * @description: z-image-upload 仅图片上传组件传参
  * @param: modelValue 已上传的图片列表绑定值，传递的是图片的url地址
@@ -69,7 +69,7 @@ import {
  * @param: validateEvent  值发生修改时是否触发表单验证
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -147,13 +147,13 @@ const fileList = ref<ImageUploadList>([])
 let isInnerUpdate = false
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (isInnerUpdate) {
       isInnerUpdate = false
       return
     }
 
-    fileList.value = val.map(item => ({
+    fileList.value = val.map((item) => ({
       url: item,
       status: 'done',
       progress: 100,
@@ -165,7 +165,9 @@ watch(
 )
 
 // 判断是否超过最大上传数
-const isExceedMaxCount = computed<boolean>(() => fileList.value.length >= props.limit)
+const isExceedMaxCount = computed<boolean>(
+  () => fileList.value.length >= props.limit
+)
 // 当前剩余可选文件数量
 const currentRemainFileCount = computed<number>(() => {
   if (props.multiple) {
@@ -189,7 +191,7 @@ const chooseFile = async () => {
   // 选择前已有文件的数量
   const prevUploadedFileCount = fileList.value.length
   chooseImage(currentRemainFileCount.value)
-    .then(res => {
+    .then((res) => {
       let selectFile = res
       // 判断尺寸和格式是否正确
       const checkFailFiles = checkFileSizeAndExtension(selectFile)
@@ -197,10 +199,10 @@ const chooseFile = async () => {
         showErrorTips('文件格式或大小不符合要求')
         emits('oversizeOrNoSupport', checkFailFiles)
         // 剔除不符合要求的文件
-        selectFile = selectFile.filter(item => !checkFailFiles.includes(item))
+        selectFile = selectFile.filter((item) => !checkFailFiles.includes(item))
       }
       fileList.value.push(
-        ...selectFile.map<ImageUploadListItem>(item => {
+        ...selectFile.map<ImageUploadListItem>((item) => {
           const url = (item as UniApp.ChooseImageSuccessCallbackResultFile).path
           return {
             url,
@@ -210,9 +212,10 @@ const chooseFile = async () => {
           }
         })
       )
-      if (props.autoUpload && selectFile.length) uploadFile(prevUploadedFileCount)
+      if (props.autoUpload && selectFile.length)
+        uploadFile(prevUploadedFileCount)
     })
-    .catch(err => {
+    .catch((err) => {
       z.error(`zImageUpload 选择图片失败: ${err}`)
       showErrorTips(err?.errMsg || '选择图片失败')
     })
@@ -225,14 +228,14 @@ const handleUploadEvent = (
   uploadSingle = false
 ) => {
   uploadProcess(item)
-    .then(res => {
+    .then((res) => {
       if (res) {
         handleUploadSuccess(item)
       } else {
         handleUploadError(item, '上传失败')
       }
     })
-    .catch(err => {
+    .catch((err) => {
       handleUploadError(item, err)
     })
     .finally(() => {
@@ -277,14 +280,14 @@ const uploadFile = (startIndex: number, uploadSingle = false) => {
 
   if (zType.isPromise(shouldUpload)) {
     shouldUpload
-      .then(res => {
+      .then((res) => {
         if (res) handleUploadEvent(fileItem, startIndex, uploadSingle)
         else {
           removeFile(startIndex)
           if (autoNextUpload) uploadFile(startIndex)
         }
       })
-      .catch(err => {
+      .catch((err) => {
         z.error(`zImageUpload beforeUpload出错: ${err}`)
         fileItem.status = 'failed'
       })
@@ -299,7 +302,9 @@ const uploadFile = (startIndex: number, uploadSingle = false) => {
 
 // 获取上传成功的文件url
 const getUploadSuceesFileUrlValue = () => {
-  return fileList.value.filter(item => item.status === 'done').map(item => item.url)
+  return fileList.value
+    .filter((item) => item.status === 'done')
+    .map((item) => item.url)
 }
 
 // 已上传文件列表发生改变
@@ -310,7 +315,7 @@ const uploadSuccessFileListChange = () => {
   nextTick(() => {
     emits('change', value)
     if (props.validateEvent) {
-      formItem?.validate?.('change').catch(err => {
+      formItem?.validate?.('change').catch((err) => {
         z.error(err)
       })
     }
@@ -359,7 +364,7 @@ const retryUploadFile = (index: number) => {
 const retryAllUpload = () => {
   // 查找出第一张上传失败的图片
   const firstFailedFileIndex = fileList.value.findIndex(
-    item => item.status === 'failed'
+    (item) => item.status === 'failed'
   )
   uploadFile(firstFailedFileIndex)
 }
@@ -407,7 +412,7 @@ const removeFileEvent = (index: number) => {
     showCancel: true,
     cancelText: '取 消',
     confirmText: '确 认',
-    success: res => {
+    success: (res) => {
       if (res.confirm) {
         // 删除前回调
         if (!beforeRemove) {
@@ -426,10 +431,10 @@ const removeFileEvent = (index: number) => {
 
         if (zType.isPromise(shouldRemove)) {
           shouldRemove
-            .then(res => {
+            .then((res) => {
               if (res) removeFile(index)
             })
-            .catch(err => {
+            .catch((err) => {
               z.error(`zImageUpload beforeRemove出错: ${err}`)
             })
         } else {
@@ -443,7 +448,7 @@ const removeFileEvent = (index: number) => {
 // 清空文件列表
 const clearAllFile = () => {
   // 如果文件正在上传中，取消上传
-  fileList.value.forEach(item => {
+  fileList.value.forEach((item) => {
     if (
       item.status === 'uploading' &&
       item.uploadTask &&
@@ -460,8 +465,8 @@ const clearAllFile = () => {
 // 点击图片预览图片
 const previewImage = (index: number) => {
   const previewImageList = fileList.value
-    .filter(item => item.status === 'done')
-    .map(item => item.url)
+    .filter((item) => item.status === 'done')
+    .map((item) => item.url)
 
   uni.previewImage({
     current: index,
@@ -535,8 +540,14 @@ defineExpose({
           class="progress pa"
           :class="item.progress === 100 ? 'finish' : ''"
         >
-          <div class="wave pa" :style="{ top: `${-300 - item.progress}%` }"></div>
-          <div class="wave pa" :style="{ top: `${-300 - item.progress}%` }"></div>
+          <div
+            class="wave pa"
+            :style="{ top: `${-300 - item.progress}%` }"
+          ></div>
+          <div
+            class="wave pa"
+            :style="{ top: `${-300 - item.progress}%` }"
+          ></div>
         </div>
       </slot>
     </div>

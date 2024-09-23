@@ -1,16 +1,16 @@
 <!--
  * @Description: z-text 文本组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zTest from '@/ZCGUI/libs/zTest'
-import zColor from '@/ZCGUI/libs/zColor'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zLink from '@/ZCGUI/components/z-link/z-link.vue'
+import z from '@/ZGGUI/libs/z'
+import zTest from '@/ZGGUI/libs/zTest'
+import zColor from '@/ZGGUI/libs/zColor'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zLink from '@/ZGGUI/components/z-link/z-link.vue'
 
 /**
  * @description: z-text 文本组件
@@ -47,7 +47,7 @@ import zLink from '@/ZCGUI/components/z-link/z-link.vue'
   formType?: string
  *
  * @event: click 点击文本
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {
@@ -268,12 +268,22 @@ function launchapp(res: any) {
 </script>
 
 <template>
-  <div class="dfr aic fwn f1" v-if="props.show" @tap="clickText" :style="textStyle">
+  <div
+    class="dfr aic fwn f1"
+    v-if="props.show"
+    @tap="clickText"
+    :style="textStyle"
+  >
     <text class="" v-if="mode === 'price'" :style="textContentStyle">￥</text>
     <div v-if="props.prefixIcon">
       <zIcon :name="prefixIcon" :otherStyle="props.iconStyle"></zIcon>
     </div>
-    <zLink v-if="mode === 'link'" :text="showValue" :href="href" underLine></zLink>
+    <zLink
+      v-if="mode === 'link'"
+      :text="showValue"
+      :href="href"
+      underLine
+    ></zLink>
     <button
       v-else-if="props.openType && isWx"
       class="z-reset-button df fww aic toe"

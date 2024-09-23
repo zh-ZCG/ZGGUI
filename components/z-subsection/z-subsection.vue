@@ -1,6 +1,6 @@
 <!--
  * @Description: z-subsection 分段器组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -17,17 +17,17 @@ import {
   toRefs,
   provide,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 import {
   subsectionMode,
   subsectionContextKey,
   SubsectionItemContext,
   SubsectionSliderRect,
   useOrderedChildren,
-} from '@/ZCGUI/components/z-subsection/z-subsection'
-import zColor from '@/ZCGUI/libs/zColor'
-import { useComponentSize } from '@/ZCGUI/libs/use-component-size/use-component-size'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-subsection/z-subsection'
+import zColor from '@/ZGGUI/libs/zColor'
+import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-size'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-subsection 分段器组件传参
  * @param: color 默认颜色
@@ -39,7 +39,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: radius  圆角的值，只作用在最外层的两个选择器上
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -120,7 +120,7 @@ const updateActiveUidWithIndex = () => {
 let innerUpdate = false
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (innerUpdate) {
       innerUpdate = false
       return
@@ -158,7 +158,7 @@ const getComponentRectInfo = async () => {
 
 // 设置当前被点击的activeUID
 const setActiveItem = (uid: number) => {
-  const index = items.value.findIndex(item => item.uid === uid)
+  const index = items.value.findIndex((item) => item.uid === uid)
   if (index !== -1) {
     innerUpdate = true
     activeUid.value = uid
@@ -222,7 +222,8 @@ const subsectionClass = computed<string>(() => {
   const cls: string[] = ['z-subsection', `z-subsection-${props.mode}`]
 
   // 设置尺寸
-  if (props.size && sizeType.value === 'inner') cls.push(`z-subsection-${props.size}`)
+  if (props.size && sizeType.value === 'inner')
+    cls.push(`z-subsection-${props.size}`)
 
   return cls.join(' ')
 })
@@ -256,7 +257,10 @@ const subsectionStyle = computed<CSSProperties>(() => {
 
 // 滑块的类
 const subsectionSliderClass = computed<string>(() => {
-  const cls: string[] = ['z-subsection-slider', `z-subsection-slider-${props.mode}`]
+  const cls: string[] = [
+    'z-subsection-slider',
+    `z-subsection-slider-${props.mode}`,
+  ]
 
   return cls.join(' ')
 })

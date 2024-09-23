@@ -1,12 +1,12 @@
 <!--
  * @Description: z-popup-bar 弹出层的操作栏
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
-import zLine from '@/ZCGUI/components/z-line/z-line.vue'
-import z from '@/ZCGUI/libs/z'
+import zLine from '@/ZGGUI/components/z-line/z-line.vue'
+import z from '@/ZGGUI/libs/z'
 
 /**
  * @description: z-popupBar 弹出层的操作栏传参
@@ -24,7 +24,7 @@ import z from '@/ZCGUI/libs/z'
  *
  * @event: clickLeft 点击操作栏左侧
  * @event: clickRight 点击操作栏右侧
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {
@@ -113,7 +113,9 @@ const popupBarClass = computed(() => {
       :style="[leftStyle]"
       @tap="props.disabled ? 1 : emits('clickLeft')"
     >
-      <div :style="props.disabled ? 'opacity:0.5' : ''">{{ props.leftValue }}</div>
+      <div :style="props.disabled ? 'opacity:0.5' : ''">
+        {{ props.leftValue }}
+      </div>
     </div>
     <div class="f1 valueClass tac ofh wsnw tofe" style="">
       {{ props.centerValue }}
@@ -123,7 +125,9 @@ const popupBarClass = computed(() => {
       :style="[rightStyle]"
       @tap="props.disabled ? 1 : emits('clickRight')"
     >
-      <div :style="props.disabled ? 'opacity:0.5' : ''">{{ props.rightValue }}</div>
+      <div :style="props.disabled ? 'opacity:0.5' : ''">
+        {{ props.rightValue }}
+      </div>
     </div>
   </div>
   <zLine :show="props.borderBottom"></zLine>

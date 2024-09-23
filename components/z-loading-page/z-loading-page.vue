@@ -1,16 +1,16 @@
 <!--
  * @Description: z-loading-page 加载页面组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zLoadingIcon from '@/ZCGUI/components/z-loading-icon/z-loading-icon.vue'
-import zTransition from '@/ZCGUI/components/z-transition/z-transition.vue'
+import z from '@/ZGGUI/libs/z'
+import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
+import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
 
-import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
 
 /**
  * @description: z-loading-page 加载页面组件
@@ -24,7 +24,7 @@ import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
  * @param: 	iconSize		图标大小 （默认 28 ）
  * @param: 	loadingColor	加载中图标的颜色，只能rgb或者十六进制颜色值 （默认 '#C8C8C8' ）
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 

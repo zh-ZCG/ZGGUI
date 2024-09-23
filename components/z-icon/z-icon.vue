@@ -1,6 +1,6 @@
 <!--
  * @Description: z-icon 图标组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -16,7 +16,7 @@ export default {
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 /**
  * @description: z-icon 图标组件传参
@@ -34,7 +34,7 @@ import z from '@/ZCGUI/libs/z'
  *
  * @slot: 具名插槽badge,与z-badge用法一样，最好使用absolute和position字段控制位置
  * @event: click 点击图标，只判断是否点击，如果是循环请在父组件或页面中接收想要传入的index，不进行组件的传入传出
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {
@@ -110,7 +110,10 @@ const iconClass = computed(() => {
   }
   // classes.push(props.classPrefix) 在使用自定义图标时，记得带上iconfont（与官网相似）
 
-  if (props.color && z.isClassOrStyle(z.getColorClass(props.color)) === 'class') {
+  if (
+    props.color &&
+    z.isClassOrStyle(z.getColorClass(props.color)) === 'class'
+  ) {
     classes.push(props.color)
   }
 
@@ -128,7 +131,10 @@ const iconStyle = computed(() => {
   // style.width = props.width ? z.addUnit(props.width) : z.addUnit(props.size)
   // style.height = props.height ? z.addUnit(props.height) : z.addUnit(props.size)
 
-  if (props.color && z.isClassOrStyle(z.getColorClass(props.color)) === 'style') {
+  if (
+    props.color &&
+    z.isClassOrStyle(z.getColorClass(props.color)) === 'style'
+  ) {
     style.color = props.color
   }
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})

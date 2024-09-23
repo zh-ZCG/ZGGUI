@@ -1,6 +1,6 @@
 <!--
  * @Description: z-action-sheet 操作菜单组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,10 +15,10 @@ import {
   CSSProperties,
   reactive,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zPopup from '@/ZCGUI/components/z-popup/z-popup.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { isBoolean } from '@/ZCGUI/libs/lodash'
+import z from '@/ZGGUI/libs/z'
+import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { isBoolean } from '@/ZGGUI/libs/lodash'
 import { isPromise } from '@vue/shared'
 /**
  * @description: z-action-sheet 操作菜单组件传参
@@ -28,7 +28,7 @@ import { isPromise } from '@vue/shared'
  * @param: marginBottom  与下一个组件的距离，（默认 0px ）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -153,7 +153,7 @@ const popupCloseEvent = () => {
   }
 
   if (isPromise(shouldCancel)) {
-    shouldCancel.then(res => {
+    shouldCancel.then((res) => {
       if (res) {
         openPopup.value = false
       }
@@ -183,7 +183,7 @@ const actionClickEvent = (index: number) => {
   }
 
   if (isPromise(shouldSelect)) {
-    shouldSelect.then(res => {
+    shouldSelect.then((res) => {
       if (res) {
         openPopup.value = false
       }

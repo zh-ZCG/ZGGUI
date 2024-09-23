@@ -1,17 +1,17 @@
 <!--
  * @Description: z-upload 上传组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed, watch } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zTest from '@/ZCGUI/libs/zTest'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zLoadingIcon from '@/ZCGUI/components/z-loading-icon/z-loading-icon.vue'
-import { chooseFile } from '@/ZCGUI/libs/zUploadUtils'
-import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zTest from '@/ZGGUI/libs/zTest'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
+import { chooseFile } from '@/ZGGUI/libs/zUploadUtils'
+import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
 
 /**
  * @description: z-upload 上传组件传参
@@ -44,7 +44,7 @@ import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
  * @event: beforeRead		读取前的处理函数
  * @event: oversize		文件超出大小限制
  * @event: delete 		删除图片
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -123,7 +123,7 @@ const isInCount = ref(true)
 
 watch(
   () => props.fileList,
-  newVal => {
+  (newVal) => {
     formatFileList()
   },
   {
@@ -171,10 +171,10 @@ function chooseFileUpload() {
       }
     )
   )
-    .then(res => {
+    .then((res) => {
       onBeforeRead(props.multiple ? res : res[0])
     })
-    .catch(error => {
+    .catch((error) => {
       emits('error', error)
     })
 }
@@ -223,7 +223,7 @@ function getDetail(index?: number) {
 }
 function onAfterRead(file: any) {
   const oversize = Array.isArray(file)
-    ? file.some(item => item.size > props.maxSize)
+    ? file.some((item) => item.size > props.maxSize)
     : file.size > props.maxSize
   if (oversize) {
     emits(
@@ -265,8 +265,11 @@ function onPreviewImage(item: any) {
   uni.previewImage({
     // 先filter找出为图片的item，再返回filter结果中的图片url
     urls: lists.value
-      .filter(item => props.accept === 'image' || zTest.image(item.url || item.thumb))
-      .map(item => item.url || item.thumb),
+      .filter(
+        (item) =>
+          props.accept === 'image' || zTest.image(item.url || item.thumb)
+      )
+      .map((item) => item.url || item.thumb),
     current: item.url || item.thumb,
     fail() {
       console.log('预览图片失败')
@@ -295,7 +298,9 @@ function onPreviewImage(item: any) {
             :src="item.thumb || item.url"
             :mode="props.imageMode"
             @tap="onPreviewImage(item)"
-            :style="'width:' + z.addUnit(width) + ';height:' + z.addUnit(height)"
+            :style="
+              'width:' + z.addUnit(width) + ';height:' + z.addUnit(height)
+            "
           ></image>
           <div
             v-else
@@ -318,7 +323,9 @@ function onPreviewImage(item: any) {
             ></zIcon>
             <text class="z-upload-preview-text">
               {{
-                item.isVideo || (item.type && item.type === 'video') ? '视频' : '文件'
+                item.isVideo || (item.type && item.type === 'video')
+                  ? '视频'
+                  : '文件'
               }}
             </text>
           </div>
@@ -346,7 +353,9 @@ function onPreviewImage(item: any) {
           </div>
           <div
             class="pa df jcc aic z-upload-deletable"
-            v-if="item.status !== 'uploading' && (props.deletable || item.deletable)"
+            v-if="
+              item.status !== 'uploading' && (props.deletable || item.deletable)
+            "
             @tap.stop="deleteItem(index)"
           >
             <div class="pa icon">

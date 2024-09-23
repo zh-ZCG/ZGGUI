@@ -1,6 +1,6 @@
 <!--
  * @Description: z-photo-album 相册组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { zImage } from '@/ZCGUI/libs/types/zImage'
-import zLazyLoad from '@/ZCGUI/components/z-lazy-load/z-lazy-load.vue'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { zImage } from '@/ZGGUI/libs/types/zImage'
+import zLazyLoad from '@/ZGGUI/components/z-lazy-load/z-lazy-load.vue'
 /**
  * @description: z-photo-album 相册组件传参
  * @param: data 图片地址列表
@@ -28,7 +28,7 @@ import zLazyLoad from '@/ZCGUI/components/z-lazy-load/z-lazy-load.vue'
  * @param: preview  点击图片进行预览
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -96,7 +96,11 @@ const containerStyle = computed<CSSProperties>(() => {
       @tap.stop="imageClickEvent(index)"
     >
       <div class="item pa">
-        <zLazyLoad v-if="lazyLoad" :src="item" :mode="props.imgMode"></zLazyLoad>
+        <zLazyLoad
+          v-if="lazyLoad"
+          :src="item"
+          :mode="props.imgMode"
+        ></zLazyLoad>
         <image v-else class="image" :src="item" :mode="props.imgMode" />
       </div>
     </div>

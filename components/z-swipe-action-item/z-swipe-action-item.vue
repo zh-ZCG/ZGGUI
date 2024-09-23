@@ -1,6 +1,6 @@
 <!--
  * @Description: z-swipe-action-item 滑动菜单子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -26,13 +26,13 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZCGUI/libs/zColor'
-import { SwipeActionItemOption } from '@/ZCGUI/components/z-swipe-action-item/z-swipe-action-item'
-import { useTouch } from '@/ZCGUI/libs/use-Touch/use-Touch'
-import { swipeActionContextKey } from '@/ZCGUI/components/z-swipe-action/z-swipe-action'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zColor from '@/ZGGUI/libs/zColor'
+import { SwipeActionItemOption } from '@/ZGGUI/components/z-swipe-action-item/z-swipe-action-item'
+import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
+import { swipeActionContextKey } from '@/ZGGUI/components/z-swipe-action/z-swipe-action'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-swipe-action-item 滑动菜单子组件传参
  * @param: autoClose 自动关闭菜单
@@ -41,7 +41,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: threshold  滑动阈值，单位 px，大于该值则滑动动作生效
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -118,7 +118,7 @@ const disabledSwipe = computed<boolean>(
 )
 watch(
   () => disabledSwipe.value,
-  val => {
+  (val) => {
     updateSwipeActionItemTouchOptions({
       disabled: val,
     })
@@ -138,7 +138,10 @@ const getComponentNodeInfo = async () => {
     const componentRectInfo = await z.getDomInfo(`#${componentId}`, instance)
     let optionsRectInfo: UniApp.NodeInfo[] = []
     if (props.options?.length) {
-      optionsRectInfo = await z.getDomInfos(`.${optionComponentClass}`, instance)
+      optionsRectInfo = await z.getDomInfos(
+        `.${optionComponentClass}`,
+        instance
+      )
     }
 
     initCount = 0
@@ -181,13 +184,17 @@ const onTouchMove = (event: any) => {
   swipeActionItemTouchMoveEvent(event)
   isSwipe.value = true
   // 如果垂直方向上的移动距离过大则不允许进行滑动
-  if (swipeActionItemDistanceX.value < 3 && swipeActionItemDistanceY.value > 5) {
+  if (
+    swipeActionItemDistanceX.value < 3 &&
+    swipeActionItemDistanceY.value > 5
+  ) {
     return
   }
 
   // 如果当前菜单已经打开了则根据滑动的距离计算内容滑动的距离
   if (isOptionsOpen.value) {
-    contentRightDistance.value = optionsMenuWidth.value - swipeActionItemDeltaX.value
+    contentRightDistance.value =
+      optionsMenuWidth.value - swipeActionItemDeltaX.value
   } else {
     contentRightDistance.value = -swipeActionItemDeltaX.value
   }
@@ -198,7 +205,10 @@ const onTouchMove = (event: any) => {
 const onTouchEnd = (event: any) => {
   swipeActionItemTouchEndEvent(event)
   // 如果垂直方向上的移动距离过大则不允许进行滑动
-  if (swipeActionItemDistanceX.value < 3 && swipeActionItemDistanceY.value > 5) {
+  if (
+    swipeActionItemDistanceX.value < 3 &&
+    swipeActionItemDistanceY.value > 5
+  ) {
     return
   }
   isSwipe.value = false
@@ -242,7 +252,7 @@ const openOptionsMenu = () => {
 
 watch(
   () => isOptionsOpen.value,
-  val => {
+  (val) => {
     if (!val) {
       closeOptionsMenu()
     }
@@ -290,7 +300,7 @@ type OptionStyleValue = (index: number) => CSSProperties
 
 // 菜单配置项
 const options = computed<OptionsData[]>(() => {
-  return props.options.map(item => {
+  return props.options.map((item) => {
     const textColor = ref(item.textColor)
     const bgColor = ref(item.bgColor)
     return {
@@ -317,7 +327,8 @@ const optionColorStyle = computed<OptionStyleValue>(() => {
 
     if (option) {
       style.color = option.textColor.style || '#fff'
-      style.backgroundColor = option.bgColor.style || zColor.getTypeColor('primary')
+      style.backgroundColor =
+        option.bgColor.style || zColor.getTypeColor('primary')
     }
 
     return style

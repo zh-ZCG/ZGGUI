@@ -1,6 +1,6 @@
 <!--
  * @Description: z-steps 步骤条组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,14 +14,14 @@ import {
   toRefs,
   reactive,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 import {
   stepModes,
   stepsContextKey,
   StepContext,
   useOrderedChildren,
-} from '@/ZCGUI/components/z-steps/z-steps'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-steps/z-steps'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-steps 步骤条组件传参
  * @param: color 默认颜色
@@ -31,7 +31,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: mode  步骤条模式
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -78,11 +78,11 @@ const setActiveUidList = (uid?: number, changeEmit = false) => {
     return
   }
   // 查找出当前激活的uid的index
-  const index = items.value.findIndex(item => item.uid === uid)
+  const index = items.value.findIndex((item) => item.uid === uid)
   if (index === -1) return
 
   // 根据index查找出当前激活的uid列表
-  activeUidList.value = items.value.slice(0, index + 1).map(item => item.uid)
+  activeUidList.value = items.value.slice(0, index + 1).map((item) => item.uid)
 
   // 触发更新事件
   emits('update:modelValue', index)
@@ -100,7 +100,7 @@ const setActiveItem = (uid: number) => {
 
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (innerUpdate) {
       innerUpdate = false
       return

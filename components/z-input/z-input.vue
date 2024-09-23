@@ -1,6 +1,6 @@
 <!--
  * @Description: z-input 输入框组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -26,19 +26,19 @@ import {
   CSSProperties,
   InjectionKey,
 } from 'vue'
-import zType from '@/ZCGUI/libs/zType'
-import { trim } from '@/ZCGUI/libs/lodash'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { useToggle } from '@/ZCGUI/libs/use-Toggle/use-Toggle'
+import zType from '@/ZGGUI/libs/zType'
+import { trim } from '@/ZGGUI/libs/lodash'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { useToggle } from '@/ZGGUI/libs/use-Toggle/use-Toggle'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
   FormItemValidateStates,
-} from '@/ZCGUI/components/z-form/types'
-import { FormValidateIconsMap } from '@/ZCGUI/libs/utils'
+} from '@/ZGGUI/components/z-form/types'
+import { FormValidateIconsMap } from '@/ZGGUI/libs/utils'
 /**
  * @description:  z-input 输入框组件传参
  * @param: modelValue 绑定的值
@@ -70,7 +70,7 @@ import { FormValidateIconsMap } from '@/ZCGUI/libs/utils'
  * @param: maxlength  最大可输入长度，设置为 -1 的时候不限制最大长度
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -117,7 +117,14 @@ type inputTypes =
   | 'password'
   | 'select'
 
-type inputConfirmTypes = '' | 'send' | 'search' | 'next' | 'go' | 'done' | 'return'
+type inputConfirmTypes =
+  | ''
+  | 'send'
+  | 'search'
+  | 'next'
+  | 'go'
+  | 'done'
+  | 'return'
 
 type componentSizes = 'small' | 'normal' | 'large'
 // const componentSizes = ['small', 'normal', 'large']
@@ -197,10 +204,10 @@ const { form, formItem } = useFormItem()
 const inputText = ref<string>(String(props.modelValue ?? ''))
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     inputText.value = String(val ?? '')
     if (props.validateEvent) {
-      formItem?.validate?.('change').catch(err => {
+      formItem?.validate?.('change').catch((err) => {
         z.error(JSON.stringify(err))
       })
     }
@@ -216,7 +223,10 @@ const needStatusIcon = computed(() =>
 )
 // 校验状态
 const validateState = computed(() =>
-  z.isEmptyVariableInDefault<FormItemValidateStates>(formItem?.validateState, '')
+  z.isEmptyVariableInDefault<FormItemValidateStates>(
+    formItem?.validateState,
+    ''
+  )
 )
 // 校验状态图标
 const validateIcon = computed(
@@ -224,12 +234,15 @@ const validateIcon = computed(
 )
 
 // 密码显示密码图标
-const passwordIcon = computed(() => (passwordVisible.value ? 'eye1' : 'eye-slash1'))
+const passwordIcon = computed(() =>
+  passwordVisible.value ? 'eye1' : 'eye-slash1'
+)
 
 // 是否显示图标
 const showIcon = computed(() => {
   let status = false
-  if (validateState.value && needStatusIcon.value && validateIcon.value) status = true
+  if (validateState.value && needStatusIcon.value && validateIcon.value)
+    status = true
   if (props.showPassword) status = true
   if (props.rightIcon) status = true
   if (props.clearable) status = true
@@ -241,7 +254,8 @@ const disabled = useFormDisabled(props.disabled)
 
 // 是否显示字数统计
 const showWordLimit = computed<boolean>(
-  () => props.type === 'textarea' && !!props?.maxlength && !!props?.showWordLimit
+  () =>
+    props.type === 'textarea' && !!props?.maxlength && !!props?.showWordLimit
 )
 // 当前的字数
 const currentWordCount = computed<number>(() => {
@@ -267,7 +281,7 @@ const inputBlurEvent = (event: any) => {
   emits('blur', event)
   if (props.validateEvent) {
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    formItem?.validate?.('blur').catch(err => {
+    formItem?.validate?.('blur').catch((err) => {
       z.error(err)
     })
   }

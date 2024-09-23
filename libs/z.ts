@@ -1,7 +1,7 @@
 //全局方法
 import { getCurrentInstance, ref } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
-import zTest from '@/ZCGUI/libs/zTest'
+import zTest from '@/ZGGUI/libs/zTest'
 
 // #ifdef APP-NVUE
 const dom = uni.requireNativePlugin('dom')
@@ -38,7 +38,7 @@ const z = {
       if (query) {
         query
           .select(selector)
-          .boundingClientRect(res => {
+          .boundingClientRect((res) => {
             const selectRes: UniApp.NodeInfo = res as UniApp.NodeInfo
             if (selectRes) {
               resolve(selectRes)
@@ -73,7 +73,7 @@ const z = {
       if (query) {
         query
           .selectAll(selector)
-          .boundingClientRect(res => {
+          .boundingClientRect((res) => {
             const selectRes: UniApp.NodeInfo[] = res as UniApp.NodeInfo[]
             if (selectRes && selectRes.length > 0) {
               resolve(selectRes)
@@ -89,7 +89,7 @@ const z = {
   },
   /**nvue获取当前节点的信息 */
   getDomInfoNvue(ref: any) {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       dom.getComponentRect(ref, (res: any) => {
         resolve(res.size)
       })
@@ -240,7 +240,7 @@ const z = {
    * @param value 延时时间 单位ms
    */
   sleep(value = 30): Promise<void> {
-    return new Promise<void>(resolve => {
+    return new Promise<void>((resolve) => {
       setTimeout(() => {
         resolve()
       }, value)
@@ -286,7 +286,11 @@ const z = {
    * @param func 要执行的回调函数 wait 延时的时间 immediate 是否立即执行
    * 在一定时间内，只能触发一次
    */
-  throttle(func: () => void, wait: number = 500, immediate: boolean = true): void {
+  throttle(
+    func: () => void,
+    wait: number = 500,
+    immediate: boolean = true
+  ): void {
     if (immediate) {
       if (!flag.value) {
         flag.value = true
@@ -311,7 +315,11 @@ const z = {
    * @param func 要执行的回调函数 wait 延时的时间 immediate 是否立即执行
    * @return null
    */
-  debounce(func: () => void, wait: number = 500, immediate: boolean = false): void {
+  debounce(
+    func: () => void,
+    wait: number = 500,
+    immediate: boolean = false
+  ): void {
     // 清除定时器
     if (timeout !== null) clearTimeout(timeout)
     // 立即执行，此类情况一般用不到
@@ -333,7 +341,10 @@ const z = {
    * @param position {'both' | 'left' | 'right' | 'all'} [postion='both'] 去除空格的位置，both(左右)|left|right|all，默认both
    * @returns {string} 去除空格后的字符串
    */
-  trim(str: string, postion: 'both' | 'left' | 'right' | 'all' = 'both'): string {
+  trim(
+    str: string,
+    postion: 'both' | 'left' | 'right' | 'all' = 'both'
+  ): string {
     str = String(str)
     if (postion === 'both') {
       return str.replace(/^\s+|\s+$/g, '')

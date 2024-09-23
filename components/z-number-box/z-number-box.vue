@@ -1,6 +1,6 @@
 <!--
  * @Description: z-number-box 步进器组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,16 +15,16 @@ import {
   CSSProperties,
   toRef,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { useLongPress } from '@/ZCGUI/libs/Hooks/z-use-long-press'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { useLongPress } from '@/ZGGUI/libs/Hooks/z-use-long-press'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
   FormItemValidateStates,
-} from '@/ZCGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-form/types'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-number-box 步进器组件传参
  * @param: modelValue 步进器绑定的值
@@ -44,7 +44,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: validateEvent  值发生修改时是否触发表单验证
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -94,7 +94,7 @@ const { form, formItem } = useFormItem()
 // 更新输入框的值
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     const value = val ? val : 0
     inputValue.value = Math.max(props.min, Math.min(value, props.max))
   },
@@ -165,7 +165,7 @@ const updateNumberBoxValue = (value: number) => {
   nextTick(() => {
     emits('change', value)
     if (props.validateEvent) {
-      formItem?.validate?.('change').catch(err => {
+      formItem?.validate?.('change').catch((err) => {
         z.error(JSON.stringify(err))
       })
     }

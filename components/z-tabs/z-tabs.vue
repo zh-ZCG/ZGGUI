@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabs 标签栏组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -23,11 +23,11 @@ import {
   ztabsContextKey,
   zTabsItemContext,
   zTabsItemRect,
-} from '@/ZCGUI/components/z-tabs/z-tabs'
-import zType from '@/ZCGUI/libs/zType'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-tabs/z-tabs'
+import zType from '@/ZGGUI/libs/zType'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-tabs 标签栏组件传参
  * @param: color 默认颜色
@@ -49,7 +49,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  *
  * @event: update:modelValue
  * @event: change
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 type TabsSwitchBeforeFunc = (index: number) => Promise<boolean> | boolean
@@ -108,7 +108,9 @@ const useOrderedChildren = <T extends { uid: number }>() => {
   }
   const removeChild = (uid: number) => {
     delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(child => child.uid !== uid)
+    orderedChildren.value = orderedChildren.value.filter(
+      (child) => child.uid !== uid
+    )
   }
 
   return {
@@ -136,7 +138,10 @@ const activeUid = ref<number>(-1)
 // 添加tabsItem到items容器中
 const addItem = (item: zTabsItemContext) => {
   if (props.modelValue !== undefined && activeUid.value === -1) {
-    if (props.modelValue === item.name || props.modelValue === items.value.length) {
+    if (
+      props.modelValue === item.name ||
+      props.modelValue === items.value.length
+    ) {
       nextTick(() => {
         updateActiveUid(item.uid)
       })
@@ -172,7 +177,8 @@ const updateOffsetPosition = (index: number) => {
 
   if (props.bar || slots.bar) {
     // 更新滑块的偏移位置
-    barOffsetLeft.value = item.left - tabsRect.left + (item.width - barRect.width) / 2
+    barOffsetLeft.value =
+      item.left - tabsRect.left + (item.width - barRect.width) / 2
   }
   if (props.scroll) {
     // 更新scrollView的偏移位置
@@ -185,8 +191,10 @@ const updateOffsetPosition = (index: number) => {
 // 更新当前激活的ItemUid
 const updateActiveUid = (uid: number, changeEmit = false) => {
   activeUid.value = uid
-  const itemIndex = items.value.findIndex(item => item.uid === uid)
-  const value = items.value[itemIndex].name ? items.value[itemIndex].name : itemIndex
+  const itemIndex = items.value.findIndex((item) => item.uid === uid)
+  const value = items.value[itemIndex].name
+    ? items.value[itemIndex].name
+    : itemIndex
 
   updateOffsetPosition(itemIndex)
 
@@ -203,7 +211,7 @@ const setActiveItem = (uid: number) => {
     return
   }
 
-  const itemIndex = items.value.findIndex(item => item.uid === uid)
+  const itemIndex = items.value.findIndex((item) => item.uid === uid)
   const shouldSwitch = props.beforeSwitch(itemIndex)
   const isPromiseOrBoolean = [
     zType.isPromise(shouldSwitch),
@@ -217,12 +225,12 @@ const setActiveItem = (uid: number) => {
 
   if (zType.isPromise(shouldSwitch)) {
     shouldSwitch
-      .then(res => {
+      .then((res) => {
         if (res) {
           updateActiveUid(uid, true)
         }
       })
-      .catch(err => {
+      .catch((err) => {
         z.error(`z-tabs 执行beforeSwitch出错：${err}`)
       })
   } else {
@@ -246,7 +254,7 @@ const updateActiveItemByValue = (value?: string | number) => {
   }
   // 如果没有找到，则通过name查找
   if (!item) {
-    item = items.value.find(item => item.name === value)
+    item = items.value.find((item) => item.name === value)
   }
   if (!item) {
     // 设置第一个Item为激活状态
@@ -258,7 +266,7 @@ const updateActiveItemByValue = (value?: string | number) => {
 
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     updateActiveItemByValue(val)
   }
 )
@@ -390,7 +398,10 @@ const barStyle = computed<CSSProperties>(() => {
       scroll-with-animation
       :scroll-left="scrollLeft"
     >
-      <div class="container pr df aife ofh" :class="scroll ? 'container-scroll' : ''">
+      <div
+        class="container pr df aife ofh"
+        :class="scroll ? 'container-scroll' : ''"
+      >
         <slot></slot>
         <!-- 滑块 -->
         <div

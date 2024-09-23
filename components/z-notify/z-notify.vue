@@ -1,6 +1,6 @@
 <!--
  * @Description: z-notify 消息通知组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,16 +14,16 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-notify 消息通知组件传参
  * @param: offsetTop 距离顶部的距离，防止使用了自定义顶部导航栏后，notify 被遮挡，单位为 px
  * @param: zIndex		ZIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -120,7 +120,10 @@ const notifyClass = computed<string>(() => {
 
   // 设置弹出位置
   cls.push(
-    z.isEmptyVariableInDefault(`z-notify-${options?.value.position}`, 'z-notify-top')
+    z.isEmptyVariableInDefault(
+      `z-notify-${options?.value.position}`,
+      'z-notify-top'
+    )
   )
 
   if (isActive.value)
@@ -134,7 +137,9 @@ const notifyStyle = computed<CSSProperties>(() => {
 
   // 设置类型和颜色
   if (options.value.type) {
-    style.backgroundColor = zColor.getTypeColor(options.value.type as ComponentType)
+    style.backgroundColor = zColor.getTypeColor(
+      options.value.type as ComponentType
+    )
     style.color = zColor.getTypeColor('cw')
   }
 

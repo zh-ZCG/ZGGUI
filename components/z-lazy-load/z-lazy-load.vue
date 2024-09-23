@@ -1,6 +1,6 @@
 <!--
  * @Description: z-lazy-load  懒加载组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,11 +15,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { zImage } from '@/ZCGUI/libs/types/zImage'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { useObserver } from '@/ZCGUI/libs/Hooks/z-use-observe'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { zImage } from '@/ZGGUI/libs/types/zImage'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { useObserver } from '@/ZGGUI/libs/Hooks/z-use-observe'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-lazy-load  懒加载组件传参
  * @param: src 图片地址
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: transition 是否开启过渡效果(默认true)
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -116,10 +116,12 @@ const initObserver = async () => {
     initCount = 0
 
     const bottomThreshold =
-      threshold.value < 0 ? -Math.abs(threshold.value) : Math.abs(threshold.value)
+      threshold.value < 0
+        ? -Math.abs(threshold.value)
+        : Math.abs(threshold.value)
     connectObserver(
       `#${componentId}`,
-      res => {
+      (res) => {
         if (res.intersectionRatio > 0) {
           // 开始显示图片
           showImage.value = true

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-back-top 返回顶部组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zTransition from '@/ZCGUI/components/z-transition/z-transition.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-back-top 返回顶部组件传参
  * @param	mode  	返回顶部的形状，circle-圆形，square-方形 （默认 'circle' ）
@@ -32,7 +32,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param	iconStyle 	图标的样式，对象形式   （默认 {color: '#909399',fontSize: '19px'}）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 

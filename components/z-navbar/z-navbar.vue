@@ -3,7 +3,7 @@
 import { onLoad } from '@dcloudio/uni-app'
 import { ref, getCurrentInstance, watch } from 'vue'
 import type { Ref, PropType } from 'vue'
-import zstatusBar from '@/ZCGUI/components/z-status-bar/z-status-bar.vue'
+import zstatusBar from '@/ZGGUI/components/z-status-bar/z-status-bar.vue'
 
 export interface PropsType {
   //是否留出状态栏高度，默认开启,
@@ -59,7 +59,7 @@ const statusBarHeight = ref(20)
 
 onLoad(() => {
   uni.getSystemInfo({
-    success: res => {
+    success: (res) => {
       statusBarHeight.value = res.statusBarHeight ? res.statusBarHeight : 20
     },
   })

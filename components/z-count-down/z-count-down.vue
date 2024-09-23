@@ -1,6 +1,6 @@
 <!--
  * @Description: z-count-down 倒计时组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -13,10 +13,10 @@ import {
   watch,
   nextTick,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zMath from '@/ZCGUI/libs/zMath'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zMath from '@/ZGGUI/libs/zMath'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-count-down 倒计时组件传参
  * @param: time 倒计时时间，ms
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: reset		重置倒计时，if autoStart 为 true，重置后会自动开始倒计时
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -82,7 +82,7 @@ const remainTime = ref<number>(0) // 剩余的毫秒时间
 
 watch(
   () => props.time,
-  newVal => {
+  (newVal) => {
     reset()
   }
 )

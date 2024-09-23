@@ -1,6 +1,6 @@
 <!--
  * @Description: z-search-box 搜索框组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,12 +14,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { debounce, throttle } from '@/ZCGUI/libs/lodash'
-import zColor from '@/ZCGUI/libs/zColor'
-import { zSize } from '@/ZCGUI/libs/utils'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { debounce, throttle } from '@/ZGGUI/libs/lodash'
+import zColor from '@/ZGGUI/libs/zColor'
+import { zSize } from '@/ZGGUI/libs/utils'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-search-box 搜索框组件传参
  * @param: modelValue 搜索框绑定的值
@@ -43,7 +43,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: throllteTime  节流延迟时间，单位毫秒
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -108,7 +108,7 @@ const showPlaceholder = ref<boolean>(!props.modelValue)
 const inputValue = ref<string>(props.modelValue)
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (props.modelValue === inputValue.value) return
     inputValue.value = val
     showPlaceholder.value = !val
@@ -192,7 +192,9 @@ const searchBoxClass = computed<string>(() => {
 const searchBoxStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
-  style.color = zColor.getTypeColor(props.textColor || zColor.getTypeColor('primary'))
+  style.color = zColor.getTypeColor(
+    props.textColor || zColor.getTypeColor('primary')
+  )
 
   if (props.border) {
     style.borderColor = zColor.getTypeColor(

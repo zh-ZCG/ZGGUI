@@ -1,6 +1,6 @@
 <!--
  * @Description: z-rate 评分组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,11 +14,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { useTouch } from '@/ZCGUI/libs/use-Touch/use-Touch'
-import { useFormItem } from '@/ZCGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
+import { useFormItem } from '@/ZGGUI/components/z-form/types'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-rate 评分组件传参
  * @param: modelValue 选中的数量
@@ -35,7 +35,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: validateEvent   值发生修改时是否触发表单验证
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -98,7 +98,8 @@ const itemStyle = computed<ItemStyleType>(() => {
 
     if (props.size) style.fontSize = z.addUnit(props.size)
 
-    if (props.gutter) style.padding = `0rpx calc(${z.addUnit(props.gutter)} / 2)`
+    if (props.gutter)
+      style.padding = `0rpx calc(${z.addUnit(props.gutter)} / 2)`
 
     if (type === 'active') {
       if (!item.color.class) style.color = item.color.style || '#409eff'
@@ -205,7 +206,7 @@ let componentItemWidth = 0
 const activeItemWidth = ref<number>(0)
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     if (!props.allowHalf) {
       val = Math.ceil(val)
     }
@@ -217,7 +218,10 @@ let initCount = 0
 // 获取组件和item的宽度信息
 const getComponentRectInfo = async () => {
   try {
-    const itemRectInfo = await z.getDomInfo(`#${componentId} .zRateItem`, instance)
+    const itemRectInfo = await z.getDomInfo(
+      `#${componentId} .zRateItem`,
+      instance
+    )
     if (!itemRectInfo?.width) {
       throw new Error('获取组件容器宽度失败')
     }

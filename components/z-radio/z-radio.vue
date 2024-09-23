@@ -1,6 +1,6 @@
 <!--
  * @Description: z-radio 单选框组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,12 +15,12 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import zColor from '@/ZCGUI/libs/zColor'
-import { zRadioGroupKey } from '@/ZCGUI/components/z-radio/z-radio'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { useFormDisabled, useFormSize } from '@/ZCGUI/components/z-form/types'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import zColor from '@/ZGGUI/libs/zColor'
+import { zRadioGroupKey } from '@/ZGGUI/components/z-radio/z-radio'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { useFormDisabled, useFormSize } from '@/ZGGUI/components/z-form/types'
 /**
  * @description: z-radio 单选框组件传参
  * @param: size radio单选框尺寸
@@ -32,7 +32,7 @@ import { useFormDisabled, useFormSize } from '@/ZCGUI/components/z-form/types'
  * @param: label radio单选框的值，在使用单选组时，radio的值就是label
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -87,7 +87,9 @@ const labelDisabled = computed(
 )
 
 // 是否显示边框
-const border = computed(() => props?.border || radioGroupContext?.border || false)
+const border = computed(
+  () => props?.border || radioGroupContext?.border || false
+)
 
 // radio激活时的颜色
 const activeColor = computed(

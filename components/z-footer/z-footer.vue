@@ -1,6 +1,6 @@
 <!--
  * @Description: z-footer 页脚组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zIphoneBottom from '@/ZCGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
 /**
  * @description: z-footer 页脚组件传参
  * @param: content 页脚内容
@@ -30,7 +30,7 @@ import zIphoneBottom from '@/ZCGUI/components/z-iphone-bottom/z-iphone-bottom.vu
  * @param: safeAreaInsetBottom  是否开启底部安全边距
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -142,7 +142,7 @@ const navigatorStyle = computed<FooterNavigatorStyleType>(() => {
 
 // 导航数据
 const navigatorData = computed<FooterNavigatorData>(() => {
-  return props.navigator.map(nav => {
+  return props.navigator.map((nav) => {
     return {
       title: nav.title || '',
       url: nav?.url || '',

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-form 表单组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -13,9 +13,9 @@ import {
   reactive,
   toRefs,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 import {
   FormRules,
   formContextKey,
@@ -24,12 +24,12 @@ import {
   FormValidationCallback,
   FormValidationResult,
   filterFields,
-} from '@/ZCGUI/components/z-form/types'
+} from '@/ZGGUI/components/z-form/types'
 import type {
   RuleItem,
   ValidateError,
   ValidateFieldsError,
-} from '@/ZCGUI/libs/async-validator'
+} from '@/ZGGUI/libs/async-validator'
 /**
  * @description: z-form 表单组件传参
  * @param: size 设置表单下组件的尺寸
@@ -46,7 +46,7 @@ import type {
  * @param: hideRequiredAsterisk  是否隐藏必填星号
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -72,7 +72,12 @@ interface PropsType extends PropsTypeHook {
 }
 
 interface EmitsType {
-  (e: 'validate', prop: FormItemProp, isValid: boolean, message: string): boolean
+  (
+    e: 'validate',
+    prop: FormItemProp,
+    isValid: boolean,
+    message: string
+  ): boolean
   //prop:FormItemProp,isValid:boolean,message:string
 }
 
@@ -92,12 +97,12 @@ const emits = defineEmits<EmitsType>()
 const fields: FormItemContext[] = []
 
 // 添加formItem信息
-const addField: FormContext['addField'] = field => {
+const addField: FormContext['addField'] = (field) => {
   fields.push(field)
 }
 
 // 移除formItem信息
-const removeField: FormContext['removeField'] = field => {
+const removeField: FormContext['removeField'] = (field) => {
   if (field.prop) {
     fields.splice(fields.indexOf(field), 1)
   }
@@ -109,12 +114,12 @@ const resetFields: FormContext['resetFields'] = (properties = []) => {
     // eslint-disable-next-line no-console
     return z.error('z-form model参数未定义')
   }
-  filterFields(fields, properties).forEach(field => field.resetField())
+  filterFields(fields, properties).forEach((field) => field.resetField())
 }
 
 // 清除formItem验证
 const clearValidate: FormContext['clearValidate'] = (props = []) => {
-  filterFields(fields, props).forEach(field => field.clearValidate())
+  filterFields(fields, props).forEach((field) => field.clearValidate())
 }
 
 // 是否可以进行校验
@@ -141,11 +146,14 @@ const obtainValidateFields = (props: Arrayable<FormItemProp>) => {
 }
 
 // 校验
-const validate = async (callback?: FormValidationCallback): FormValidationResult =>
-  validateField(undefined, callback)
+const validate = async (
+  callback?: FormValidationCallback
+): FormValidationResult => validateField(undefined, callback)
 
 // 开始校验字段
-const doValidateField = async (props: Arrayable<FormItemProp>): Promise<boolean> => {
+const doValidateField = async (
+  props: Arrayable<FormItemProp>
+): Promise<boolean> => {
   if (!isValidatable.value) return false
 
   const fields = obtainValidateFields(props)

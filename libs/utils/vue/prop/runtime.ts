@@ -1,7 +1,7 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 import { warn } from 'vue'
-import { fromPairs } from '@/ZCGUI/libs/lodash'
-import zType from '@/ZCGUI/libs/zType'
+import { fromPairs } from '@/ZGGUI/libs/lodash'
+import zType from '@/ZGGUI/libs/zType'
 import { hasOwn } from '@vue/shared'
 
 import type { PropType } from 'vue'
@@ -75,7 +75,7 @@ export const buildProp = <
 
           if (!valid && allowedValues.length > 0) {
             const allowValuesText = [...new Set(allowedValues)]
-              .map(value => JSON.stringify(value))
+              .map((value) => JSON.stringify(value))
               .join(', ')
             warn(
               `Invalid prop: validation failed${
@@ -114,6 +114,9 @@ export const buildProps = <
   >
 } =>
   fromPairs(
-    Object.entries(props).map(([key, option]) => [key, buildProp(option as any, key)])
+    Object.entries(props).map(([key, option]) => [
+      key,
+      buildProp(option as any, key),
+    ])
   ) as any
 /* eslint-enable */

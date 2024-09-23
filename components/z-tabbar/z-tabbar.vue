@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabbar 自定义底部导航组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -18,11 +18,14 @@ import {
   toRefs,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zIphoneBottom from '@/ZCGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
-import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
-import { TabbarContext, tabbarContextKey } from '@/ZCGUI/components/z-tabbar/z-tabbar'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
+import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import {
+  TabbarContext,
+  tabbarContextKey,
+} from '@/ZGGUI/components/z-tabbar/z-tabbar'
 
 /**
  * @description: z-tabbar 自定义底部导航组件传参
@@ -42,7 +45,7 @@ import { TabbarContext, tabbarContextKey } from '@/ZCGUI/components/z-tabbar/z-t
  * @param: placeholder fixed定位固定在底部时，是否生成一个等高元素防止塌陷（默认 true ）
  * @param: otherStyle lable的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -93,7 +96,7 @@ const current = getCurrentInstance()!
 
 watch(
   () => props.value,
-  val => {
+  (val) => {
     nextTick(() => {
       setActiveItem(val)
     })
@@ -117,7 +120,8 @@ const tabbarStyle = computed(() => {
     style.borderColor = '#eeeeee'
     style.borderTopStyle = 'solid'
   }
-  if (props.topShadow) style.boxShadow = '0rpx 0rpx 30rpx 0rpx rgba(0, 0, 0, 0.07)'
+  if (props.topShadow)
+    style.boxShadow = '0rpx 0rpx 30rpx 0rpx rgba(0, 0, 0, 0.07)'
   if (props.fixed) {
     style.position = 'fixed'
     style.bottom = '0'
@@ -131,7 +135,7 @@ const updatePlaceholder = computed(() => {
   return [props.fixed, props.placeholder]
 })
 
-watch(updatePlaceholder, newVal => {
+watch(updatePlaceholder, (newVal) => {
   setPlaceholderHeight()
 })
 
@@ -181,7 +185,9 @@ const useOrderedChildren = <T extends { uid: number }>() => {
   }
   const removeChild = (uid: number) => {
     delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(child => child.uid !== uid)
+    orderedChildren.value = orderedChildren.value.filter(
+      (child) => child.uid !== uid
+    )
   }
 
   return {
@@ -202,7 +208,7 @@ const activeUid = ref<number>(-1)
 // 更新当前激活的Uid
 const updateActiveId = (uid: number, changeEmit = false) => {
   activeUid.value = uid
-  const itemIndex = items.value.findIndex(item => item.uid === uid)
+  const itemIndex = items.value.findIndex((item) => item.uid === uid)
 
   const value = items.value[itemIndex]?.name || itemIndex
 
@@ -223,11 +229,11 @@ const setActiveItem = (value?: string | number) => {
   let item: TabbarItemContext | undefined
   // 如果类型是number，则先通过索引进行查找
   if (typeof value === 'number') {
-    item = items.value.find(item => item.uid === value)
+    item = items.value.find((item) => item.uid === value)
   }
   // 如果没有找到，则通过name查找
   if (!item) {
-    item = items.value.find(item => item.name === value)
+    item = items.value.find((item) => item.name === value)
   }
   if (!item) {
     // 设置第一个Item为激活状态
@@ -274,7 +280,8 @@ const setBulgeCircle = async (itemRectInfo: TabbarItemRect) => {
     }
     bulgeRectInfo.value.width = width * 0.75
     bulgeRectInfo.value.height = bulgeRectInfo.value.width
-    bulgeRectInfo.value.left = left - (tabbarRectLeft || 0) + itemRectInfo.width / 2
+    bulgeRectInfo.value.left =
+      left - (tabbarRectLeft || 0) + itemRectInfo.width / 2
 
     hasBulgeButton.value = true
   } catch (err) {

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabbar-item 自定义底部导航组件的子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -24,13 +24,13 @@ import {
   inject,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
 
-import zBadge from '@/ZCGUI/components/z-badge/z-badge.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { tabbarContextKey } from '@/ZCGUI/components/z-tabbar/z-tabbar'
-import zColor from '@/ZCGUI/libs/zColor'
+import zBadge from '@/ZGGUI/components/z-badge/z-badge.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { tabbarContextKey } from '@/ZGGUI/components/z-tabbar/z-tabbar'
+import zColor from '@/ZGGUI/libs/zColor'
 /**
  * @description: z-tabbar-item 自定义底部导航组件的子组件传参
  * @param: name z-tabbarde value参数
@@ -49,7 +49,7 @@ import zColor from '@/ZCGUI/libs/zColor'
  * @param: otherStyle 其他样式
  *
  * @event: click 点击回调
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -199,7 +199,9 @@ function clickTabbarItem() {
   emits('click')
 }
 
-type TabbarItemBulgeElementStyleValue = (rectInfo: TabbarItemRect) => CSSProperties
+type TabbarItemBulgeElementStyleValue = (
+  rectInfo: TabbarItemRect
+) => CSSProperties
 
 // 凸起按钮对应的样式
 const bulgeStyle = computed<TabbarItemBulgeElementStyleValue>(() => {
@@ -260,7 +262,10 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
         </div>
       </template>
       <template v-else>
-        <div v-if="props.activeIcon && props.inActiveIcon" class="z-tabbar-item-icon">
+        <div
+          v-if="props.activeIcon && props.inActiveIcon"
+          class="z-tabbar-item-icon"
+        >
           <zIcon
             :name="isActive ? props.activeIcon : props.inActiveIcon"
             :size="props.iconSize"
@@ -268,7 +273,10 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
           <!-- 角标 -->
           <zBadge
             absolute
-            :position="[0, props.dot ? '34rpx' : props.badge > 9 ? '14rpx' : '20rpx']"
+            :position="[
+              0,
+              props.dot ? '34rpx' : props.badge > 9 ? '14rpx' : '20rpx',
+            ]"
             :otherStyle="props.badgeStyle"
             :dot="props.dot"
             :value="props.badge || (props.dot ? 1 : 0)"
@@ -277,7 +285,11 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
         </div>
       </template>
       <!-- 文字 -->
-      <div v-if="props.text" class="z-tabbar-item-text" :style="zTabbarItemTextStyle">
+      <div
+        v-if="props.text"
+        class="z-tabbar-item-text"
+        :style="zTabbarItemTextStyle"
+      >
         {{ props.text }}
       </div>
     </slot>

@@ -1,6 +1,6 @@
 <!--
  * @Description: 线条组件，用于分隔两个模块
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @Date: 2024-03-26 15:55:10
  * Copyright (c) 2024, All Rights Reserved. 
 -->
@@ -16,7 +16,7 @@ export default {
 // #endif
 <script lang="ts" setup>
 import { computed } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 /**
  * @param: show,是否展示默认true
@@ -26,7 +26,7 @@ import z from '@/ZCGUI/libs/z'
  * @param: hairline 是否显示细线条 (默认 true )
  * @param: margin 线条margin值，默认0
  * @param: borderStyle 设置线条样式 与css border-style属性一致 可填solid（默认实线），dashed（虚线），dotted（圆点）等
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:<z-line></z-line>
  */
 interface PropsType {

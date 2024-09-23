@@ -1,6 +1,6 @@
 <!--
  * @Description: z-region-picker 地区选择组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,12 +15,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import type { Dayjs } from '@/ZCGUI/libs/dayjs'
-import dayjs from '@/ZCGUI/libs/dayjs'
-import zPicker from '@/ZCGUI/components/z-picker/z-picker.vue'
-import regionJsonData from '@/ZCGUI/components/z-region-picker/z-region-data.json'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import type { Dayjs } from '@/ZGGUI/libs/dayjs'
+import dayjs from '@/ZGGUI/libs/dayjs'
+import zPicker from '@/ZGGUI/components/z-picker/z-picker.vue'
+import regionJsonData from '@/ZGGUI/components/z-region-picker/z-region-data.json'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-region-picker 时间选择组件传参
  * @param: modelValue 地区选择器绑定的值，可以传递省市区的code和name，["11", "1101", "110101"] || ["广东省", "广州市", "天河区"]
@@ -35,7 +35,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: zIndex zIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -89,7 +89,7 @@ const pickerSelectData = regionJsonData
 const showPicker = ref(false)
 watch(
   () => props.open,
-  val => {
+  (val) => {
     showPicker.value = val
   }
 )
@@ -114,7 +114,7 @@ const getCodeByNames = (names: string[]): string[] => {
   do {
     const name = names.shift()
     const regionItem: RegionDataItem =
-      data.find(item => item.name === name) || data[0]
+      data.find((item) => item.name === name) || data[0]
     if (regionItem) {
       code.push(regionItem.code)
     }
@@ -131,7 +131,7 @@ const getNameByCodes = (codes: string[]): string[] => {
   do {
     const code = codes.shift()
     const regionItem: RegionDataItem =
-      data.find(item => item.code === code) || data[0]
+      data.find((item) => item.code === code) || data[0]
     if (regionItem) {
       name.push(regionItem.name)
     }
@@ -151,7 +151,7 @@ const fillCode = (codes: string[]): string[] => {
   do {
     const code = codes.shift()
     const regionItem: RegionDataItem =
-      data.find(item => item.code === code) || data[0]
+      data.find((item) => item.code === code) || data[0]
     if (regionItem) {
       result.push(regionItem.code)
     }

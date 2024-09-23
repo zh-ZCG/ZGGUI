@@ -1,16 +1,16 @@
 <!--
  * @Description: z-cell 单元格组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zLine from '@/ZCGUI/components/z-line/z-line.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zTest from '@/ZCGUI/libs/zTest'
-import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zLine from '@/ZGGUI/components/z-line/z-line.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zTest from '@/ZGGUI/libs/zTest'
+import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
 
 /**
  * @description: z-cell 单元格组件传参
@@ -32,7 +32,7 @@ import { propsHook, PropsTypeHook, openPage } from '@/ZCGUI/libs/zHooks'
  * @param: otherStyle 其他外部样式
  *
  * @event: click 点击列表触发（disabled时无效）
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -213,7 +213,9 @@ function clickCell(e: Event) {
     :style="[props.otherStyle]"
     ref="z-cell"
     id="z-cell"
-    :hover-class="!props.disabled && props.canfeedBack ? 'z-cell-canfeedBack' : ''"
+    :hover-class="
+      !props.disabled && props.canfeedBack ? 'z-cell-canfeedBack' : ''
+    "
     :hover-stay-time="250"
     v-if="props.stop"
     @tap.stop="clickCell"
@@ -230,7 +232,9 @@ function clickCell(e: Event) {
             v-else-if="props.leftIcon"
             :name="props.leftIcon"
             :otherStyle="props.leftIconStyle"
-            :size="props.size === 'large' ? 22 : props.size === 'small' ? 14 : 18"
+            :size="
+              props.size === 'large' ? 22 : props.size === 'small' ? 14 : 18
+            "
           ></zIcon>
         </div>
         <div class="dfc f1">
@@ -276,7 +280,9 @@ function clickCell(e: Event) {
     :style="[props.otherStyle]"
     ref="z-cell"
     id="z-cell"
-    :hover-class="!props.disabled && props.canfeedBack ? 'z-cell-canfeedBack' : ''"
+    :hover-class="
+      !props.disabled && props.canfeedBack ? 'z-cell-canfeedBack' : ''
+    "
     :hover-stay-time="250"
     v-else
     @tap="clickCell"
@@ -293,7 +299,9 @@ function clickCell(e: Event) {
             v-else-if="props.leftIcon"
             :name="props.leftIcon"
             :otherStyle="props.leftIconStyle"
-            :size="props.size === 'large' ? 22 : props.size === 'small' ? 14 : 18"
+            :size="
+              props.size === 'large' ? 22 : props.size === 'small' ? 14 : 18
+            "
           ></zIcon>
         </div>
         <div class="f1">

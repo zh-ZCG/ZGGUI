@@ -1,6 +1,6 @@
 <!--
  * @Description: z-collapse-item 折叠面板子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -26,17 +26,17 @@ import {
   inject,
   toRef,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZCGUI/libs/zColor'
-import { collapseContextKey } from '@/ZCGUI/components/z-collapse/z-collapse'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zColor from '@/ZGGUI/libs/zColor'
+import { collapseContextKey } from '@/ZGGUI/components/z-collapse/z-collapse'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-collapse-item 折叠面板子组件传参
  * @param: title CollapseItem标题
  * @param: disabled	CollapseItem是否禁用
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -84,7 +84,10 @@ const compoenntContentDefaultHeight = ref<number>(0)
 const componentTitleHeight = ref<number>(uni.upx2px(100))
 const componentHeight = computed<string>(() => {
   if (!isActive.value) return `${componentTitleHeight.value}px`
-  else return `${componentTitleHeight.value + compoenntContentDefaultHeight.value}px`
+  else
+    return `${
+      componentTitleHeight.value + compoenntContentDefaultHeight.value
+    }px`
 })
 
 let initCount = 0

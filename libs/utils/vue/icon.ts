@@ -1,7 +1,7 @@
 /**
  * 表单验证的图标状态显示
  */
-import { definePropType } from '@/ZCGUI/libs/utils'
+import { definePropType } from '@/ZGGUI/libs/utils'
 export const iconPropType = definePropType<string>([String])
 
 export const FormValidateIconsMap = {

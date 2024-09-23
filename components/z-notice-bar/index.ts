@@ -1,4 +1,4 @@
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 import { InjectionKey } from 'vue'
 type noticeBarScrollDirection = 'horizontal' | 'vertical'
 

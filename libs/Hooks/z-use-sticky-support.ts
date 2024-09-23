@@ -1,5 +1,5 @@
 import { getCurrentInstance, ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 export const useStickySupport = () => {
   const supportCSSSticky = ref<boolean | null>(null)
@@ -42,7 +42,7 @@ export const useStickySupport = () => {
         // eslint-disable-next-line @typescript-eslint/no-empty-function
         () => {}
       )
-      .exec(res => {
+      .exec((res) => {
         if ('sticky' === res[0].position) {
           supportCSSSticky.value = true
         } else {

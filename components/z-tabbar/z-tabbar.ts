@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import { PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 
 interface PropsType extends PropsTypeHook {
   value?: string | number

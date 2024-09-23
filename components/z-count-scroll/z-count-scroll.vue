@@ -1,6 +1,6 @@
 <!--
  * @Description: z-count-scroll 数字滚动组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -16,10 +16,10 @@ import {
   CSSProperties,
   ExtractPropTypes,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zMath from '@/ZCGUI/libs/zMath'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zMath from '@/ZGGUI/libs/zMath'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-count-scroll 数字滚动组件传参
  * @param: value 显示的值
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: separator		千位分隔符（达到1000后分割例如1,000，默认无）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -87,7 +87,7 @@ const activeIndex = ref<number[]>([])
 const separator = computed<string[]>(() => {
   const { decimal, separator } = props
   const separatorList = [decimal, isEmptyVariableInDefault(separator, '')]
-  return separatorList.filter(item => item)
+  return separatorList.filter((item) => item)
 })
 
 function formatNumber(value: string | number, decimal: string) {
@@ -125,7 +125,7 @@ const _generateColumns = () => {
   columns.value = valueArr.map(_fillDefaultNumber)
   nextTick(() => {
     setTimeout(() => {
-      activeIndex.value = valueArr.map(item => {
+      activeIndex.value = valueArr.map((item) => {
         if (separator.value.includes(item)) return 0
         return Number(item)
       })
@@ -142,7 +142,8 @@ const countScrollColumnStyle = computed<CountScrollColumnStyleType>(() => {
   return (activeIndex: number) => {
     const style: CSSProperties = {}
 
-    if (props.duration) style.transitionDuration = `${Number(props.duration) / 1000}s`
+    if (props.duration)
+      style.transitionDuration = `${Number(props.duration) / 1000}s`
     style.transform = `translateY(-${activeIndex * 10}%)`
 
     return style
@@ -159,7 +160,11 @@ const countScrollColumnStyle = computed<CountScrollColumnStyleType>(() => {
         class="column"
         :style="countScrollColumnStyle(activeIndex[index])"
       >
-        <div v-for="(listItem, listIndex) in item" :key="listIndex" :class="item">
+        <div
+          v-for="(listItem, listIndex) in item"
+          :key="listIndex"
+          :class="item"
+        >
           {{ listItem }}
         </div>
       </div>

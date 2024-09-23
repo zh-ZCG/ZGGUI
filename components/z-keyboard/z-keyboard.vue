@@ -1,20 +1,20 @@
 <!--
  * @Description: z-keyboard 软键盘组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, computed, watch, toRef, nextTick } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { zLongPress } from '@/ZCGUI/libs/zLongPress'
-import zPopup from '@/ZCGUI/components/z-popup/z-popup.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import { zLongPress } from '@/ZGGUI/libs/zLongPress'
+import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import {
   carKeyboardCnData,
   carKeyboardEnData,
   carKeyboardSpecialData,
 } from '../z-keyboard/car-keyboard-data'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-keyboard 软键盘组件传参
  * @param: show 是否显示键盘
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: otherStyle 其他的样式
  *
  * @event: end 滚动到目标后触发
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -77,7 +77,7 @@ const emits = defineEmits<EmitsType>()
 const showKeyboard = ref<boolean>(false)
 watch(
   () => props.show,
-  val => {
+  (val) => {
     showKeyboard.value = val
   }
 )
@@ -87,7 +87,7 @@ const inputValue = ref<string>(props.modelValue || '')
 
 watch(
   () => props.modelValue,
-  val => (inputValue.value = val)
+  (val) => (inputValue.value = val)
 )
 
 // popup弹框关闭事件
@@ -112,7 +112,7 @@ const generateNormalKeyboardData = (
   if (idcard) numbers.push('X')
   if (random) numbers.sort(() => Math.random() - 0.5)
 
-  return numbers.map(item => {
+  return numbers.map((item) => {
     return {
       value: item,
       disabled: props.disabled,
@@ -144,7 +144,7 @@ const carKeyboardData = computed<KeyboardData[]>(() => {
   const data: KeyboardData[] = []
 
   const _fillCarKeyboardData = (rawData: string[]): KeyboardData => {
-    return rawData.map(item => {
+    return rawData.map((item) => {
       return {
         value: item,
         disabled: carKeyboardSpecialData.includes(item) || props.disabled,
@@ -217,7 +217,11 @@ const keyboardClickEvent = (value: string, disabled: boolean) => {
         concatValue = false
       }
     }
-    if (props.mode === 'idcard' && value === 'X' && inputValue.value.includes('X')) {
+    if (
+      props.mode === 'idcard' &&
+      value === 'X' &&
+      inputValue.value.includes('X')
+    ) {
       return
     }
     if (concatValue) {
@@ -261,7 +265,7 @@ const carKeyboardLang = ref<'cn' | 'en'>(
 let updateCarLangInner = false
 watch(
   () => props.carLang,
-  val => {
+  (val) => {
     if (updateCarLangInner) {
       updateCarLangInner = false
       return
@@ -296,7 +300,10 @@ const carKeyboardSwitchLang = () => {
       backgroundColor: 'rgb(214, 218, 220)',
     }"
   >
-    <div class="pr df z-keyboard" :style="props.mode == 'car' ? 'display:block' : ''">
+    <div
+      class="pr df z-keyboard"
+      :style="props.mode == 'car' ? 'display:block' : ''"
+    >
       <!-- 普通键盘 -->
       <template v-if="props.mode !== 'car'">
         <!-- 左边操作区域 -->

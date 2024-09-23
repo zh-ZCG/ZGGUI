@@ -1,6 +1,6 @@
 <!--
  * @Description: z-steps-item 步骤条子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -26,16 +26,16 @@ import {
   onUnmounted,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import {
   stepModes,
   stepsContextKey,
   StepContext,
   useOrderedChildren,
-} from '@/ZCGUI/components/z-steps/z-steps'
-import zColor from '@/ZCGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-steps/z-steps'
+import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-steps-item 步骤条子组件传参
  * @param: color 默认颜色
@@ -46,7 +46,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: activeIcon  激活时的图标
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -256,15 +256,25 @@ const lineStyle = computed<CSSProperties>(() => {
               :class="[modeClass('dot')]"
               :style="modeStyle('dot')"
             ></div>
-            <div class="icon" :class="[modeClass('icon')]" :style="modeStyle('icon')">
+            <div
+              class="icon"
+              :class="[modeClass('icon')]"
+              :style="modeStyle('icon')"
+            >
               <zIcon :name="activeIcon ? activeIcon : ''"></zIcon>
             </div>
           </div>
           <!-- 图标模式 -->
-          <div v-if="stepMode === 'icon'" :class="[modeClass()]" :style="modeStyle()">
+          <div
+            v-if="stepMode === 'icon'"
+            :class="[modeClass()]"
+            :style="modeStyle()"
+          >
             <div class="icon">
               <zIcon
-                :name="isActive ? (activeIcon ? activeIcon : '') : icon ? icon : ''"
+                :name="
+                  isActive ? (activeIcon ? activeIcon : '') : icon ? icon : ''
+                "
               ></zIcon>
             </div>
           </div>

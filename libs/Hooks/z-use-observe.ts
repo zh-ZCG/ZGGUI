@@ -1,5 +1,5 @@
 import { getCurrentInstance } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 import type { ComponentInternalInstance } from 'vue'
 
@@ -45,7 +45,7 @@ export const useObserver = (instance?: ComponentInternalInstance | null) => {
     else if (fnOptions.type === 'relativeToViewport')
       observerInstance.relativeToViewport(fnOptions.margins)
 
-    observerInstance.observe(selector, res => {
+    observerInstance.observe(selector, (res) => {
       fn && fn(res)
     })
   }

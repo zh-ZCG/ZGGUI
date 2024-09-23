@@ -1,6 +1,6 @@
 <!--
  * @Description: z-read-more 展开更多组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -16,12 +16,12 @@ import {
   PropType,
 } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import { isPromise } from '@vue/shared'
-import { isBoolean } from '@/ZCGUI/libs/lodash/is-boolean'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { isBoolean } from '@/ZGGUI/libs/lodash/is-boolean'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-read-more 展开更多组件传参
  * @param: expand 默认是否展开（false）
@@ -35,7 +35,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: beforeExpand  展开前回调
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -103,7 +103,7 @@ const [expandStatus, toggleExpand] = useToggle(props.expand || false)
 
 watch(
   () => props.expand,
-  val => {
+  (val) => {
     expandStatus.value = val
   }
 )
@@ -120,7 +120,9 @@ const containerHeight = computed<string>(() => {
   if (!expandStatus.value) {
     return z.addUnit(props.height)
   } else {
-    return `calc(${z.addUnit(contentHeight.value)} + ${foldOperationAreaHeight}rpx)`
+    return `calc(${z.addUnit(
+      contentHeight.value
+    )} + ${foldOperationAreaHeight}rpx)`
   }
 })
 
@@ -189,7 +191,7 @@ const toggleExpandStatus = () => {
     }
 
     if (isPromise(shouldExpand)) {
-      shouldExpand.then(res => {
+      shouldExpand.then((res) => {
         if (res) {
           setExpand()
         }

@@ -1,13 +1,13 @@
 <!--
  * @Description:  col布局组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @Date: 2024-03-22 15:58:51
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 interface PropsType {
   span: number
@@ -86,7 +86,8 @@ const colStyle = computed(() => {
     '-' + Number(getCurrentInstance()?.parent?.props.gutter) / 2 + 'px'
   style.paddingRight =
     '-' + Number(getCurrentInstance()?.parent?.props.gutter) / 2 + 'px'
-  style.width = Math.floor((zParentsWidth.value / 12) * Number(props.span)) + 'px'
+  style.width =
+    Math.floor((zParentsWidth.value / 12) * Number(props.span)) + 'px'
   style.marginLeft =
     Math.floor((zParentsWidth.value / 12) * Number(props.offset)) + 'px'
   return z.deepMerge(style, props.otherStyle)

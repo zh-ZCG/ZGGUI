@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabs-item 标签栏子组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -26,17 +26,17 @@ import {
   onUnmounted,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zBadge from '@/ZCGUI/components/z-badge/z-badge.vue'
-import zType from '@/ZCGUI/libs/zType'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zBadge from '@/ZGGUI/components/z-badge/z-badge.vue'
+import zType from '@/ZGGUI/libs/zType'
 import {
   ztabsContextKey,
   zTabsItemContext,
   zTabsItemRect,
-} from '@/ZCGUI/components/z-tabs/z-tabs'
+} from '@/ZGGUI/components/z-tabs/z-tabs'
 
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-gap 间隔传参
  * @param: color 默认颜色
@@ -50,7 +50,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: otherStyle 其他的样式
  *
  * @event: click
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 

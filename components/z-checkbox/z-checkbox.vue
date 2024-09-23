@@ -1,6 +1,6 @@
 <!--
  * @Description: z-checkbox 复选框组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,20 +15,20 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import zColor from '@/ZCGUI/libs/zColor'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import zColor from '@/ZGGUI/libs/zColor'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import {
   zCheckboxGroupKey,
   zCheckboxValueType,
-} from '@/ZCGUI/components/z-checkbox/z-checkbox'
+} from '@/ZGGUI/components/z-checkbox/z-checkbox'
 import {
   useFormItem,
   useFormSize,
   useFormDisabled,
-} from '@/ZCGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-form/types'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-checkbox 复选框组件传参
  * @param: size 复选框尺寸
@@ -45,7 +45,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: validateEvent 值发生修改时是否触发表单验证
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -89,7 +89,9 @@ const checkboxGroup = inject(zCheckboxGroupKey, undefined)
 
 // 组件尺寸
 const size = useFormSize(
-  computed(() => z.isEmptyDoubleVariableInDefault(props?.size, checkboxGroup?.size))
+  computed(() =>
+    z.isEmptyDoubleVariableInDefault(props?.size, checkboxGroup?.size)
+  )
 )
 
 // 复选框选框的形状
@@ -123,7 +125,9 @@ const labelDisabled = computed(
 const border = computed(() => props?.border || checkboxGroup?.border || false)
 
 // radio激活时的颜色
-const activeColor = computed(() => props?.activeColor || checkboxGroup?.activeColor)
+const activeColor = computed(
+  () => props?.activeColor || checkboxGroup?.activeColor
+)
 
 // 判断复选框组中是否包含某个值
 const hasLabelInGroup = (
@@ -161,7 +165,7 @@ const handleCheckboxClick = (type: 'checkbox' | 'label') => {
       emit('change', modelValue)
     })
     if (props.validateEvent) {
-      formItem?.validate?.('change').catch(err => {
+      formItem?.validate?.('change').catch((err) => {
         z.error(err)
       })
     }
@@ -220,12 +224,16 @@ const checkboxStyle = computed<selectedStyle>(() => {
 // 复选框选框所属类
 const checkboxCheckedBoxClass = computed<selectedClass>(() => {
   return (selected: boolean) => {
-    const cls: string[] = [`z-checked-box-${size.value ? size.value : 'default'}`]
+    const cls: string[] = [
+      `z-checked-box-${size.value ? size.value : 'default'}`,
+    ]
 
     // 复选框选框的形状
     if (checkedShape.value)
       cls.push(
-        `z-checked-box-${size.value ? size.value : 'default'}-${checkedShape.value}`
+        `z-checked-box-${size.value ? size.value : 'default'}-${
+          checkedShape.value
+        }`
       )
 
     if (selected || props.indeterminate) {
@@ -242,7 +250,8 @@ const checkboxCheckedBoxStyle = computed<selectedStyle>(() => {
   return (selected: boolean) => {
     const style: CSSProperties = {}
     if (selected || props.indeterminate) {
-      style.backgroundColor = activeColor.value || zColor.getTypeColor('primary')
+      style.backgroundColor =
+        activeColor.value || zColor.getTypeColor('primary')
     }
     return style
   }

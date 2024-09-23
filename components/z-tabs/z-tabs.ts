@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 
 export interface zTabsItemRect {
   width: number
@@ -42,4 +42,5 @@ export type TabsContext = zTabsProps & {
   setActiveItem: (uid: number) => void
 }
 
-export const ztabsContextKey: InjectionKey<TabsContext> = Symbol('ztabsContextKey')
+export const ztabsContextKey: InjectionKey<TabsContext> =
+  Symbol('ztabsContextKey')

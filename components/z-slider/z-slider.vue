@@ -1,6 +1,6 @@
 <!--
  * @Description: z-slider 滑动条组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,17 +15,17 @@ import {
   CSSProperties,
   reactive,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import zColor from '@/ZCGUI/libs/zColor'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import zColor from '@/ZGGUI/libs/zColor'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
-} from '@/ZCGUI/components/z-form/types'
-import { useTouch } from '@/ZCGUI/libs/use-Touch/use-Touch'
-import { Arrayable } from '@/ZCGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-form/types'
+import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
+import { Arrayable } from '@/ZGGUI/components/z-form/types'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-slider 滑动条组件传参
  * @param: modelValue 滑块绑定的值
@@ -41,7 +41,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: validateEvent  值发生修改时是否触发表单验证
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -136,7 +136,10 @@ const initSliderValue = () => {
       ]
     }
   } else {
-    val = Math.min(Math.max(z.isEmptyVariableInDefault(val, 0), props.min), props.max)
+    val = Math.min(
+      Math.max(z.isEmptyVariableInDefault(val, 0), props.min),
+      props.max
+    )
   }
 
   nextTick(() => {
@@ -146,7 +149,7 @@ const initSliderValue = () => {
 initSliderValue()
 watch(
   () => props.modelValue,
-  val => {
+  (val) => {
     sliderValue.value = val
   }
 )
@@ -158,7 +161,7 @@ const mode = computed<zSliderMode>(() =>
 
 // 精确的小数点位数
 const precision = computed(() => {
-  const precision = [props.min, props.max, props.step].map(item => {
+  const precision = [props.min, props.max, props.step].map((item) => {
     const decimal = `${item}`.split('.')[1]
     return decimal ? decimal.length : 0
   })
@@ -196,7 +199,7 @@ const updateSliderValue = (_value: number, type?: 'min' | 'max') => {
   })
 
   if (props.validateEvent) {
-    formItem?.validate('input').catch(err => {
+    formItem?.validate('input').catch((err) => {
       z.error(err)
     })
   }
@@ -208,7 +211,7 @@ const changeSliderValue = (_value: number, type?: 'min' | 'max') => {
   emits('change', value)
 
   if (props.validateEvent) {
-    formItem?.validate('change').catch(err => {
+    formItem?.validate('change').catch((err) => {
       z.error(err)
     })
   }
@@ -236,7 +239,7 @@ const {
 // 更新禁用状态
 watch(
   () => disabled,
-  val => {
+  (val) => {
     sliderTouchUpdateOptions({
       disabled: val.value,
     })
@@ -284,7 +287,8 @@ const initSliderNodeInfo = async () => {
 const onSliderBarTouchMove = (event: TouchEvent, type: 'min' | 'max') => {
   sliderTouchMove(event)
   // 滑块的位置
-  const sliderBarPosition = (sliderBarCurrentX.value / sliderNodeInfo.width) * 100
+  const sliderBarPosition =
+    (sliderBarCurrentX.value / sliderNodeInfo.width) * 100
   const value = setPosiiton(sliderBarPosition)
   updateSliderValue(value, type)
 }
@@ -293,7 +297,8 @@ const onSliderBarTouchMove = (event: TouchEvent, type: 'min' | 'max') => {
 const onSliderBarTouchEnd = (event: TouchEvent, type: 'min' | 'max') => {
   sliderTouchEnd(event)
   // 滑块的位置
-  const sliderBarPosition = (sliderBarCurrentX.value / sliderNodeInfo.width) * 100
+  const sliderBarPosition =
+    (sliderBarCurrentX.value / sliderNodeInfo.width) * 100
   const value = setPosiiton(sliderBarPosition)
   changeSliderValue(value, type)
 }
@@ -352,18 +357,22 @@ const sliderBarPosition = computed<[string, string]>(() => {
   if (mode.value === 'single') {
     return [
       `${
-        (((sliderValue.value as number) - props.min) / (props.max - props.min)) * 100
+        (((sliderValue.value as number) - props.min) /
+          (props.max - props.min)) *
+        100
       }%`,
       '0',
     ]
   } else {
     return [
       `${
-        (((sliderValue.value as number[])[0] - props.min) / (props.max - props.min)) *
+        (((sliderValue.value as number[])[0] - props.min) /
+          (props.max - props.min)) *
         100
       }%`,
       `${
-        (((sliderValue.value as number[])[1] - props.min) / (props.max - props.min)) *
+        (((sliderValue.value as number[])[1] - props.min) /
+          (props.max - props.min)) *
         100
       }%`,
     ]
@@ -430,7 +439,7 @@ const sliderBarClass = computed<string>(() => {
 
 // 滑块样式
 const sliderBarStyle = computed<(type: 'min' | 'max') => CSSProperties>(() => {
-  return type => {
+  return (type) => {
     const style: CSSProperties = {}
 
     // 设置滑块的尺寸

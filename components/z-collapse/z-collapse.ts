@@ -1,8 +1,8 @@
-import { Arrayable } from '@/ZCGUI/libs/zType'
+import { Arrayable } from '@/ZGGUI/libs/zType'
 
 import { InjectionKey, shallowRef } from 'vue'
 
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 
 interface PropsType extends PropsTypeHook {
   modelValue?: CollapseModelValue
@@ -38,7 +38,9 @@ export const useOrderedChildren = <T extends { uid: number }>() => {
   }
   const removeChild = (uid: number) => {
     delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(child => child.uid !== uid)
+    orderedChildren.value = orderedChildren.value.filter(
+      (child) => child.uid !== uid
+    )
   }
 
   return {

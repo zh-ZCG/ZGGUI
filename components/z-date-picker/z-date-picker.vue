@@ -1,6 +1,6 @@
 <!--
  * @Description: z-date-picker 时间选择组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,12 +15,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import type { Dayjs } from '@/ZCGUI/libs/dayjs'
-import type Picker from '@/ZCGUI/components/z-picker/z-picker.vue'
-import dayjs from '@/ZCGUI/libs/dayjs'
-import zPicker from '@/ZCGUI/components/z-picker/z-picker.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import type { Dayjs } from '@/ZGGUI/libs/dayjs'
+import type Picker from '@/ZGGUI/components/z-picker/z-picker.vue'
+import dayjs from '@/ZGGUI/libs/dayjs'
+import zPicker from '@/ZGGUI/components/z-picker/z-picker.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-date-picker 时间选择组件传参
  * @param: modelValue 日期时间选择器绑定的值，支持的格式YYYY/MM/DD HH:mm:ss YYYY-MM-DD HH:mm:ss
@@ -40,7 +40,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: zIndex zIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -115,8 +115,11 @@ interface TimeOptions extends Object {
 // 当前时间
 const nowDayjs = dayjs()
 
-const MIN_MAX_VALUE = (minValue: number, maxValue: number, currentValue: number) =>
-  Math.min(Math.max(minValue, currentValue), maxValue)
+const MIN_MAX_VALUE = (
+  minValue: number,
+  maxValue: number,
+  currentValue: number
+) => Math.min(Math.max(minValue, currentValue), maxValue)
 
 // 生成指定范围内的数据并放入数组中
 const generateRangeData = (start: number, end: number): Array<number> => {
@@ -267,7 +270,9 @@ const generatePickerData = (value: Dayjs) => {
   const maxMonth = sameMaxYear ? maxTimeDayjs.value.month() + 1 : 12
   const minDay = sameMinYear && sameMinMonth ? minTimeDayjs.value.date() : 1
   const maxDay =
-    sameMaxYear && sameMaxMonth ? maxTimeDayjs.value.date() : value.daysInMonth()
+    sameMaxYear && sameMaxMonth
+      ? maxTimeDayjs.value.date()
+      : value.daysInMonth()
   // 判断是否有设置开始、结束时间，如果没有则使用00:00:00和23:59:59
   const minHour =
     (sameMinYear && sameMinMonth && sameMinDate) ||
@@ -331,42 +336,46 @@ const generatePickerData = (value: Dayjs) => {
   // }
 
   // 生成对应的年、月、日、时、分、秒数据
-  yearColumnData.value = generateRangeData(minYear, maxYear).map(year => {
+  yearColumnData.value = generateRangeData(minYear, maxYear).map((year) => {
     return {
       label: `${year}年`,
       value: year,
     }
   })
-  monthColumnData.value = generateRangeData(minMonth, maxMonth).map(month => {
+  monthColumnData.value = generateRangeData(minMonth, maxMonth).map((month) => {
     return {
       label: `${String(month).padStart(2, '0')}月`,
       value: month,
     }
   })
-  dayColumnData.value = generateRangeData(minDay, maxDay).map(day => {
+  dayColumnData.value = generateRangeData(minDay, maxDay).map((day) => {
     return {
       label: `${String(day).padStart(2, '0')}日`,
       value: day,
     }
   })
-  hourColumnData.value = generateRangeData(minHour, maxHour).map(hour => {
+  hourColumnData.value = generateRangeData(minHour, maxHour).map((hour) => {
     return {
       label: String(hour).padStart(2, '0'),
       value: hour,
     }
   })
-  minuteColumnData.value = generateRangeData(minMinute, maxMinute).map(minute => {
-    return {
-      label: String(minute).padStart(2, '0'),
-      value: minute,
+  minuteColumnData.value = generateRangeData(minMinute, maxMinute).map(
+    (minute) => {
+      return {
+        label: String(minute).padStart(2, '0'),
+        value: minute,
+      }
     }
-  })
-  secondColumnData.value = generateRangeData(minSecond, maxSecond).map(second => {
-    return {
-      label: String(second).padStart(2, '0'),
-      value: second,
+  )
+  secondColumnData.value = generateRangeData(minSecond, maxSecond).map(
+    (second) => {
+      return {
+        label: String(second).padStart(2, '0'),
+        value: second,
+      }
     }
-  })
+  )
 }
 
 // picker数据
@@ -376,9 +385,17 @@ const pickerData = computed<PickerData>(() => {
   if (props.mode === 'yearmonth')
     result.push(yearColumnData.value, monthColumnData.value)
   if (props.mode === 'date')
-    result.push(yearColumnData.value, monthColumnData.value, dayColumnData.value)
+    result.push(
+      yearColumnData.value,
+      monthColumnData.value,
+      dayColumnData.value
+    )
   if (props.mode === 'time')
-    result.push(hourColumnData.value, minuteColumnData.value, secondColumnData.value)
+    result.push(
+      hourColumnData.value,
+      minuteColumnData.value,
+      secondColumnData.value
+    )
   if (props.mode === 'datetime')
     result.push(
       yearColumnData.value,
@@ -419,7 +436,10 @@ const useHandleMinMaxTime = (minTime: Ref<Dayjs>, maxTime: Ref<Dayjs>) => {
         return handlePickerChangeMinMaxTimeForDate(timeValue)
       case 'datetime':
       case 'datetimeNoSecond':
-        return handlePickerChangeMinMaxTimeForDateTime(timeValue, mode === 'datetime')
+        return handlePickerChangeMinMaxTimeForDateTime(
+          timeValue,
+          mode === 'datetime'
+        )
       case 'time':
       case 'timeNoSecond':
         return handlePickerChangeMinMaxTimeForTime(timeValue, mode === 'time')
@@ -429,7 +449,9 @@ const useHandleMinMaxTime = (minTime: Ref<Dayjs>, maxTime: Ref<Dayjs>) => {
   }
 
   // 处理mode为yearmonth时，最小最大值的处理
-  const handlePickerChangeMinMaxTimeForYearMonth = (timeValue: Dayjs): Dayjs => {
+  const handlePickerChangeMinMaxTimeForYearMonth = (
+    timeValue: Dayjs
+  ): Dayjs => {
     if (timeValue.year() === minTime.value.year()) {
       timeValue = timeValue.set(
         'month',
@@ -603,7 +625,7 @@ const pickerRef = ref<zPickerInstance>()
 const showPicker = ref(false)
 watch(
   () => props.open,
-  val => {
+  (val) => {
     showPicker.value = val
   },
   {
@@ -635,7 +657,9 @@ const getDateTimeValue = (dateTime: Dayjs) => {
   if (props.mode === 'yearmonth')
     return dayjs(`${year}/${month}`).format(props.format || 'YYYY/MM')
   if (props.mode === 'date')
-    return dayjs(`${year}/${month}/${date}`).format(props.format || 'YYYY/MM/DD')
+    return dayjs(`${year}/${month}/${date}`).format(
+      props.format || 'YYYY/MM/DD'
+    )
   if (props.mode === 'datetimeNoSecond')
     return dayjs(`${year}/${month}/${date} ${hour}:${minute}`).format(
       props.format || 'YYYY/MM/DD HH:mm'
@@ -846,7 +870,9 @@ const getFillDateTimeDayjs = (value: (string | number)[]): Dayjs => {
 }
 
 // picker选择发生改变回调
-const pickerValueChangeEvent = (value: string | number | (string | number)[]) => {
+const pickerValueChangeEvent = (
+  value: string | number | (string | number)[]
+) => {
   let timeValue = getFillDateTimeDayjs(value as (string | number)[])
   // 处理最小/最大值
   timeValue = handlePickerChangeMinMaxTime(props.mode, timeValue)
@@ -906,7 +932,9 @@ const pickerValueChangeEvent = (value: string | number | (string | number)[]) =>
 }
 
 // 确认日期时间回调
-const handlePickerConfirmEvent = (value: string | number | (string | number)[]) => {
+const handlePickerConfirmEvent = (
+  value: string | number | (string | number)[]
+) => {
   const timeValue = getFillDateTimeDayjs(value as (string | number)[])
   const dateTimeValue = getDateTimeValue(timeValue)
   emits('update:modelValue', dateTimeValue)

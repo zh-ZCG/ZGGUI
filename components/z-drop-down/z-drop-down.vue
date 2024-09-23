@@ -1,6 +1,6 @@
 <!--
  * @Description: z-drop-dow 下拉菜单组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zOverlay from '@/ZCGUI/components/z-overlay/z-overlay.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-drop-dow 下拉菜单组件传参
  * @param: open 下拉菜单打开状态
@@ -30,7 +30,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: zIndex  下拉容器zIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -67,7 +67,7 @@ const firstInit = ref<boolean>(true)
 const openContent = ref<boolean>(false)
 watch(
   () => props.open,
-  val => {
+  (val) => {
     openContent.value = val
   },
   {
@@ -107,7 +107,11 @@ const contentStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="z-drop-down pr" :class="openContent ? 'open' : ''" :style="{ zIndex }">
+  <div
+    class="z-drop-down pr"
+    :class="openContent ? 'open' : ''"
+    :style="{ zIndex }"
+  >
     <div class="menu pr">
       <slot name="menu"></slot>
       <div

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-scroll-list 横向滚动组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zColor from '@/ZCGUI/libs/zColor'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zColor from '@/ZGGUI/libs/zColor'
 /**
  * @description: z-scroll-list 横向滚动组件传参
  * @param: indicator 是否显示指示器
@@ -26,7 +26,7 @@ import zColor from '@/ZCGUI/libs/zColor'
  * @param: indicatorBlockColor  指示器滑块的背景颜色
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -73,7 +73,10 @@ let initCount = 0
 const getContentRectInfo = async () => {
   try {
     const componentRectInfo = await z.getDomInfo(`#${componentId}`, instance)
-    const contentRectInfo = await z.getDomInfo(`#${componentContentId}`, instance)
+    const contentRectInfo = await z.getDomInfo(
+      `#${componentContentId}`,
+      instance
+    )
 
     initCount = 0
     componentWidth = componentRectInfo.width || 0
@@ -127,7 +130,10 @@ const indicatorStyle = computed<CSSProperties>(() => {
   if (props.indicatorWidth) style.width = z.addUnit(props.indicatorWidth)
 
   style.backgroundColor = zColor.getTypeColor(
-    z.isEmptyVariableInDefault(props.indicatorColor, zColor.getTypeColor('disabled'))
+    z.isEmptyVariableInDefault(
+      props.indicatorColor,
+      zColor.getTypeColor('disabled')
+    )
   )
 
   return style
@@ -140,24 +146,27 @@ const indicatorBlockClass = computed<string>(() => {
   return cls.join(' ')
 })
 // 指示器滑块的样式
-const indicatorBlockStyle = computed<(distance: number) => CSSProperties>(() => {
-  return (distance: number) => {
-    const style: CSSProperties = {}
+const indicatorBlockStyle = computed<(distance: number) => CSSProperties>(
+  () => {
+    return (distance: number) => {
+      const style: CSSProperties = {}
 
-    if (props.indicatorBlockWidth) style.width = z.addUnit(props.indicatorBlockWidth)
+      if (props.indicatorBlockWidth)
+        style.width = z.addUnit(props.indicatorBlockWidth)
 
-    style.left = `${distance}px`
+      style.left = `${distance}px`
 
-    style.backgroundColor = zColor.getTypeColor(
-      z.isEmptyVariableInDefault(
-        props.indicatorBlockColor,
-        zColor.getTypeColor('primary')
+      style.backgroundColor = zColor.getTypeColor(
+        z.isEmptyVariableInDefault(
+          props.indicatorBlockColor,
+          zColor.getTypeColor('primary')
+        )
       )
-    )
 
-    return style
+      return style
+    }
   }
-})
+)
 </script>
 
 <template>

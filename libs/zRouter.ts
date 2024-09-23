@@ -1,4 +1,4 @@
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 type navType = 'navigateTo' | 'redirectTo' | 'reLaunch' | 'switchTab'
 
@@ -19,7 +19,10 @@ export function zNavBack(indexUrl?: string, delta = 1) {
   if (isNavigating) return
   isNavigating = true
 
-  const indexPageUrl = z.isEmptyVariableInDefault(indexUrl, '/pages/index/index')
+  const indexPageUrl = z.isEmptyVariableInDefault(
+    indexUrl,
+    '/pages/index/index'
+  )
   // 通过判断当前页面的页面栈信息，是否有上一页进行返回，如果没有则跳转到首页
   const pages = getCurrentPages()
   if (pages?.length) {
@@ -66,7 +69,7 @@ export function zNavPage(url: string, type: navType = 'navigateTo') {
           success: () => {
             resolve()
           },
-          fail: err => {
+          fail: (err) => {
             handelNavFail(err)
             reject(err)
           },
@@ -81,7 +84,7 @@ export function zNavPage(url: string, type: navType = 'navigateTo') {
           success: () => {
             resolve()
           },
-          fail: err => {
+          fail: (err) => {
             handelNavFail(err)
             reject(err)
           },
@@ -96,7 +99,7 @@ export function zNavPage(url: string, type: navType = 'navigateTo') {
           success: () => {
             resolve()
           },
-          fail: err => {
+          fail: (err) => {
             handelNavFail(err)
             reject(err)
           },
@@ -111,7 +114,7 @@ export function zNavPage(url: string, type: navType = 'navigateTo') {
           success: () => {
             resolve()
           },
-          fail: err => {
+          fail: (err) => {
             handelNavFail(err)
             reject(err)
           },

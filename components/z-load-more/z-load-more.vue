@@ -1,6 +1,6 @@
 <!--
  * @Description: z-load-more 获取更多组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -16,10 +16,10 @@ import {
   PropType,
 } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zLine from '@/ZCGUI/components/z-line/z-line.vue'
-import zLoadingIcon from '@/ZCGUI/components/z-loading-icon/z-loading-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zLine from '@/ZGGUI/components/z-line/z-line.vue'
+import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-load-more 获取更多组件传参
  * @param 	status			组件状态（默认 'loadmore'、'loading'、'nomore'' ）
@@ -42,7 +42,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param		dashed		与css border-style属性一致 可填solid（默认实线），dashed（虚线），dotted（圆点）等
  *
  * @event {Function} loadmore status为loadmore时，点击组件会发出此事件
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 

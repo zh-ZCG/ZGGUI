@@ -1,16 +1,16 @@
 <!--
  * @Description: z-popup 弹出层组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import zOverlay from '@/ZCGUI/components/z-overlay/z-overlay.vue'
-import zTransition from '@/ZCGUI/components/z-transition/z-transition.vue'
-import z from '@/ZCGUI/libs/z'
-import zStatusBar from '@/ZCGUI/components/z-status-bar/z-status-bar.vue'
-import zIphoneBottom from '@/ZCGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
+import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
+import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
+import z from '@/ZGGUI/libs/z'
+import zStatusBar from '@/ZGGUI/components/z-status-bar/z-status-bar.vue'
+import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
 
 /**
  * @description: z-popup 弹出层组件
@@ -33,7 +33,7 @@ import zIphoneBottom from '@/ZCGUI/components/z-iphone-bottom/z-iphone-bottom.vu
  * @event close 点击遮罩关闭事件回调，请在这个回调中关闭遮罩
  * @event click 点击动画进行回调
  * @event open 遮罩层已打开完成的回调
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {

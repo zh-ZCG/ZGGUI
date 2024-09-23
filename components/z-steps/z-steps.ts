@@ -1,4 +1,4 @@
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 import { InjectionKey, shallowRef } from 'vue'
 
 export type stepModes = 'dot' | 'number' | 'dotIcon' | 'icon'
@@ -23,7 +23,8 @@ export type StepsContext = StepsProps & {
   setActiveItem: (uid: number) => void
 }
 
-export const stepsContextKey: InjectionKey<StepsContext> = Symbol('stepsContextKey')
+export const stepsContextKey: InjectionKey<StepsContext> =
+  Symbol('stepsContextKey')
 
 export const useOrderedChildren = <T extends { uid: number }>() => {
   const children: Record<number, T> = {}
@@ -35,7 +36,9 @@ export const useOrderedChildren = <T extends { uid: number }>() => {
   }
   const removeChild = (uid: number) => {
     delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(child => child.uid !== uid)
+    orderedChildren.value = orderedChildren.value.filter(
+      (child) => child.uid !== uid
+    )
   }
 
   return {

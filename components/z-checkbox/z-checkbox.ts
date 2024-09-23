@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 
 type zCheckBoxSizeType = 'small' | 'normal' | 'large' | ''
 

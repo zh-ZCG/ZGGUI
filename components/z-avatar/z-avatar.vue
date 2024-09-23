@@ -1,6 +1,6 @@
 <!--
  * @Description: z-avatar 头像组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,13 +14,13 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zMath from '@/ZCGUI/libs/zMath'
-import zColor from '@/ZCGUI/libs/zColor'
-import zText from '@/ZCGUI/components/z-text/z-text.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { zImage, isImage } from '@/ZCGUI/libs/types/zImage'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zMath from '@/ZGGUI/libs/zMath'
+import zColor from '@/ZGGUI/libs/zColor'
+import zText from '@/ZGGUI/components/z-text/z-text.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { zImage, isImage } from '@/ZGGUI/libs/types/zImage'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-avatar 头像组件传参
  * @param: src 头像路径（绝对路径），默认显示默认头像
@@ -38,7 +38,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: otherStyle 其他的样式
  *
  * @event: click 点击触发
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -135,7 +135,7 @@ const imageStyle = computed<CSSProperties>(() => {
 
 watch(
   () => props.src,
-  newVal => {
+  (newVal) => {
     avatarUrl.value = newVal
     if (!newVal) {
       errorHandler()
@@ -192,7 +192,12 @@ function clickAvatar() {
       <!-- #ifndef MP-WEIXIN && MP-QQ && MP-BAIDU  -->
       <template v-if="mpAvatar && isMP"></template>
       <!-- #endif -->
-      <zIcon v-else-if="icon" :name="icon" :size="fontSize" :color="color"></zIcon>
+      <zIcon
+        v-else-if="icon"
+        :name="icon"
+        :size="fontSize"
+        :color="color"
+      ></zIcon>
       <zText
         v-else-if="text"
         :text="text"

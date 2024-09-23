@@ -1,6 +1,6 @@
 <!--
  * @Description: z-row-notice-bar 横向通知栏组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -15,12 +15,12 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { noticeBarKey } from '@/ZCGUI/components/z-notice-bar/index'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { noticeBarKey } from '@/ZGGUI/components/z-notice-bar/index'
 /**
  * @description:z-row-notice-bar 横向通知栏组件传参
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -95,7 +95,7 @@ const stopAnimation = () => {
 
 watch(
   () => noticeBar?.play,
-  newVal => {
+  (newVal) => {
     if (newVal) {
       createLoopAnimation()
     } else {
@@ -111,7 +111,10 @@ let contentTextWidth = 0
 const getContentRectInfo = async () => {
   try {
     const contentRectInfo = await z.getDomInfo(`#${componentId}`, instance)
-    const contentTextRectInfo = await z.getDomInfo(`#${componentTextId}`, instance)
+    const contentTextRectInfo = await z.getDomInfo(
+      `#${componentTextId}`,
+      instance
+    )
 
     initCount = 0
 

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-swiper 轮播组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,8 +14,8 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-swiper 轮播组件传参
  * @param: modelValue 当前选中item的索引值
@@ -37,7 +37,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: indicatorTextColor  指示器文本颜色
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -125,7 +125,8 @@ const indicatorColorStyle = computed<IndicatorColorStyle>(() => {
           style.backgroundColor = props.indicatorActiveBgColor || '#fff'
       } else {
         if (props.indicatorBgColor)
-          style.backgroundColor = props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)'
+          style.backgroundColor =
+            props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)'
       }
     }
 
@@ -134,11 +135,13 @@ const indicatorColorStyle = computed<IndicatorColorStyle>(() => {
 })
 
 // 当前选中的SwiperItem索引
-const currentSwiperIndex = ref<number>(props?.modelValue ? props?.modelValue : 0)
+const currentSwiperIndex = ref<number>(
+  props?.modelValue ? props?.modelValue : 0
+)
 
 watch(
   () => props.modelValue,
-  value => (currentSwiperIndex.value = value ? value : 0)
+  (value) => (currentSwiperIndex.value = value ? value : 0)
 )
 
 // 轮播数据

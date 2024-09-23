@@ -1,6 +1,6 @@
 <!--
  * @Description: z-count-to 数字跳转组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,8 +14,8 @@ import {
   nextTick,
   onUnmounted,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-count-to 数字跳转组件传参
  * @param: startVal 开始数值（默认0）
@@ -32,7 +32,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: otherStyle 其他的样式
  *
  * @event: end 滚动到目标后触发
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -126,7 +126,9 @@ function requestAnimationFrame(callback: Function) {
   lastTime.value = currTime + timeToCall
   return id
 }
-function cancelAnimationFrame(id: string | number | NodeJS.Timeout | undefined) {
+function cancelAnimationFrame(
+  id: string | number | NodeJS.Timeout | undefined
+) {
   clearTimeout(id)
 }
 // 开始滚动数字
@@ -203,10 +205,14 @@ function count(timestampCopy: number) {
   }
   if (countDown.value) {
     printVal.value =
-      printVal.value < Number(props.endVal) ? Number(props.endVal) : printVal.value
+      printVal.value < Number(props.endVal)
+        ? Number(props.endVal)
+        : printVal.value
   } else {
     printVal.value =
-      printVal.value > Number(props.endVal) ? Number(props.endVal) : printVal.value
+      printVal.value > Number(props.endVal)
+        ? Number(props.endVal)
+        : printVal.value
   }
   displayValue.value = formatNumber(printVal.value) || '0'
   if (progress < localDuration.value) {

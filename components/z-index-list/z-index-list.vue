@@ -1,6 +1,6 @@
 <!--
  * @Description: z-index-list 索引列表组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -24,14 +24,14 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
 import type { ExtractPropTypes } from 'vue'
-import { useUniAppSystemRectInfo } from '@/ZCGUI/libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
-import { useComponentSize } from '@/ZCGUI/libs/use-component-size/use-component-size'
-import { useTouch } from '@/ZCGUI/libs/use-Touch/use-Touch'
-import zSticky from '@/ZCGUI/components/z-sticky/z-sticky.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import { useUniAppSystemRectInfo } from '@/ZGGUI/libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
+import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-size'
+import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
+import zSticky from '@/ZGGUI/components/z-sticky/z-sticky.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-index-list 索引列表组件传参
  * @param: data 数据
@@ -43,7 +43,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: showKeysList  是否显示右侧索引列表
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 const indexListKeys = [
@@ -83,7 +83,9 @@ interface IndexListDataItem<T = any> {
   data: IndexListDataItemData<T>[]
 }
 
-type IndexListData<T = any> = Partial<Record<IndexListKeys, IndexListDataItem<T>>>
+type IndexListData<T = any> = Partial<
+  Record<IndexListKeys, IndexListDataItem<T>>
+>
 
 type IndexListDataItemData<T = any> = T & {
   star?: boolean
@@ -143,7 +145,7 @@ const keysData = computed<string[]>(() => Object.keys(props.data))
 const listData = ref<IndexListDataType>([])
 watch(
   () => props.data,
-  val => {
+  (val) => {
     // 带星标的数据
     const starData: IndexListDataItemType = {
       key: '★',
@@ -151,7 +153,9 @@ watch(
       data: [],
     }
     listData.value = Object.entries(val).map(([key, value]) => {
-      starData.data = starData.data.concat(value.data.filter(item => item?.star))
+      starData.data = starData.data.concat(
+        value.data.filter((item) => item?.star)
+      )
       return {
         key,
         title: value.title,
@@ -191,7 +195,7 @@ const getContentItemNodeInfo = async () => {
     )
 
     initCount = 0
-    contentTopValues = contentNodeInfos.map(item => item.top || 0)
+    contentTopValues = contentNodeInfos.map((item) => item.top || 0)
   } catch (err) {
     if (initCount > 10) {
       initCount = 0
@@ -217,7 +221,10 @@ let keyListTop = 0
 let keyListItemRectInfo: KeyListRectInfo[] = []
 const getKeyListNodeInfo = async () => {
   try {
-    const keyListNodeInfo = await z.getDomInfo(`#${componentKeyListId}`, instance)
+    const keyListNodeInfo = await z.getDomInfo(
+      `#${componentKeyListId}`,
+      instance
+    )
     const keyListItemNodeInfo = await z.getDomInfos(
       `#${componentKeyListId} .key-value`,
       instance
@@ -225,7 +232,7 @@ const getKeyListNodeInfo = async () => {
 
     initCount = 0
     keyListTop = keyListNodeInfo.top || 0
-    keyListItemRectInfo = keyListItemNodeInfo.map(item => {
+    keyListItemRectInfo = keyListItemNodeInfo.map((item) => {
       return {
         top: (item.top || 0) - keyListTop,
         height: item.height || 0,
@@ -263,11 +270,13 @@ const updateKeyListIndexValue = () => {
   let index = -1
   // #ifndef APP-PLUS || MP-ALIPAY
   index = keyListItemRectInfo.findLastIndex(
-    item => item.top < keyListTouchCurrentY.value
+    (item) => item.top < keyListTouchCurrentY.value
   )
   // #endif
   // #ifdef APP-PLUS || MP-ALIPAY
-  index = keyListItemRectInfo.findIndex(item => item.top > keyListTouchCurrentY.value)
+  index = keyListItemRectInfo.findIndex(
+    (item) => item.top > keyListTouchCurrentY.value
+  )
   index = index - 1
   // #endif
   if (index !== -1) {
@@ -366,9 +375,16 @@ const titleStyle = computed<CSSProperties>(() => {
 </script>
 
 <template>
-  <div class="z-index-list pr" :style="{ height: `${contentContainerHeight}px` }">
+  <div
+    class="z-index-list pr"
+    :style="{ height: `${contentContainerHeight}px` }"
+  >
     <!-- 列表内容 -->
-    <scroll-view class="scroll-view pr" scroll-y :scroll-top="scrollViewTopValue">
+    <scroll-view
+      class="scroll-view pr"
+      scroll-y
+      :scroll-top="scrollViewTopValue"
+    >
       <div
         :style="{
           paddingTop: `${stickyOffsetTop || 0}px`,

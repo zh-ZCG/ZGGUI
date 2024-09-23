@@ -1,6 +1,6 @@
 <!--
  * @Description: z-notice-bar 通知栏组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -18,12 +18,12 @@ import {
   toRefs,
   InjectionKey,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import { noticeBarKey } from '@/ZCGUI/components/z-notice-bar/index'
-import zColumnNoticeBar from '@/ZCGUI/components/z-column-notice-bar/z-column-notice-bar.vue'
-import zRowNoticeBar from '@/ZCGUI/components/z-row-notice-bar/z-row-notice-bar.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import { noticeBarKey } from '@/ZGGUI/components/z-notice-bar/index'
+import zColumnNoticeBar from '@/ZGGUI/components/z-column-notice-bar/z-column-notice-bar.vue'
+import zRowNoticeBar from '@/ZGGUI/components/z-row-notice-bar/z-row-notice-bar.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-notice-bar 通知栏组件传参
  * @param: show 是否显示通知栏
@@ -45,7 +45,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: autoHide   在data为空时是否自动隐藏123
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -120,7 +120,8 @@ const commonStyle = computed<NoticeBarCommonColorStyle>(() => {
       if (props.rightIconColor) {
         style.color = props.rightIconColor || '#409eff'
       }
-      if (props.fontSize) style.fontSize = `calc(${z.addUnit(props.fontSize)} * 1.2)`
+      if (props.fontSize)
+        style.fontSize = `calc(${z.addUnit(props.fontSize)} * 1.2)`
       if (props.rightIconSize) style.fontSize = z.addUnit(props.rightIconSize)
     }
 

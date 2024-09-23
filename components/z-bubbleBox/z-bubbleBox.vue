@@ -1,6 +1,6 @@
 <!--
  * @Description: z-bubbleBox 气泡弹窗组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,15 +14,15 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zColor from '@/ZCGUI/libs/zColor'
-import zOverlay from '@/ZCGUI/components/z-overlay/z-overlay.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
+import z from '@/ZGGUI/libs/z'
+import zColor from '@/ZGGUI/libs/zColor'
+import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
 import {
   BubbleBoxOptionData,
   BubbleBoxOptionItemData,
-} from '@/ZCGUI/components/z-bubbleBox/z-bubbleBox'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+} from '@/ZGGUI/components/z-bubbleBox/z-bubbleBox'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-bubbleBox 气泡弹窗组件传参
  * @param: options 气泡弹出框选项数据
@@ -37,7 +37,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: zIndex  ZIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -111,7 +111,10 @@ const closeBubbleOptions = () => {
 }
 
 // 气泡框选项点击事件
-const bubbleOptionClickEvent = (item: BubbleBoxOptionItemData, index: number) => {
+const bubbleOptionClickEvent = (
+  item: BubbleBoxOptionItemData,
+  index: number
+) => {
   if (props.disabled || item.disabled) return
   emits('click', index)
   if (props.autoClose) closeBubbleOptions()
@@ -200,7 +203,7 @@ const optionItemStyle = computed<OptionsStyleType>(() => {
 })
 
 const bubbleOptions = computed<BubbleBoxOptionData>(() => {
-  return props.options.map(item => {
+  return props.options.map((item) => {
     const textColor = ref(
       z.isEmptyDoubleVariableInDefault(item.textColor, props.textColor)
     )

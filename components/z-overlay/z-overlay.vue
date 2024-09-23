@@ -1,13 +1,13 @@
 <!--
  * @Description: z-overlay 遮罩层
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import zTransition from '@/ZCGUI/components/z-transition/z-transition.vue'
-import z from '@/ZCGUI/libs/z'
+import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
+import z from '@/ZGGUI/libs/z'
 
 /**
  * @description: z-overlay 遮罩层
@@ -18,7 +18,7 @@ import z from '@/ZCGUI/libs/z'
  * @param: otherStyle 其他样式
  *
  * @event: click 点击遮罩层
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {

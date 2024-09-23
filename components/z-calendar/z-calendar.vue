@@ -1,6 +1,6 @@
 <!--
  * @Description: z-calendar 日历组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -16,15 +16,15 @@ import {
   CSSProperties,
   PropType,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { MAX_SAFE_INTEGER } from '@/ZCGUI/libs/zMath'
-import { isNumber } from '@/ZCGUI/libs/lodash/is-number'
+import z from '@/ZGGUI/libs/z'
+import { MAX_SAFE_INTEGER } from '@/ZGGUI/libs/zMath'
+import { isNumber } from '@/ZGGUI/libs/lodash/is-number'
 import { isString } from '@vue/shared'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import type { Dayjs } from '@/ZCGUI/libs/dayjs'
-import dayjs from '@/ZCGUI/libs/dayjs'
-import { solar2lunar } from '@/ZCGUI/components/z-calendar/lunar-calendar'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import type { Dayjs } from '@/ZGGUI/libs/dayjs'
+import dayjs from '@/ZGGUI/libs/dayjs'
+import { solar2lunar } from '@/ZGGUI/components/z-calendar/lunar-calendar'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-calendar 日历传参
  * @param	modelValue	日期绑定的值，支持的格式为 YYYY/MM/DD 2023/01/01 或者 YYYY-MM-DD 2023-01-01 [2023/01/01, 2023/01/02] [2023-01-01, 2023-01-02]
@@ -44,7 +44,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @event change-year 		年份切换事件
  * @event change-month 		月份切换事件
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -141,7 +141,7 @@ const formatDate = <T extends CalendarModelValueType>(date: T): T => {
   if (isString(date)) {
     return date.replace(/-/g, '/') as T
   }
-  return date.map(item => item.replace(/-/g, '/')) as T
+  return date.map((item) => item.replace(/-/g, '/')) as T
 }
 
 // 填充0
@@ -277,7 +277,7 @@ const updateModelValue = (changeEmit = true) => {
 // 当前月份在中数据中的索引
 const currentMonthIndex = computed(() => {
   return calendarData.value.findIndex(
-    item => item.month === currentSelectedDate.month
+    (item) => item.month === currentSelectedDate.month
   )
 })
 // 当前月份中日期数据的长度
@@ -337,19 +337,27 @@ const activeDateValueMap = new Map<number, CalendarSelectDataMap>()
 const generateCalendarData = () => {
   const data: CalendarData = []
   // 填充日期数据
-  const _fillDateData = (month: number, minDisabledDate = 0, maxDisabledDate = 0) => {
+  const _fillDateData = (
+    month: number,
+    minDisabledDate = 0,
+    maxDisabledDate = 0
+  ) => {
     const monthData: CalendarMonthData = {
       month,
       data: [],
     }
 
     // 获取对应年份和月份
-    const activeDates = activeDateValueMap.get(currentSelectedDate.year)?.get(month)
+    const activeDates = activeDateValueMap
+      .get(currentSelectedDate.year)
+      ?.get(month)
 
     // 获取当前月份的天数
     const days = new Date(currentSelectedDate.year, month, 0).getDate()
     // 获取当前月份的第一天是星期几
-    const firstDayWeek = new Date(`${currentSelectedDate.year}/${month}/1`).getDay()
+    const firstDayWeek = new Date(
+      `${currentSelectedDate.year}/${month}/1`
+    ).getDay()
     // 填充空白数据
     for (let i = 0; i < firstDayWeek; i++) {
       monthData.data.push({
@@ -369,14 +377,19 @@ const generateCalendarData = () => {
         const lunarValue = solar2lunar(currentSelectedDate.year, month, i)
         if (lunarValue !== -1) {
           desc =
-            lunarValue.IDayCn === '初一' ? lunarValue.IMonthCn : lunarValue.IDayCn
+            lunarValue.IDayCn === '初一'
+              ? lunarValue.IMonthCn
+              : lunarValue.IDayCn
         }
       }
 
       // 设置日期范围数据
       if (props.mode === 'range') {
         const { start, end } = rangeDate
-        if (start && start.isSame(`${currentSelectedDate.year}/${month}/${i}`)) {
+        if (
+          start &&
+          start.isSame(`${currentSelectedDate.year}/${month}/${i}`)
+        ) {
           status = 'active'
           desc = props.rangeStartDesc
         }
@@ -390,7 +403,10 @@ const generateCalendarData = () => {
             `${currentSelectedDate.year}/${month}/${i}`,
             DEFAULT_DATE_FORMAT
           )
-          if (currentDateDayjs.isAfter(start) && currentDateDayjs.isBefore(end)) {
+          if (
+            currentDateDayjs.isAfter(start) &&
+            currentDateDayjs.isBefore(end)
+          ) {
             status = 'range'
           }
         }
@@ -450,7 +466,7 @@ watch(
       activeDateValueMap.clear()
 
       // 遍历获取对应已设置的日期信息
-      modelValue.forEach(item => {
+      modelValue.forEach((item) => {
         const dateDayjs = dayjs(formatDate(item), DEFAULT_DATE_FORMAT)
         const year = dateDayjs.year()
         const month = dateDayjs.month() + 1
@@ -512,10 +528,12 @@ const updateDateStatus = (
     month = (dateData as Dayjs).month() + 1
     date = (dateData as Dayjs).date()
   }
-  const monthIndex = calendarData.value.findIndex(item => item.month === month)
+  const monthIndex = calendarData.value.findIndex(
+    (item) => item.month === month
+  )
   if (monthIndex === -1) return
   const dateIndex = calendarData.value[monthIndex].data.findIndex(
-    item => item.date === date
+    (item) => item.date === date
   )
   if (dateIndex === -1) return
   calendarData.value[monthIndex].data[dateIndex].status = status
@@ -589,14 +607,17 @@ const initDateData = () => {
       case 'multi':
         // 筛选出在最小、最大年月日范围内的日期
         // eslint-disable-next-line no-case-declarations
-        const multiDefaultModelValue = (modelValue as string[]).filter(date => {
-          const dateDayjs = dayjs(date)
-          return (
-            (dateDayjs.isAfter(minDateDayjs) && dateDayjs.isBefore(maxDateDayjs)) ||
-            dateDayjs.isSame(minDateDayjs) ||
-            dateDayjs.isSame(maxDateDayjs)
-          )
-        })
+        const multiDefaultModelValue = (modelValue as string[]).filter(
+          (date) => {
+            const dateDayjs = dayjs(date)
+            return (
+              (dateDayjs.isAfter(minDateDayjs) &&
+                dateDayjs.isBefore(maxDateDayjs)) ||
+              dateDayjs.isSame(minDateDayjs) ||
+              dateDayjs.isSame(maxDateDayjs)
+            )
+          }
+        )
         if (multiDefaultModelValue.length !== (modelValue as string[]).length) {
           emits('update:modelValue', multiDefaultModelValue)
         }
@@ -780,7 +801,11 @@ const itemStyle = computed<itemStyleType>(() => {
 </script>
 
 <template>
-  <div :id="calendarId" :class="'z-calendar-' + props.mode" class="pr z-calendar">
+  <div
+    :id="calendarId"
+    :class="'z-calendar-' + props.mode"
+    class="pr z-calendar"
+  >
     <!-- 操作区域 -->
     <div class="pr df jcc aic operation">
       <!-- 年切换按钮 -->
@@ -861,7 +886,11 @@ const itemStyle = computed<itemStyleType>(() => {
         @change="swiperSwitchMonthEvent"
         @animationfinish="swiperSwitchMonthAnimationFinishEvent"
       >
-        <swiper-item v-for="(item, index) in calendarData" :key="index" class="item">
+        <swiper-item
+          v-for="(item, index) in calendarData"
+          :key="index"
+          class="item"
+        >
           <div class="df fww">
             <div
               v-for="(dateItem, dateIndex) in item.data"

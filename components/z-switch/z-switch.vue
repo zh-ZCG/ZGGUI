@@ -1,6 +1,6 @@
 <!--
  * @Description: z-switch 开关组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,13 +14,13 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZCGUI/libs/zColor'
-import zLoadingIcon from '@/ZCGUI/components/z-loading-icon/z-loading-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import { useFormItem } from '@/ZCGUI/components/z-form/types'
-import zType from '@/ZCGUI/libs/zType'
+import z from '@/ZGGUI/libs/z'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zColor from '@/ZGGUI/libs/zColor'
+import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { useFormItem } from '@/ZGGUI/components/z-form/types'
+import zType from '@/ZGGUI/libs/zType'
 /**
  * @description: z-switch 开关组件传参
  * @param: modelValue 状态绑定的值
@@ -43,7 +43,7 @@ import zType from '@/ZCGUI/libs/zType'
  * @param: beforeChange   状态改变前的钩子， 返回 false 或者返回 Promise 且被 reject 则停止切换
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -96,7 +96,9 @@ const selected = computed<boolean>(() => props.modelValue === props.activeValue)
 // 处理切换事件
 const handleSwitch = () => {
   const value =
-    props.modelValue === props.activeValue ? props.inactiveValue : props.activeValue
+    props.modelValue === props.activeValue
+      ? props.inactiveValue
+      : props.activeValue
 
   emits('update:modelValue', value)
   nextTick(() => emits('change', value))
@@ -124,10 +126,10 @@ const switchClickEvent = () => {
 
   if (zType.isPromise(shouldChange)) {
     shouldChange
-      .then(res => {
+      .then((res) => {
         if (res) handleSwitch()
       })
-      .catch(err => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
         z.error(`zswitch 错误: ${err}`)
       })
@@ -140,7 +142,7 @@ watch(
   () => props.modelValue,
   () => {
     if (props.validateEvent) {
-      formItem?.validate?.('change').catch(err => {
+      formItem?.validate?.('change').catch((err) => {
         z.error(JSON.stringify(err))
       })
     }
@@ -178,7 +180,8 @@ const switchStyle = computed<CSSProperties>(() => {
   // 设置switch按钮的激活与未激活状态的颜色
   if (selected.value) {
     if (props.activeColor) {
-      style.backgroundColor = props.activeColor || zColor.getTypeColor('primary')
+      style.backgroundColor =
+        props.activeColor || zColor.getTypeColor('primary')
     }
     if (props.activeTextColor) {
       style.color = props.activeTextColor

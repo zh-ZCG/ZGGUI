@@ -1,6 +1,6 @@
 <!--
  * @Description: z-divider 分割线组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zLine from '@/ZCGUI/components/z-line/z-line.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zLine from '@/ZGGUI/components/z-line/z-line.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-gap 间隔传参
  * @param:borderStyle		设置线条样式 与css border-style属性一致 可填solid（默认实线），dashed（虚线），dotted（圆点）等
@@ -29,7 +29,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param:lineColor		线条颜色 （默认 '#dcdfe6' ）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -97,7 +97,11 @@ function click() {
 </script>
 
 <template>
-  <div class="z-divider dfr aic" :style="[z.addStyle(otherStyle)]" @tap.stop="click">
+  <div
+    class="z-divider dfr aic"
+    :style="[z.addStyle(otherStyle)]"
+    @tap.stop="click"
+  >
     <zLine
       :color="lineColor"
       :otherStyle="leftLineStyle"

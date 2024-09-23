@@ -1,6 +1,6 @@
 <!--
  * @Description: z-water-fall 瀑布流组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,15 +14,15 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-water-fall 瀑布流组件传参
  * @param: data 列表数据
  * @param: mode	瀑布流模式
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -58,7 +58,10 @@ let leftContainerHeight = 0
 let rightContainerHeight = 0
 const getContainerHeight = async () => {
   try {
-    const leftContainerRectInfo = await z.getDomInfo(`#${componentId}-left`, instance)
+    const leftContainerRectInfo = await z.getDomInfo(
+      `#${componentId}-left`,
+      instance
+    )
     const rightContainerRectInfo = await z.getDomInfo(
       `#${componentId}-right`,
       instance
@@ -133,7 +136,7 @@ const resetWaterFall = () => {
 
 watch(
   () => props.data,
-  val => {
+  (val) => {
     if (!val) return
     if (oldUserData.length === val.length) return
     const newData = z.deepClone(val.slice(oldUserData.length))

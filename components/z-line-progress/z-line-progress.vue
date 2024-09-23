@@ -1,13 +1,13 @@
 <!--
  * @Description: z-line-progress 线性进度条
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zMath from '@/ZCGUI/libs/zMath'
+import z from '@/ZGGUI/libs/z'
+import zMath from '@/ZGGUI/libs/zMath'
 
 /**
  * @description: z-line-progress 线性进度条
@@ -18,7 +18,7 @@ import zMath from '@/ZCGUI/libs/zMath'
  * @param: percent 进度数值
  * @param: height 进度条高度
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 interface PropsType {
@@ -148,7 +148,7 @@ function getBackgroundWidth() {
 
   // #ifdef APP-NVUE
   // 返回一个promise
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     z.getDomInfoNvue('z-line-progress-background')
   })
   // #endif

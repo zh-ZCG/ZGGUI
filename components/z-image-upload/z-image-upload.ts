@@ -1,7 +1,7 @@
-import { PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zType from '@/ZCGUI/libs/zType'
-import zTest from '@/ZCGUI/libs/zTest'
-import z from '@/ZCGUI/libs/z'
+import { PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zType from '@/ZGGUI/libs/zType'
+import zTest from '@/ZGGUI/libs/zTest'
+import z from '@/ZGGUI/libs/z'
 import { watch, ref } from 'vue'
 
 export type ImageUploadSizeTypes = 'original' | 'compressed'
@@ -85,10 +85,12 @@ export function useUploadHandleFunction(props: PropsType) {
         sizeType: props.sizeType,
         // extension: props.extensions,
         sourceType: props.sourceType,
-        success: res => {
-          resolve(zType.isArray(res.tempFiles) ? res.tempFiles : [res.tempFiles])
+        success: (res) => {
+          resolve(
+            zType.isArray(res.tempFiles) ? res.tempFiles : [res.tempFiles]
+          )
         },
-        fail: err => {
+        fail: (err) => {
           reject(err)
         },
       })
@@ -100,7 +102,7 @@ export function useUploadHandleFunction(props: PropsType) {
   const uploading = ref(false)
   watch(
     () => uploading.value,
-    val => {
+    (val) => {
       if (props.showErrorTips) {
         if (val) uni.showLoading({ title: '上传中' })
         else uni.hideLoading()
@@ -120,7 +122,9 @@ export function useUploadHandleFunction(props: PropsType) {
           zType.isString(uploadHandlerResult),
         ].includes(true)
         if (!isUploadHandlePromiseOrString) {
-          console.error('zImageUpload 自定义上传处理函数必须返回Promise和String')
+          console.error(
+            'zImageUpload 自定义上传处理函数必须返回Promise和String'
+          )
           reject('自定义上传处理函数必须返回Promise和String')
           return
         }
@@ -129,7 +133,7 @@ export function useUploadHandleFunction(props: PropsType) {
 
         if (zType.isPromise(uploadHandlerResult)) {
           uploadHandlerResult
-            .then(res => {
+            .then((res) => {
               if (res) {
                 item.url = res
                 resolve(true)
@@ -137,7 +141,7 @@ export function useUploadHandleFunction(props: PropsType) {
                 resolve(false)
               }
             })
-            .catch(err => {
+            .catch((err) => {
               console.error('zImageUpload 上传文件发生错误', err)
               reject(err?.errMsg || '上传文件发生错误')
             })
@@ -183,7 +187,7 @@ export function useUploadHandleFunction(props: PropsType) {
 
               if (zType.isPromise(customUploadCallbackResult)) {
                 customUploadCallbackResult
-                  .then(res => {
+                  .then((res) => {
                     if (res) {
                       item.url = res
                       resolve(true)
@@ -191,7 +195,7 @@ export function useUploadHandleFunction(props: PropsType) {
                       resolve(false)
                     }
                   })
-                  .catch(err => {
+                  .catch((err) => {
                     console.error('zImageUpload 上传文件发生错误', err)
                     reject(err?.errMsg || '上传文件发生错误')
                   })
@@ -211,7 +215,9 @@ export function useUploadHandleFunction(props: PropsType) {
                 reject(res?.errMsg || '上传文件发生错误')
                 return
               } else {
-                const data = zTest.jsonString(resData) ? JSON.parse(resData) : resData
+                const data = zTest.jsonString(resData)
+                  ? JSON.parse(resData)
+                  : resData
                 // 默认返回的格式为 { code: 200, data: { errorCode: 0,  url: '' } }
                 if (data.code === 200 && data.data.errCode === 0) {
                   item.url = data.data.url
@@ -228,7 +234,7 @@ export function useUploadHandleFunction(props: PropsType) {
               }
             }
           },
-          fail: err => {
+          fail: (err) => {
             console.error('zImageUpload 上传文件发生错误', err)
             reject(err?.errMsg || '上传文件发生错误')
           },
@@ -240,7 +246,7 @@ export function useUploadHandleFunction(props: PropsType) {
 
         item.uploadTask = task
         // 监听上传进度
-        task.onProgressUpdate(res => {
+        task.onProgressUpdate((res) => {
           if (res.progress > 0) {
             item.progress = res.progress
           }
@@ -256,7 +262,7 @@ export function useUploadHandleFunction(props: PropsType) {
     extensions?.push('image')
     // #endif
     const extReg = /.+\./
-    return files.filter(item => {
+    return files.filter((item) => {
       // 获取文件后缀名
       let fileExt = ''
       // #ifdef H5
@@ -268,7 +274,8 @@ export function useUploadHandleFunction(props: PropsType) {
         .toLowerCase()
       // #endif
       return (
-        !extensions?.some(ext => ext.toLowerCase() === fileExt) || item.size > maxSize
+        !extensions?.some((ext) => ext.toLowerCase() === fileExt) ||
+        item.size > maxSize
       )
     })
   }

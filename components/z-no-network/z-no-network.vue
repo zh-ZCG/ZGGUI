@@ -1,6 +1,6 @@
 <!--
  * @Description: z-np-network 无网络提示组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,11 +14,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zOverlay from '@/ZCGUI/components/z-overlay/z-overlay.vue'
-import zIcon from '@/ZCGUI/components/z-icon/z-icon.vue'
-import zButton from '@/ZCGUI/components/z-button/z-button.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
+import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import zButton from '@/ZGGUI/components/z-button/z-button.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-np-network 无网络提示组件传参
  * @param: tips 没有网络时的提示语（默认：'网络信号丢失，请检查' ）
@@ -28,7 +28,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @event: retry 重试
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -60,13 +60,13 @@ const isIOS = ref(false)
 
 onMounted(() => {
   isIOS.value = uni.getSystemInfoSync().platform === 'ios'
-  uni.onNetworkStatusChange(res => {
+  uni.onNetworkStatusChange((res) => {
     isConnected.value = res.isConnected
     networkType.value = res.networkType
     emitEvent(networkType.value)
   })
   uni.getNetworkType({
-    success: res => {
+    success: (res) => {
       networkType.value = res.networkType
       emitEvent(networkType.value)
       if (res.networkType == 'none') {
@@ -81,7 +81,7 @@ onMounted(() => {
 function retry() {
   // 重新检查网络
   uni.getNetworkType({
-    success: res => {
+    success: (res) => {
       networkType.value = res.networkType
       emitEvent(networkType.value)
       if (res.networkType == 'none') {

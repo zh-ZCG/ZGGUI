@@ -10,10 +10,10 @@ import {
   computed,
 } from 'vue'
 import type { Ref, PropType, CSSProperties } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { useObserver } from '@/ZCGUI/libs/Hooks/z-use-observe'
-import { useStickySupport } from '@/ZCGUI/libs/Hooks/z-use-sticky-support'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import { useObserver } from '@/ZGGUI/libs/Hooks/z-use-observe'
+import { useStickySupport } from '@/ZGGUI/libs/Hooks/z-use-sticky-support'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-sticky 吸顶组件传参
  * @param: enabled 是否开启粘性布局
@@ -21,7 +21,7 @@ import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
  * @param: zIndex	zIndex
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -94,9 +94,11 @@ const { supportCSSSticky, checkCSSStickySupport } = useStickySupport()
 const monitorNodeInfo = () => {
   connectObserver(
     `#${componentId}`,
-    observerRes => {
+    (observerRes) => {
       if (!props.enabled) return
-      setStickyStatus(observerRes.boundingClientRect.top <= stickyDistance.value)
+      setStickyStatus(
+        observerRes.boundingClientRect.top <= stickyDistance.value
+      )
     },
     {
       type: 'relativeToViewport',
@@ -139,7 +141,7 @@ const initObserver = async () => {
 
 watch(
   () => supportCSSSticky.value,
-  val => {
+  (val) => {
     if (val === false && props.enabled) {
       initObserver()
     }
@@ -159,7 +161,7 @@ watch(
 // 监听是否动态设置吸顶状态
 watch(
   () => props.enabled,
-  val => {
+  (val) => {
     if (!val) {
       setStickyStatus(false)
       disconnectObserver()

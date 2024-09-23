@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import z from '@/ZCGUI/libs/z'
+import z from '@/ZGGUI/libs/z'
 
 export interface NavBarInfo {
   height: number
@@ -71,7 +71,9 @@ export const useUniAppSystemRectInfo = () => {
       navBarBoundingInfo.height = DEFAULT_NAVBAR_BOUNDING_HEIGHT
       navBarBoundingInfo.right = windowWidth - DEFAULT_NAVBAR_BOUNDING_RIGHT
       navBarBoundingInfo.left =
-        windowWidth - DEFAULT_NAVBAR_BOUNDING_RIGHT - DEFAULT_NAVBAR_BOUNDING_WIDTH
+        windowWidth -
+        DEFAULT_NAVBAR_BOUNDING_RIGHT -
+        DEFAULT_NAVBAR_BOUNDING_WIDTH
       navBarBoundingInfo.top = DEFAULT_NAVBAR_BOUNDING_TOP
       navBarBoundingInfo.bottom =
         DEFAULT_NAVBAR_BOUNDING_TOP + DEFAULT_NAVBAR_BOUNDING_HEIGHT

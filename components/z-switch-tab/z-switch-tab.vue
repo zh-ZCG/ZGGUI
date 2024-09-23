@@ -1,6 +1,6 @@
 <!--
  * @Description: z-switch-tab 选项卡组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
-import zColor from '@/ZCGUI/libs/zColor'
+import z from '@/ZGGUI/libs/z'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import zColor from '@/ZGGUI/libs/zColor'
 /**
  * @description: z-switch-tab 选项卡组件传参
  * @param: modelValue 当前激活的标签索引
@@ -28,7 +28,7 @@ import zColor from '@/ZCGUI/libs/zColor'
  * @param: activeTextColor  选中时标签的字体颜色
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -168,9 +168,9 @@ const tabStyle = computed<tabStyle>(() => {
         width: 100%;
         height: inherit;
         border-radius: inherit;
-        transition-property: height, border-top-left-radius, border-top-right-radius,
-          border-bottom-left-radius, border-bottom-right-radius, background-color,
-          color;
+        transition-property: height, border-top-left-radius,
+          border-top-right-radius, border-bottom-left-radius,
+          border-bottom-right-radius, background-color, color;
         transition-duration: 0.15s;
         transition-timing-function: linear;
       }

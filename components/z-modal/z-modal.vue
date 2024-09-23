@@ -1,6 +1,6 @@
 <!--
  * @Description: z-modal 模态框组件
- * @Author: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -14,17 +14,17 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZCGUI/libs/z'
-import zType from '@/ZCGUI/libs/zType'
-import zColor from '@/ZCGUI/libs/zColor'
-import zPopup from '@/ZCGUI/components/z-popup/z-popup.vue'
-import { propsHook, PropsTypeHook } from '@/ZCGUI/libs/zHooks'
+import z from '@/ZGGUI/libs/z'
+import zType from '@/ZGGUI/libs/zType'
+import zColor from '@/ZGGUI/libs/zColor'
+import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
+import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
 /**
  * @description: z-modal 模态框组件传参
  * @param: zIndex zIndex(默认1500)
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZCGUI & ui.zcgui.cn & zcgamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
  * @example:
  */
 
@@ -169,9 +169,10 @@ const clickCancel = () => {
 
   const func = cancelFunc.value()
 
-  const isPromiseOrBool = [zType.isPromise(func), zType.isBoolean(func)].includes(
-    true
-  )
+  const isPromiseOrBool = [
+    zType.isPromise(func),
+    zType.isBoolean(func),
+  ].includes(true)
 
   if (!isPromiseOrBool) {
     // 传递的是普通函数
@@ -181,10 +182,10 @@ const clickCancel = () => {
 
   if (zType.isPromise(func)) {
     func
-      .then(res => {
+      .then((res) => {
         if (res) closeModal()
       })
-      .catch(err => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
         console.warn(`${err}`)
       })
@@ -202,9 +203,10 @@ const clickConfirm = () => {
 
   const func = confirmFunc.value()
 
-  const isPromiseOrBool = [zType.isPromise(func), zType.isBoolean(func)].includes(
-    true
-  )
+  const isPromiseOrBool = [
+    zType.isPromise(func),
+    zType.isBoolean(func),
+  ].includes(true)
 
   if (!isPromiseOrBool) {
     // 传递的是普通函数
@@ -214,10 +216,10 @@ const clickConfirm = () => {
 
   if (zType.isPromise(func)) {
     func
-      .then(res => {
+      .then((res) => {
         if (res) closeModal()
       })
-      .catch(err => {
+      .catch((err) => {
         // eslint-disable-next-line no-console
         console.warn(`${err}`)
       })
@@ -231,7 +233,7 @@ const NewCancelStyle = ref<ModalBtnStyle>({})
 
 watch(
   () => confirmStyle,
-  value => {
+  (value) => {
     NewConfirmStyle.value.bgColor = value.value.bgColor
     NewConfirmStyle.value.color = value.value.color
   },
@@ -241,7 +243,7 @@ watch(
 )
 watch(
   () => cancelStyle,
-  value => {
+  (value) => {
     NewCancelStyle.value.bgColor = value.value.bgColor
     NewCancelStyle.value.color = value.value.color
   },
@@ -269,7 +271,9 @@ const operationBtnStyle = computed<OperationBtnComputedStyle>(() => {
 
     if (type === 'cancel') {
       if (NewCancelStyle.value.bgColor)
-        style.backgroundColor = zColor.getTypeColor(NewCancelStyle.value.bgColor)
+        style.backgroundColor = zColor.getTypeColor(
+          NewCancelStyle.value.bgColor
+        )
 
       style.color = zColor.getTypeColor(
         NewCancelStyle.value.color ? NewCancelStyle.value.color : 'error'
@@ -277,7 +281,9 @@ const operationBtnStyle = computed<OperationBtnComputedStyle>(() => {
     }
     if (type === 'confirm') {
       if (NewConfirmStyle.value.bgColor)
-        style.backgroundColor = zColor.getTypeColor(NewConfirmStyle.value.bgColor)
+        style.backgroundColor = zColor.getTypeColor(
+          NewConfirmStyle.value.bgColor
+        )
 
       style.color = zColor.getTypeColor(
         NewConfirmStyle.value.color ? NewConfirmStyle.value.color : 'primary'
