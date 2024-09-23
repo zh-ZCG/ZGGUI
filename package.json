@@ -11,11 +11,12 @@
   },
   "keywords": [
     "ZGG",
-    "zh-ZGG",
-    "zh-zgg",
+    "ZCG",
+    "zh-ZCG",
+    "zh-zcg",
     "ZGGUI",
-    "zggui",
-    "z ui",
+    "zgg-ui",
+    "z-ui",
     "uniapp",
     "uniapp组件",
     "vue3 uniapp组件",
@@ -28,7 +29,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "author": "zh-ZGG",
+  "author": "zh-zcg",
   "license": "Apache 2.0",
   "dependencies": {
     "@dcloudio/uni-app": "3.0.0-3080720230703001",
