@@ -1,6 +1,6 @@
 <!--
  * @Description:  col布局组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @Date: 2024-03-22 15:58:51
  * Copyright (c) 2024, All Rights Reserved. 
 -->

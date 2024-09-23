@@ -1,6 +1,6 @@
 <!--
  * @Description: z-collapse 折叠面板组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -44,7 +44,7 @@ import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
  * @param: arrowColor  折叠面板箭头的颜色，show-arrow为true时生效
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-empty 空白组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -28,7 +28,7 @@ import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-
  * @param: showTips  是否显示提示
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 type TextIconStyleType = (type: 'icon' | 'tips') => CSSProperties

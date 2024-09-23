@@ -1,6 +1,6 @@
 <!--
  * @Description: z-swipe-action-item 滑动菜单子组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -41,7 +41,7 @@ import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
  * @param: threshold  滑动阈值，单位 px，大于该值则滑动动作生效
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

@@ -1,6 +1,6 @@
 <!--
  * @Description: z-loading-icon 加载图标
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -24,7 +24,7 @@ import zColor from '@/ZGGUI/libs/zColor'
  * @param: inCircleColor 当mode为circle时，暗边的颜色
  * @param: otherStyle 其他样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

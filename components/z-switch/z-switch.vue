@@ -1,6 +1,6 @@
 <!--
  * @Description: z-switch 开关组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -43,7 +43,7 @@ import zType from '@/ZGGUI/libs/zType'
  * @param: beforeChange   状态改变前的钩子， 返回 false 或者返回 Promise 且被 reject 则停止切换
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

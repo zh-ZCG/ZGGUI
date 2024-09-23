@@ -1,6 +1,6 @@
 <!--
  * @Description: z-tabbar 自定义底部导航组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -45,7 +45,7 @@ import {
  * @param: placeholder fixed定位固定在底部时，是否生成一个等高元素防止塌陷（默认 true ）
  * @param: otherStyle lable的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

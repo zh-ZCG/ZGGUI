@@ -1,6 +1,6 @@
 <!--
  * @Description: z-picker 滚动选择器
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -36,7 +36,7 @@ import { isObject } from '@/ZGGUI/libs/lodash/is-object'
  * @param: mask  显示遮罩
  * @param: zIndex zIndex
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

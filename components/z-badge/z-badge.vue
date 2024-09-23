@@ -1,6 +1,6 @@
 <!--
  * @Description: z-badge 徽标组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -26,7 +26,7 @@ import z from '@/ZGGUI/libs/z'
  * @param: position absolute启用后，该参数生效，[number:top,number:right]:第一个是距离父元素顶部的位置，第二个是距离父元素右部的位置
  * @param: otherstyle 其他样式
  * @event:
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

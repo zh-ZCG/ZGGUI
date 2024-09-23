@@ -1,6 +1,6 @@
 <!--
  * @Description: z-line-progress 线性进度条
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -18,7 +18,7 @@ import zMath from '@/ZGGUI/libs/zMath'
  * @param: percent 进度数值
  * @param: height 进度条高度
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 interface PropsType {

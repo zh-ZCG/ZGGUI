@@ -1,6 +1,6 @@
 <!--
  * @Description: z-scroll-list 横向滚动组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -26,7 +26,7 @@ import zColor from '@/ZGGUI/libs/zColor'
  * @param: indicatorBlockColor  指示器滑块的背景颜色
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

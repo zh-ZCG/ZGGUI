@@ -1,6 +1,6 @@
 <!--
  * @Description: z-input 输入框组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 // #ifdef MP-WEIXIN
@@ -70,7 +70,7 @@ import { FormValidateIconsMap } from '@/ZGGUI/libs/utils'
  * @param: maxlength  最大可输入长度，设置为 -1 的时候不限制最大长度
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

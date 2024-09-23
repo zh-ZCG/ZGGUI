@@ -1,6 +1,6 @@
 <!--
  * @Description: z-gap 间隔组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -24,7 +24,7 @@ import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
  * @param: marginBottom  与下一个组件的距离，（默认 0px ）
  * @param: otherStyle 其他的样式
  *
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 

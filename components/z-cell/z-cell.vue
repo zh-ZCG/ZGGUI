@@ -1,6 +1,6 @@
 <!--
  * @Description: z-cell 单元格组件
- * @Author: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @Author: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
@@ -32,7 +32,7 @@ import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
  * @param: otherStyle 其他外部样式
  *
  * @event: click 点击列表触发（disabled时无效）
- * @tutorial: ZGGUI & ui.zggui.cn & zggamazing@163.com
+ * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com
  * @example:
  */
 
