@@ -1,8 +1,8 @@
-import { Arrayable } from '@/ZGGUI/libs/zType'
+import { Arrayable } from '../../libs/zType'
 
 import { InjectionKey, shallowRef } from 'vue'
 
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 
 interface PropsType extends PropsTypeHook {
   modelValue?: CollapseModelValue

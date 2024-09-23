@@ -1,4 +1,4 @@
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 type navType = 'navigateTo' | 'redirectTo' | 'reLaunch' | 'switchTab'
 

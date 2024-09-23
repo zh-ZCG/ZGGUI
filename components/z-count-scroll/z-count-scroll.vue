@@ -16,10 +16,10 @@ import {
   CSSProperties,
   ExtractPropTypes,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zMath from '@/ZGGUI/libs/zMath'
-import zColor from '@/ZGGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zMath from '../../libs/zMath'
+import zColor from '../../libs/zColor'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-count-scroll 数字滚动组件传参
  * @param: value 显示的值

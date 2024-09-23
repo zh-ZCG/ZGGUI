@@ -24,15 +24,15 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   useUploadHandleFunction,
   ImageUploadList,
-} from '@/ZGGUI/components/z-image-upload/z-image-upload'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { useFormItem } from '@/ZGGUI/components/z-form/types'
+} from '../../components/z-image-upload/z-image-upload'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useFormItem } from '../../components/z-form/types'
 import {
   ImageUploadFile,
   ImageUploadListItem,
@@ -42,7 +42,7 @@ import {
   ImageBeforeRemoveFunction,
   ImageUploadSizeTypes,
   ImageUploadSources,
-} from '@/ZGGUI/components/z-image-upload/z-image-upload'
+} from '../../components/z-image-upload/z-image-upload'
 /**
  * @description: z-image-upload 仅图片上传组件传参
  * @param: modelValue 已上传的图片列表绑定值，传递的是图片的url地址

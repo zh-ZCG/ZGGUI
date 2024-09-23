@@ -1,5 +1,5 @@
 import type { InjectionKey } from 'vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 
 type zRadioSizeType = 'small' | 'normal' | 'large'
 

@@ -1,5 +1,5 @@
 import { getCurrentInstance, ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 export const useStickySupport = () => {
   const supportCSSSticky = ref<boolean | null>(null)

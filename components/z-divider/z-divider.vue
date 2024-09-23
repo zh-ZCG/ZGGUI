@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zLine from '@/ZGGUI/components/z-line/z-line.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zLine from '../../components/z-line/z-line.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-gap 间隔传参
  * @param:borderStyle		设置线条样式 与css border-style属性一致 可填solid（默认实线），dashed（虚线），dotted（圆点）等

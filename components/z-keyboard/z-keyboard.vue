@@ -5,16 +5,16 @@
 -->
 <script lang="ts" setup>
 import { ref, computed, watch, toRef, nextTick } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { zLongPress } from '@/ZGGUI/libs/zLongPress'
-import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import { zLongPress } from '../../libs/zLongPress'
+import zPopup from '../../components/z-popup/z-popup.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   carKeyboardCnData,
   carKeyboardEnData,
   carKeyboardSpecialData,
 } from '../z-keyboard/car-keyboard-data'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-keyboard 软键盘组件传参
  * @param: show 是否显示键盘

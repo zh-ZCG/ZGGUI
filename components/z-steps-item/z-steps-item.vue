@@ -26,16 +26,16 @@ import {
   onUnmounted,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   stepModes,
   stepsContextKey,
   StepContext,
   useOrderedChildren,
-} from '@/ZGGUI/components/z-steps/z-steps'
-import zColor from '@/ZGGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-steps/z-steps'
+import zColor from '../../libs/zColor'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-steps-item 步骤条子组件传参
  * @param: color 默认颜色

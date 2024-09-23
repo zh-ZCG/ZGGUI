@@ -1,18 +1,18 @@
 import type { SetupContext, InjectionKey } from 'vue'
-import { buildProp, definePropType } from '@/ZGGUI/libs/utils'
+import { buildProp, definePropType } from '../../libs/utils'
 
-import { castArray } from '@/ZGGUI/libs/lodash'
+import { castArray } from '../../libs/lodash'
 import { computed, inject, ref, unref } from 'vue'
-import { useProp } from '@/ZGGUI/libs/Hooks/z-use-prop'
-import { MaybeRef } from '@/ZGGUI/libs/zType'
+import { useProp } from '../../libs/Hooks/z-use-prop'
+import { MaybeRef } from '../../libs/zType'
 import type {
   RuleItem,
   ValidateError,
   ValidateFieldsError,
-} from '@/ZGGUI/libs/async-validator'
+} from '../../libs/async-validator'
 
-import type Form from '@/ZGGUI/components/z-form/z-form.vue'
-import type FormItem from '@/ZGGUI/components/z-form-item/z-form-item.vue'
+import type Form from '../../components/z-form/z-form.vue'
+import type FormItem from '../../components/z-form-item/z-form-item.vue'
 
 export type zFormInstance = InstanceType<typeof Form>
 export type zFormItemInstance = InstanceType<typeof FormItem>

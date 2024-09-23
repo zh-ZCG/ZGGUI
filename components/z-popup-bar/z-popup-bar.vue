@@ -5,8 +5,8 @@
 -->
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
-import zLine from '@/ZGGUI/components/z-line/z-line.vue'
-import z from '@/ZGGUI/libs/z'
+import zLine from '../../components/z-line/z-line.vue'
+import z from '../../libs/z'
 
 /**
  * @description: z-popupBar 弹出层的操作栏传参

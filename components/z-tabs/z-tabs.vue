@@ -23,11 +23,11 @@ import {
   ztabsContextKey,
   zTabsItemContext,
   zTabsItemRect,
-} from '@/ZGGUI/components/z-tabs/z-tabs'
-import zType from '@/ZGGUI/libs/zType'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-tabs/z-tabs'
+import zType from '../../libs/zType'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-tabs 标签栏组件传参
  * @param: color 默认颜色

@@ -14,13 +14,13 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zMath from '@/ZGGUI/libs/zMath'
-import zColor from '@/ZGGUI/libs/zColor'
-import zText from '@/ZGGUI/components/z-text/z-text.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { zImage, isImage } from '@/ZGGUI/libs/types/zImage'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zMath from '../../libs/zMath'
+import zColor from '../../libs/zColor'
+import zText from '../../components/z-text/z-text.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { zImage, isImage } from '../../libs/types/zImage'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-avatar 头像组件传参
  * @param: src 头像路径（绝对路径），默认显示默认头像

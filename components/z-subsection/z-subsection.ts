@@ -1,6 +1,6 @@
 import type { InjectionKey } from 'vue'
 import { shallowRef } from 'vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 
 export interface SubsectionItemRect {
   left: number

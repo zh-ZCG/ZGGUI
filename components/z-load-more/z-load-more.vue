@@ -16,10 +16,10 @@ import {
   PropType,
 } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zLine from '@/ZGGUI/components/z-line/z-line.vue'
-import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zLine from '../../components/z-line/z-line.vue'
+import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-load-more 获取更多组件传参
  * @param 	status			组件状态（默认 'loadmore'、'loading'、'nomore'' ）

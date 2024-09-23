@@ -26,13 +26,13 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZGGUI/libs/zColor'
-import { SwipeActionItemOption } from '@/ZGGUI/components/z-swipe-action-item/z-swipe-action-item'
-import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
-import { swipeActionContextKey } from '@/ZGGUI/components/z-swipe-action/z-swipe-action'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zColor from '../../libs/zColor'
+import { SwipeActionItemOption } from '../../components/z-swipe-action-item/z-swipe-action-item'
+import { useTouch } from '../../libs/use-Touch/use-Touch'
+import { swipeActionContextKey } from '../../components/z-swipe-action/z-swipe-action'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-swipe-action-item 滑动菜单子组件传参
  * @param: autoClose 自动关闭菜单

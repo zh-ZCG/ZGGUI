@@ -15,16 +15,16 @@ import {
   CSSProperties,
   toRef,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { useLongPress } from '@/ZGGUI/libs/Hooks/z-use-long-press'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { useLongPress } from '../../libs/Hooks/z-use-long-press'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
   FormItemValidateStates,
-} from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-number-box 步进器组件传参
  * @param: modelValue 步进器绑定的值

@@ -15,10 +15,10 @@ import {
   CSSProperties,
   reactive,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { isBoolean } from '@/ZGGUI/libs/lodash'
+import z from '../../libs/z'
+import zPopup from '../../components/z-popup/z-popup.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { isBoolean } from '../../libs/lodash'
 import { isPromise } from '@vue/shared'
 /**
  * @description: z-action-sheet 操作菜单组件传参

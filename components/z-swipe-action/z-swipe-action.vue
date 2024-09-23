@@ -5,10 +5,10 @@
 -->
 <script lang="ts" setup>
 import { ref, CSSProperties, provide, toRefs, shallowRef, reactive } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import { swipeActionContextKey } from '@/ZGGUI/components/z-swipe-action/z-swipe-action'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import { swipeActionContextKey } from '../../components/z-swipe-action/z-swipe-action'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-swipe-action 滑动菜单组件传参
  * @param: autoClose 自动关闭菜单

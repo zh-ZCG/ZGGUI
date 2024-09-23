@@ -1,7 +1,7 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 import { warn } from 'vue'
-import { fromPairs } from '@/ZGGUI/libs/lodash'
-import zType from '@/ZGGUI/libs/zType'
+import { fromPairs } from '../../libs/lodash'
+import zType from '../../libs/zType'
 import { hasOwn } from '@vue/shared'
 
 import type { PropType } from 'vue'

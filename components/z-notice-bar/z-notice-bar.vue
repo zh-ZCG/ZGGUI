@@ -18,12 +18,12 @@ import {
   toRefs,
   InjectionKey,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { noticeBarKey } from '@/ZGGUI/components/z-notice-bar/index'
-import zColumnNoticeBar from '@/ZGGUI/components/z-column-notice-bar/z-column-notice-bar.vue'
-import zRowNoticeBar from '@/ZGGUI/components/z-row-notice-bar/z-row-notice-bar.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { noticeBarKey } from '../../components/z-notice-bar/index'
+import zColumnNoticeBar from '../../components/z-column-notice-bar/z-column-notice-bar.vue'
+import zRowNoticeBar from '../../components/z-row-notice-bar/z-row-notice-bar.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-notice-bar 通知栏组件传参
  * @param: show 是否显示通知栏

@@ -15,9 +15,9 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { noticeBarKey } from '@/ZGGUI/components/z-notice-bar/index'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { noticeBarKey } from '../../components/z-notice-bar/index'
 /**
  * @description:z-column-notice-bar 纵向通知栏组件传参
  * @tutorial: ZGGUI & ui.zggui.cn & zcgamazing@163.com

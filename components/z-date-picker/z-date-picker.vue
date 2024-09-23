@@ -15,12 +15,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import type { Dayjs } from '@/ZGGUI/libs/dayjs'
-import type Picker from '@/ZGGUI/components/z-picker/z-picker.vue'
-import dayjs from '@/ZGGUI/libs/dayjs'
-import zPicker from '@/ZGGUI/components/z-picker/z-picker.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import type { Dayjs } from '../../libs/dayjs'
+import type Picker from '../../components/z-picker/z-picker.vue'
+import dayjs from '../../libs/dayjs'
+import zPicker from '../../components/z-picker/z-picker.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-date-picker 时间选择组件传参
  * @param: modelValue 日期时间选择器绑定的值，支持的格式YYYY/MM/DD HH:mm:ss YYYY-MM-DD HH:mm:ss

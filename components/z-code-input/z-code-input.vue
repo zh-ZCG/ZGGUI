@@ -14,8 +14,8 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-code-input 验证码输入组件传参
  * @param: 	maxlength			最大输入长度

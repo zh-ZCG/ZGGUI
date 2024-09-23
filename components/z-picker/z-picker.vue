@@ -12,12 +12,12 @@ import {
   computed,
   nextTick,
 } from 'vue'
-import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
+import zPopup from '../../components/z-popup/z-popup.vue'
 import type { CSSProperties } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import { isArray } from '@/ZGGUI/libs/lodash/is-array'
-import { isObject } from '@/ZGGUI/libs/lodash/is-object'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import { isArray } from '../../libs/lodash/is-array'
+import { isObject } from '../../libs/lodash/is-object'
 /**
  * @description: z-picker 滚动选择器
  * @param: modelValue picker绑定的值

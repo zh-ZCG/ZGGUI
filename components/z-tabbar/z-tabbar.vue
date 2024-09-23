@@ -18,14 +18,14 @@ import {
   toRefs,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
 import {
   TabbarContext,
   tabbarContextKey,
-} from '@/ZGGUI/components/z-tabbar/z-tabbar'
+} from '../../components/z-tabbar/z-tabbar'
 
 /**
  * @description: z-tabbar 自定义底部导航组件传参

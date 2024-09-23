@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 /**
  * @description: z-footer 页脚组件传参
  * @param: content 页脚内容

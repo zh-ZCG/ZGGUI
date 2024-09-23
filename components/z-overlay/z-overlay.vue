@@ -6,8 +6,8 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
-import z from '@/ZGGUI/libs/z'
+import zTransition from '../../components/z-transition/z-transition.vue'
+import z from '../../libs/z'
 
 /**
  * @description: z-overlay 遮罩层

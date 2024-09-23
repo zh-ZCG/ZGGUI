@@ -6,11 +6,11 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zTest from '@/ZGGUI/libs/zTest'
-import zColor from '@/ZGGUI/libs/zColor'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zLink from '@/ZGGUI/components/z-link/z-link.vue'
+import z from '../../libs/z'
+import zTest from '../../libs/zTest'
+import zColor from '../../libs/zColor'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zLink from '../../components/z-link/z-link.vue'
 
 /**
  * @description: z-text 文本组件

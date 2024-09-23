@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { zImage } from '@/ZGGUI/libs/types/zImage'
-import zLazyLoad from '@/ZGGUI/components/z-lazy-load/z-lazy-load.vue'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { zImage } from '../../libs/types/zImage'
+import zLazyLoad from '../../components/z-lazy-load/z-lazy-load.vue'
 /**
  * @description: z-photo-album 相册组件传参
  * @param: data 图片地址列表

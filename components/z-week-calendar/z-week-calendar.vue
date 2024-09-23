@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import dayjs from '@/ZGGUI/libs/dayjs'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import dayjs from '../../libs/dayjs'
 /**
  * @description: z-weekCalendar 周日历传参
  * @param: modelValue 绑定月份选中日期的值

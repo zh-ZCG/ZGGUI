@@ -5,14 +5,14 @@
 -->
 <script lang="ts" setup>
 import { watch, nextTick, CSSProperties, provide, reactive, toRefs } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { useFormItem } from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { useFormItem } from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import {
   zCheckboxGroupKey,
   zCheckboxValueType,
   zCheckboxGroupValueType,
-} from '@/ZGGUI/components/z-checkbox/z-checkbox'
+} from '../../components/z-checkbox/z-checkbox'
 /**
  * @description: z-checkbox-group 复选框组组件传参
  * @param: size radio复选框尺寸

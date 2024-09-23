@@ -21,12 +21,12 @@ import {
   inject,
   Slots,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import { Arrayable } from '@/ZGGUI/libs/zType'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { castArray, debounce } from '@/ZGGUI/libs/lodash'
-import { getProp } from '@/ZGGUI/libs/utils/zObject'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import { Arrayable } from '../../libs/zType'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { castArray, debounce } from '../../libs/lodash'
+import { getProp } from '../../libs/utils/zObject'
 import {
   FormRules,
   formContextKey,
@@ -38,14 +38,14 @@ import {
   FormItemRule,
   useFormSize,
   useFormDisabled,
-} from '@/ZGGUI/components/z-form/types'
+} from '../../components/z-form/types'
 import type {
   RuleItem,
   ValidateError,
   ValidateFieldsError,
-} from '@/ZGGUI/libs/async-validator'
+} from '../../libs/async-validator'
 
-import AsyncValidator from '@/ZGGUI/libs/async-validator'
+import AsyncValidator from '../../libs/async-validator'
 /**
  * @description: z-form-item 表单子组件传参
  * @param: label label文本

@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 export interface NavBarInfo {
   height: number

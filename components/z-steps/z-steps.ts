@@ -1,4 +1,4 @@
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import { InjectionKey, shallowRef } from 'vue'
 
 export type stepModes = 'dot' | 'number' | 'dotIcon' | 'icon'

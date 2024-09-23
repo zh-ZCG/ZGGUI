@@ -13,9 +13,9 @@ import {
   reactive,
   toRefs,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import {
   FormRules,
   formContextKey,
@@ -24,12 +24,12 @@ import {
   FormValidationCallback,
   FormValidationResult,
   filterFields,
-} from '@/ZGGUI/components/z-form/types'
+} from '../../components/z-form/types'
 import type {
   RuleItem,
   ValidateError,
   ValidateFieldsError,
-} from '@/ZGGUI/libs/async-validator'
+} from '../../libs/async-validator'
 /**
  * @description: z-form 表单组件传参
  * @param: size 设置表单下组件的尺寸

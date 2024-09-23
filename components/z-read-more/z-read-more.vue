@@ -16,12 +16,12 @@ import {
   PropType,
 } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import { isPromise } from '@vue/shared'
-import { isBoolean } from '@/ZGGUI/libs/lodash/is-boolean'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { isBoolean } from '../../libs/lodash/is-boolean'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-read-more 展开更多组件传参
  * @param: expand 默认是否展开（false）

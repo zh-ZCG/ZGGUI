@@ -14,12 +14,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { debounce, throttle } from '@/ZGGUI/libs/lodash'
-import zColor from '@/ZGGUI/libs/zColor'
-import { zSize } from '@/ZGGUI/libs/utils'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { debounce, throttle } from '../../libs/lodash'
+import zColor from '../../libs/zColor'
+import { zSize } from '../../libs/utils'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-search-box 搜索框组件传参
  * @param: modelValue 搜索框绑定的值

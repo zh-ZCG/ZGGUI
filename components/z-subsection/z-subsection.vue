@@ -17,17 +17,17 @@ import {
   toRefs,
   provide,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 import {
   subsectionMode,
   subsectionContextKey,
   SubsectionItemContext,
   SubsectionSliderRect,
   useOrderedChildren,
-} from '@/ZGGUI/components/z-subsection/z-subsection'
-import zColor from '@/ZGGUI/libs/zColor'
-import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-size'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-subsection/z-subsection'
+import zColor from '../../libs/zColor'
+import { useComponentSize } from '../../libs/use-component-size/use-component-size'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-subsection 分段器组件传参
  * @param: color 默认颜色

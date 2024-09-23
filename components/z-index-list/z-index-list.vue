@@ -24,14 +24,14 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import type { ExtractPropTypes } from 'vue'
-import { useUniAppSystemRectInfo } from '@/ZGGUI/libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
-import { useComponentSize } from '@/ZGGUI/libs/use-component-size/use-component-size'
-import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
-import zSticky from '@/ZGGUI/components/z-sticky/z-sticky.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { useUniAppSystemRectInfo } from '../../libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
+import { useComponentSize } from '../../libs/use-component-size/use-component-size'
+import { useTouch } from '../../libs/use-Touch/use-Touch'
+import zSticky from '../../components/z-sticky/z-sticky.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-index-list 索引列表组件传参
  * @param: data 数据

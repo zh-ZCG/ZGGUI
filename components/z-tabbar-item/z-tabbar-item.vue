@@ -24,13 +24,13 @@ import {
   inject,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
 
-import zBadge from '@/ZGGUI/components/z-badge/z-badge.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { tabbarContextKey } from '@/ZGGUI/components/z-tabbar/z-tabbar'
-import zColor from '@/ZGGUI/libs/zColor'
+import zBadge from '../../components/z-badge/z-badge.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { tabbarContextKey } from '../../components/z-tabbar/z-tabbar'
+import zColor from '../../libs/zColor'
 /**
  * @description: z-tabbar-item 自定义底部导航组件的子组件传参
  * @param: name z-tabbarde value参数

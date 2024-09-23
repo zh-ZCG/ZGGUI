@@ -15,12 +15,12 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import type { Dayjs } from '@/ZGGUI/libs/dayjs'
-import dayjs from '@/ZGGUI/libs/dayjs'
-import zPicker from '@/ZGGUI/components/z-picker/z-picker.vue'
-import regionJsonData from '@/ZGGUI/components/z-region-picker/z-region-data.json'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import type { Dayjs } from '../../libs/dayjs'
+import dayjs from '../../libs/dayjs'
+import zPicker from '../../components/z-picker/z-picker.vue'
+import regionJsonData from '../../components/z-region-picker/z-region-data.json'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-region-picker 时间选择组件传参
  * @param: modelValue 地区选择器绑定的值，可以传递省市区的code和name，["11", "1101", "110101"] || ["广东省", "广州市", "天河区"]

@@ -6,11 +6,11 @@
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
+import z from '../../libs/z'
+import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
+import zTransition from '../../components/z-transition/z-transition.vue'
 
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
 
 /**
  * @description: z-loading-page 加载页面组件

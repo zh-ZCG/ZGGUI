@@ -1,7 +1,7 @@
 //全局方法
 import { getCurrentInstance, ref } from 'vue'
 import type { ComponentInternalInstance } from 'vue'
-import zTest from '@/ZGGUI/libs/zTest'
+import zTest from '../../libs/zTest'
 
 // #ifdef APP-NVUE
 const dom = uni.requireNativePlugin('dom')

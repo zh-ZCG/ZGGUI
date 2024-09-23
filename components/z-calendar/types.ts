@@ -1,4 +1,4 @@
-import type { Dayjs } from '@/ZGGUI/libs/dayjs'
+import type { Dayjs } from '../../libs/dayjs'
 
 export type CalendarItemDateStatus = 'normal' | 'active' | 'range' | 'disabled'
 export interface CalendarItem {

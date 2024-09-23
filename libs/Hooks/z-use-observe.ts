@@ -1,5 +1,5 @@
 import { getCurrentInstance } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 import type { ComponentInternalInstance } from 'vue'
 

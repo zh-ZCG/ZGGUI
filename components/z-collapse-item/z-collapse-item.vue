@@ -26,11 +26,11 @@ import {
   inject,
   toRef,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZGGUI/libs/zColor'
-import { collapseContextKey } from '@/ZGGUI/components/z-collapse/z-collapse'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zColor from '../../libs/zColor'
+import { collapseContextKey } from '../../components/z-collapse/z-collapse'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-collapse-item 折叠面板子组件传参
  * @param: title CollapseItem标题

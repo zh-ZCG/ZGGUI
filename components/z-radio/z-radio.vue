@@ -15,12 +15,12 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import zColor from '@/ZGGUI/libs/zColor'
-import { zRadioGroupKey } from '@/ZGGUI/components/z-radio/z-radio'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { useFormDisabled, useFormSize } from '@/ZGGUI/components/z-form/types'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import zColor from '../../libs/zColor'
+import { zRadioGroupKey } from '../../components/z-radio/z-radio'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useFormDisabled, useFormSize } from '../../components/z-form/types'
 /**
  * @description: z-radio 单选框组件传参
  * @param: size radio单选框尺寸

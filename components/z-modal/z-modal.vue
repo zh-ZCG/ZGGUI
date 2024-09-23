@@ -14,11 +14,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import zColor from '@/ZGGUI/libs/zColor'
-import zPopup from '@/ZGGUI/components/z-popup/z-popup.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import zColor from '../../libs/zColor'
+import zPopup from '../../components/z-popup/z-popup.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-modal 模态框组件传参
  * @param: zIndex zIndex(默认1500)

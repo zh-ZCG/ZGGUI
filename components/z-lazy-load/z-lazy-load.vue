@@ -15,11 +15,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { zImage } from '@/ZGGUI/libs/types/zImage'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { useObserver } from '@/ZGGUI/libs/Hooks/z-use-observe'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { zImage } from '../../libs/types/zImage'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { useObserver } from '../../libs/Hooks/z-use-observe'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-lazy-load  懒加载组件传参
  * @param: src 图片地址

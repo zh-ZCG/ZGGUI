@@ -26,19 +26,19 @@ import {
   CSSProperties,
   InjectionKey,
 } from 'vue'
-import zType from '@/ZGGUI/libs/zType'
-import { trim } from '@/ZGGUI/libs/lodash'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { useToggle } from '@/ZGGUI/libs/use-Toggle/use-Toggle'
+import zType from '../../libs/zType'
+import { trim } from '../../libs/lodash'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useToggle } from '../../libs/use-Toggle/use-Toggle'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
   FormItemValidateStates,
-} from '@/ZGGUI/components/z-form/types'
-import { FormValidateIconsMap } from '@/ZGGUI/libs/utils'
+} from '../../components/z-form/types'
+import { FormValidateIconsMap } from '../../libs/utils'
 /**
  * @description:  z-input 输入框组件传参
  * @param: modelValue 绑定的值

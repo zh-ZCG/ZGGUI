@@ -6,8 +6,8 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zMath from '@/ZGGUI/libs/zMath'
+import z from '../../libs/z'
+import zMath from '../../libs/zMath'
 
 /**
  * @description: z-line-progress 线性进度条

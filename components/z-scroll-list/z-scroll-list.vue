@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import zColor from '../../libs/zColor'
 /**
  * @description: z-scroll-list 横向滚动组件传参
  * @param: indicator 是否显示指示器

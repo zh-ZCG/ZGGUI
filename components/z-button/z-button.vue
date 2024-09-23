@@ -6,10 +6,10 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
 
 /**
  * @description: z-button 按钮组件传参

@@ -14,13 +14,13 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zColor from '@/ZGGUI/libs/zColor'
-import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { useFormItem } from '@/ZGGUI/components/z-form/types'
-import zType from '@/ZGGUI/libs/zType'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zColor from '../../libs/zColor'
+import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useFormItem } from '../../components/z-form/types'
+import zType from '../../libs/zType'
 /**
  * @description: z-switch 开关组件传参
  * @param: modelValue 状态绑定的值

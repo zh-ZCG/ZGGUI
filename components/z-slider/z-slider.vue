@@ -15,17 +15,17 @@ import {
   CSSProperties,
   reactive,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import zColor from '../../libs/zColor'
 import {
   useFormSize,
   useFormDisabled,
   useFormItem,
-} from '@/ZGGUI/components/z-form/types'
-import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
-import { Arrayable } from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-form/types'
+import { useTouch } from '../../libs/use-Touch/use-Touch'
+import { Arrayable } from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-slider 滑动条组件传参
  * @param: modelValue 滑块绑定的值

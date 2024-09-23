@@ -16,7 +16,7 @@ export default {
 // #endif
 <script lang="ts" setup>
 import { computed } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 /**
  * @param: show,是否展示默认true

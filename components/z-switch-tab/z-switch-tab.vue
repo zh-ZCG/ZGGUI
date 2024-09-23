@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import zColor from '../../libs/zColor'
 /**
  * @description: z-switch-tab 选项卡组件传参
  * @param: modelValue 当前激活的标签索引

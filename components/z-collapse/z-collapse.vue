@@ -27,15 +27,15 @@ import {
   toRefs,
   reactive,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
 import {
   CollapseModelValue,
   CollapseItemContext,
   useOrderedChildren,
   collapseContextKey,
-} from '@/ZGGUI/components/z-collapse/z-collapse'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-collapse/z-collapse'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-collapse 折叠面板组件传参
  * @param: modelValue 当前激活的面板，如果是手风琴效果则传递string，否则传递string[]

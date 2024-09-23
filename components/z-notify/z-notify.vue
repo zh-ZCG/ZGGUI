@@ -14,9 +14,9 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-notify 消息通知组件传参
  * @param: offsetTop 距离顶部的距离，防止使用了自定义顶部导航栏后，notify 被遮挡，单位为 px

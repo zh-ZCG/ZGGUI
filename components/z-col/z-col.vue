@@ -7,7 +7,7 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 interface PropsType {
   span: number

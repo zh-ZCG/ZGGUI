@@ -6,13 +6,13 @@
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zTest from '@/ZGGUI/libs/zTest'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zTest from '../../libs/zTest'
+import zTransition from '../../components/z-transition/z-transition.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
 
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
-import zColor from '@/ZGGUI/libs/zColor'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-tag 标签组件传参

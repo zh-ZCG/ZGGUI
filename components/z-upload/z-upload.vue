@@ -6,12 +6,12 @@
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed, watch } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zTest from '@/ZGGUI/libs/zTest'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zLoadingIcon from '@/ZGGUI/components/z-loading-icon/z-loading-icon.vue'
-import { chooseFile } from '@/ZGGUI/libs/zUploadUtils'
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zTest from '../../libs/zTest'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
+import { chooseFile } from '../../libs/zUploadUtils'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
 
 /**
  * @description: z-upload 上传组件传参

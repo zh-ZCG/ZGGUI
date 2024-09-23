@@ -15,20 +15,20 @@ import {
   CSSProperties,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zType from '@/ZGGUI/libs/zType'
-import zColor from '@/ZGGUI/libs/zColor'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zType from '../../libs/zType'
+import zColor from '../../libs/zColor'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   zCheckboxGroupKey,
   zCheckboxValueType,
-} from '@/ZGGUI/components/z-checkbox/z-checkbox'
+} from '../../components/z-checkbox/z-checkbox'
 import {
   useFormItem,
   useFormSize,
   useFormDisabled,
-} from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-checkbox 复选框组件传参
  * @param: size 复选框尺寸

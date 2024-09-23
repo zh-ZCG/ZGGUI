@@ -1,6 +1,6 @@
-import { get, set } from '@/ZGGUI/libs/lodash'
+import { get, set } from '../../libs/lodash'
 import type { Entries } from 'type-fest'
-import type { Arrayable } from '@/ZGGUI/libs/zType'
+import type { Arrayable } from '../../libs/zType'
 
 export { hasOwn } from '@vue/shared'
 export const keysOf = <T extends object>(arr: T) =>

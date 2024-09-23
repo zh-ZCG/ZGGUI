@@ -10,10 +10,10 @@ import {
   computed,
 } from 'vue'
 import type { Ref, PropType, CSSProperties } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { useObserver } from '@/ZGGUI/libs/Hooks/z-use-observe'
-import { useStickySupport } from '@/ZGGUI/libs/Hooks/z-use-sticky-support'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { useObserver } from '../../libs/Hooks/z-use-observe'
+import { useStickySupport } from '../../libs/Hooks/z-use-sticky-support'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-sticky 吸顶组件传参
  * @param: enabled 是否开启粘性布局

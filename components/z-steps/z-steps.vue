@@ -14,14 +14,14 @@ import {
   toRefs,
   reactive,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 import {
   stepModes,
   stepsContextKey,
   StepContext,
   useOrderedChildren,
-} from '@/ZGGUI/components/z-steps/z-steps'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-steps/z-steps'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-steps 步骤条组件传参
  * @param: color 默认颜色

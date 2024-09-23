@@ -14,11 +14,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zButton from '@/ZGGUI/components/z-button/z-button.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zOverlay from '../../components/z-overlay/z-overlay.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zButton from '../../components/z-button/z-button.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-np-network 无网络提示组件传参
  * @param: tips 没有网络时的提示语（默认：'网络信号丢失，请检查' ）

@@ -1,5 +1,5 @@
 import { computed, getCurrentInstance } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 import type { ComputedRef } from 'vue'
 
 export const useProp = <T>(name: string): ComputedRef<T | undefined> => {

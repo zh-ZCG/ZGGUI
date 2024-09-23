@@ -6,11 +6,11 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
-import z from '@/ZGGUI/libs/z'
-import zStatusBar from '@/ZGGUI/components/z-status-bar/z-status-bar.vue'
-import zIphoneBottom from '@/ZGGUI/components/z-iphone-bottom/z-iphone-bottom.vue'
+import zOverlay from '../../components/z-overlay/z-overlay.vue'
+import zTransition from '../../components/z-transition/z-transition.vue'
+import z from '../../libs/z'
+import zStatusBar from '../../components/z-status-bar/z-status-bar.vue'
+import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 
 /**
  * @description: z-popup 弹出层组件

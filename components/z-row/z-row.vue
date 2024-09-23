@@ -1,7 +1,7 @@
 <!-- row布局组件 -->
 <script lang="ts" setup>
 import { getCurrentInstance, computed } from 'vue'
-import z from '@/ZGGUI/libs/z'
+import z from '../../libs/z'
 
 // #ifdef APP-NVUE
 const dom = uni.requireNativePlugin('dom')

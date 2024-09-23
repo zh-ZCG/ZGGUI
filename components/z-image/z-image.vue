@@ -6,10 +6,10 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { zImage } from '@/ZGGUI/libs/types/zImage'
+import z from '../../libs/z'
+import zTransition from '../../components/z-transition/z-transition.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { zImage } from '../../libs/types/zImage'
 
 /**
  * @description: z-image 图片组件传参

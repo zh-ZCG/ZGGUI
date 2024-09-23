@@ -6,8 +6,8 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-link 超链接组件，小程序为复制到剪贴板，h5为打开超链接，app为用内置浏览器打开链接

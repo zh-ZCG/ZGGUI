@@ -6,8 +6,8 @@
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-loading-icon 加载图标传参

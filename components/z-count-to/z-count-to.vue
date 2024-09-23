@@ -14,8 +14,8 @@ import {
   nextTick,
   onUnmounted,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-count-to 数字跳转组件传参
  * @param: startVal 开始数值（默认0）

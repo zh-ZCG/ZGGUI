@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zOverlay from '../../components/z-overlay/z-overlay.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-drop-dow 下拉菜单组件传参
  * @param: open 下拉菜单打开状态

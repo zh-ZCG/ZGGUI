@@ -14,11 +14,11 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { useTouch } from '@/ZGGUI/libs/use-Touch/use-Touch'
-import { useFormItem } from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { useTouch } from '../../libs/use-Touch/use-Touch'
+import { useFormItem } from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-rate 评分组件传参
  * @param: modelValue 选中的数量

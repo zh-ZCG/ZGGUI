@@ -14,10 +14,10 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zTransition from '@/ZGGUI/components/z-transition/z-transition.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zTransition from '../../components/z-transition/z-transition.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-back-top 返回顶部组件传参
  * @param	mode  	返回顶部的形状，circle-圆形，square-方形 （默认 'circle' ）

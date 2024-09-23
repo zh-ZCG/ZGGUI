@@ -14,15 +14,15 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zOverlay from '@/ZGGUI/components/z-overlay/z-overlay.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zOverlay from '../../components/z-overlay/z-overlay.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   BubbleBoxOptionData,
   BubbleBoxOptionItemData,
-} from '@/ZGGUI/components/z-bubbleBox/z-bubbleBox'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+} from '../../components/z-bubbleBox/z-bubbleBox'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-bubbleBox 气泡弹窗组件传参
  * @param: options 气泡弹出框选项数据

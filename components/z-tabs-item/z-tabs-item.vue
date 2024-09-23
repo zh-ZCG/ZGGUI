@@ -26,17 +26,17 @@ import {
   onUnmounted,
   inject,
 } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zColor from '@/ZGGUI/libs/zColor'
-import zBadge from '@/ZGGUI/components/z-badge/z-badge.vue'
-import zType from '@/ZGGUI/libs/zType'
+import z from '../../libs/z'
+import zColor from '../../libs/zColor'
+import zBadge from '../../components/z-badge/z-badge.vue'
+import zType from '../../libs/zType'
 import {
   ztabsContextKey,
   zTabsItemContext,
   zTabsItemRect,
-} from '@/ZGGUI/components/z-tabs/z-tabs'
+} from '../../components/z-tabs/z-tabs'
 
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-gap 间隔传参
  * @param: color 默认颜色

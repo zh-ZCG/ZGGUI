@@ -6,11 +6,11 @@
 <script lang="ts" setup>
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import zLine from '@/ZGGUI/components/z-line/z-line.vue'
-import zIcon from '@/ZGGUI/components/z-icon/z-icon.vue'
-import zTest from '@/ZGGUI/libs/zTest'
-import { propsHook, PropsTypeHook, openPage } from '@/ZGGUI/libs/zHooks'
+import z from '../../libs/z'
+import zLine from '../../components/z-line/z-line.vue'
+import zIcon from '../../components/z-icon/z-icon.vue'
+import zTest from '../../libs/zTest'
+import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
 
 /**
  * @description: z-cell 单元格组件传参

@@ -5,10 +5,10 @@
 -->
 <script lang="ts" setup>
 import { watch, nextTick, CSSProperties, provide, reactive, toRefs } from 'vue'
-import z from '@/ZGGUI/libs/z'
-import { useFormItem } from '@/ZGGUI/components/z-form/types'
-import { propsHook, PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import { zRadioGroupKey } from '@/ZGGUI/components/z-radio/z-radio'
+import z from '../../libs/z'
+import { useFormItem } from '../../components/z-form/types'
+import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { zRadioGroupKey } from '../../components/z-radio/z-radio'
 
 /**
  * @description: z-radio-group 单选框组组件传参

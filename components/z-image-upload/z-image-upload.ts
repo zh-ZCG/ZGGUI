@@ -1,7 +1,7 @@
-import { PropsTypeHook } from '@/ZGGUI/libs/zHooks'
-import zType from '@/ZGGUI/libs/zType'
-import zTest from '@/ZGGUI/libs/zTest'
-import z from '@/ZGGUI/libs/z'
+import { PropsTypeHook } from '../../libs/zHooks'
+import zType from '../../libs/zType'
+import zTest from '../../libs/zTest'
+import z from '../../libs/z'
 import { watch, ref } from 'vue'
 
 export type ImageUploadSizeTypes = 'original' | 'compressed'
