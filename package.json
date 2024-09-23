@@ -1,6 +1,33 @@
 {
   "name": "ZCGUI",
   "version": "1.0.0",
+  "description": "基于 Vue 3、UniApp 和 TypeScript 开发的多端适配移动端 UI 组件库，旨在提供丰富的组件集合，帮助开发者快速构建多端响应式的移动应用界面",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zh-ZCG/ZCGUI"
+  },
+  "bugs": {
+    "url": "https://github.com/zh-ZCG/ZCGUI/issues"
+  },
+  "keywords": [
+    "ZCG",
+    "ZCGUI",
+    "zcgui",
+    "z ui",
+    "uniapp",
+    "uniapp组件",
+    "vue3 uniapp组件",
+    "ui 框架",
+    "vue3",
+    "uniapp",
+    "typescript",
+    "components"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "zh-ZCG",
+  "license": "Apache 2.0",
   "scripts": {
     "dev:app": "set envType=development &&uni -p app",
     "dev:app-android": "set envType=development &&uni -p app-android",
