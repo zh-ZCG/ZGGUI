@@ -8,6 +8,7 @@ import { ref, CSSProperties, provide, toRefs, shallowRef, reactive } from 'vue'
 import z from '../../libs/z'
 import zType from '../../libs/zType'
 import { swipeActionContextKey } from '../../components/z-swipe-action/z-swipe-action'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-swipe-action 滑动菜单组件传参
@@ -36,28 +37,6 @@ const props = withDefaults(defineProps<PropsType>(), {
 })
 
 const emits = defineEmits<EmitsType>()
-
-const useOrderedChildren = <T extends { uid: number }>() => {
-  const children: Record<number, T> = {}
-  const orderedChildren = shallowRef<T[]>([])
-
-  const addChild = (child: T) => {
-    children[child.uid] = child
-    orderedChildren.value.push(child)
-  }
-  const removeChild = (uid: number) => {
-    delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(
-      (child) => child.uid !== uid
-    )
-  }
-
-  return {
-    children: orderedChildren,
-    addChild,
-    removeChild,
-  }
-}
 
 type SwipeActionItemContext = {
   uid: number

@@ -32,9 +32,9 @@ import zType from '../../libs/zType'
 import {
   CollapseModelValue,
   CollapseItemContext,
-  useOrderedChildren,
   collapseContextKey,
 } from '../../components/z-collapse/z-collapse'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-collapse 折叠面板组件传参

@@ -19,8 +19,8 @@ import {
   stepModes,
   stepsContextKey,
   StepContext,
-  useOrderedChildren,
 } from '../../components/z-steps/z-steps'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-steps 步骤条组件传参

@@ -22,6 +22,7 @@ import z from '../../libs/z'
 import zColor from '../../libs/zColor'
 import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 import {
   TabbarContext,
   tabbarContextKey,
@@ -173,28 +174,6 @@ function addItem(item: TabbarItemContext) {
     }
   }
   addChild(item)
-}
-
-const useOrderedChildren = <T extends { uid: number }>() => {
-  const children: Record<number, T> = {}
-  const orderedChildren = shallowRef<T[]>([])
-
-  const addChild = (child: T) => {
-    children[child.uid] = child
-    orderedChildren.value.push(child)
-  }
-  const removeChild = (uid: number) => {
-    delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(
-      (child) => child.uid !== uid
-    )
-  }
-
-  return {
-    children: orderedChildren,
-    addChild,
-    removeChild,
-  }
 }
 
 const {

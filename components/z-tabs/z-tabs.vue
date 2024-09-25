@@ -28,6 +28,7 @@ import zType from '../../libs/zType'
 import z from '../../libs/z'
 import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 /**
  * @description: z-tabs 标签栏组件传参
  * @param: color 默认颜色
@@ -97,28 +98,6 @@ if (!instance) {
   z.error('z-tabs 请在 setup 函数中使用 useTabs ')
 }
 const slots = useSlots()
-
-const useOrderedChildren = <T extends { uid: number }>() => {
-  const children: Record<number, T> = {}
-  const orderedChildren = shallowRef<T[]>([])
-
-  const addChild = (child: T) => {
-    children[child.uid] = child
-    orderedChildren.value.push(child)
-  }
-  const removeChild = (uid: number) => {
-    delete children[uid]
-    orderedChildren.value = orderedChildren.value.filter(
-      (child) => child.uid !== uid
-    )
-  }
-
-  return {
-    children: orderedChildren,
-    addChild,
-    removeChild,
-  }
-}
 
 const {
   children: items,

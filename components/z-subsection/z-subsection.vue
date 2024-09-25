@@ -23,9 +23,9 @@ import {
   subsectionContextKey,
   SubsectionItemContext,
   SubsectionSliderRect,
-  useOrderedChildren,
 } from '../../components/z-subsection/z-subsection'
 import zColor from '../../libs/zColor'
+import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
 import { useComponentSize } from '../../libs/use-component-size/use-component-size'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
