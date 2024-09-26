@@ -79,15 +79,13 @@ const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
   name: '',
   badge: 0,
-  activeIcon: 'settings3',
-  inActiveIcon: 'settings',
   inActiveIconColor: '#1a1a1a',
   activeIconColor: '#409eff',
   dot: false,
   text: '',
   bulge: false,
-  bulgeBgColor: '#409eff50',
-  bulgeTextColor: 'primary',
+  bulgeBgColor: '#aaaaaa',
+  bulgeTextColor: '#fff',
   disabled: false,
   iconSize: '28px',
   fontSize: '12px',
@@ -220,16 +218,16 @@ const bulgeStyle = computed<TabbarItemBulgeElementStyleValue>(() => {
     // 设置背景
     if (props.bulgeBgColor) {
       style.backgroundColor = zColor.getTypeColor(props.bulgeBgColor)
-    } else {
-      if (isActive.value) {
-        style.color = zColor.getTypeColor(props.activeIconColor)
-      } else {
-        style.color = zColor.getTypeColor(props.inActiveIconColor)
-      }
     }
-
     // 设置文字颜色
     style.color = zColor.getTypeColor(props.bulgeTextColor)
+
+    if (isActive.value) {
+      style.color = zColor.getTypeColor('#fff')
+      style.backgroundColor = zColor.getTypeColor(props.activeIconColor)
+    } else {
+      style.color = zColor.getTypeColor(props.inActiveIconColor)
+    }
 
     return style
   }
