@@ -67,7 +67,8 @@ const titleClass = computed<string>(() => {
   const cls: string[] = ['z-title-content', `z-title-${props.mode}`]
 
   // 设置尺寸
-  if (props.size && sizeType.value === 'inner') cls.push(`z-title-${props.size}`)
+  if (props.size && sizeType.value === 'inner')
+    cls.push(`z-title-${props.size}`)
 
   return cls.join(' ')
 })
@@ -85,7 +86,7 @@ const titleStyle = computed<CSSProperties>(() => {
   // 设置对齐方式
   if (props.align) style.textAlign = props.align
 
-  return style
+  return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })
 
 // assist颜色对应的样式

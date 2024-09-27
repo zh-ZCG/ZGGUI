@@ -37,7 +37,6 @@ import {
  * @param: height 导航栏高度(单位默认px)
  * @param: zIndex 元素层级z-index（默认 1 ）
  * @param: bgColor 背景颜色(可选主色,或者传入颜色)
- * @param: hasBulgeButton 是否突出按钮(默认false)
  * @param: switchAnimation 是否切换时显示动画
  * @param: frosted 背景毛玻璃效果(默认false，支付宝小程序无效)
  * @param: activeColor 选中标签的颜色（默认 '#409eff' ）
@@ -58,7 +57,6 @@ interface PropsType extends PropsTypeHook {
   height?: string | number
   zIndex?: number
   bgColor?: string
-  hasBulgeButton?: boolean
   switchAnimation?: boolean
   frosted?: boolean
   activeColor?: string
@@ -82,7 +80,6 @@ const props = withDefaults(defineProps<PropsType>(), {
   height: '100rpx',
   zIndex: 999,
   bgColor: '#fff',
-  hasBulgeButton: false,
   switchAnimation: false,
   frosted: false,
   activeColor: '#409eff',
@@ -276,7 +273,7 @@ const zTabbarContentBulge = computed<CSSProperties>(() => {
     width: `${bulgeRectInfo.value.width}px`,
     height: `${bulgeRectInfo.value.height}px`,
     left: `${bulgeRectInfo.value.left}px`,
-    top: `-${bulgeRectInfo.value.height * 0.35}px`,
+    top: `-${bulgeRectInfo.value.height * 0.5}px`,
   }
 
   if (props.zIndex) style.zIndex = props.zIndex - 1
@@ -303,7 +300,12 @@ const zTabbarPlaceholderStyle = computed<CSSProperties>(() => {
   }
 
   if (props.zIndex) style.zIndex = props.zIndex - 2
-  if (props.height) style.height = z.addUnit(props.height)
+
+  if (hasBulgeButton.value) {
+    style.height = `calc(${z.addUnit(props.height)} + ${
+      bulgeRectInfo.value.height / 2
+    }px)`
+  } else style.height = z.addUnit(props.height)
   return style
 })
 
@@ -348,7 +350,7 @@ provide(
       :style="[tabbarStyle]"
     >
       <div
-        v-if="props.hasBulgeButton"
+        v-if="hasBulgeButton"
         class="z-tabbar-content-bulge"
         :style="zTabbarContentBulge"
       ></div>
