@@ -30,7 +30,7 @@ import {
 
 /**
  * @description: z-tabbar 自定义底部导航组件传参
- * @param: value 当前匹配项的name
+ * @param: modelValue 当前匹配项的name
  * @param: safeAreaInsetBottom 是否为iPhoneX留出底部安全距离（默认 true ）
  * @param: border 是否显示上方边框（默认 false ）
  * @param: topShadow 是否显示上方阴影（默认 true ）
@@ -50,7 +50,7 @@ import {
  */
 
 interface PropsType extends PropsTypeHook {
-  value?: string | number
+  modelValue?: string | number
   safeAreaInsetBottom?: boolean
   border?: boolean
   topShadow?: boolean
@@ -73,7 +73,7 @@ interface EmitsType {
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  value: '',
+  modelValue: '',
   safeAreaInsetBottom: true,
   border: false,
   topShadow: true,
@@ -93,7 +93,7 @@ const emits = defineEmits<EmitsType>()
 const current = getCurrentInstance()!
 
 watch(
-  () => props.value,
+  () => props.modelValue,
   (val) => {
     nextTick(() => {
       setActiveItem(val)
@@ -159,8 +159,11 @@ async function setPlaceholderHeight() {
 
 // 添加Item
 function addItem(item: TabbarItemContext) {
-  if (props.value !== undefined && activeUid.value === -1) {
-    if (props.value === item.name || props.value === items.value.length) {
+  if (props.modelValue !== undefined && activeUid.value === -1) {
+    if (
+      props.modelValue === item.name ||
+      props.modelValue === items.value.length
+    ) {
       nextTick(() => {
         updateActiveId(item.uid)
         setTimeout(() => {
