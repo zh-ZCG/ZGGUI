@@ -66,8 +66,7 @@ interface PropsType extends PropsTypeHook {
 }
 
 interface EmitsType {
-  (e: 'click'): void
-  (e: 'update', data: string | number): void
+  (e: 'update:modelValue', data: string | number): void
   (e: 'change', data: string | number): void
 }
 
@@ -191,7 +190,7 @@ const updateActiveId = (uid: number, changeEmit = false) => {
 
   const value = items.value[itemIndex]?.name || itemIndex
 
-  emits('update', value)
+  emits('update:modelValue', value)
   if (changeEmit) {
     nextTick(() => {
       emits('change', value)
