@@ -18,7 +18,7 @@ import z from '../../libs/z'
 import zType from '../../libs/zType'
 import zColor from '../../libs/zColor'
 import zIcon from '../../components/z-icon/z-icon.vue'
-import { zNavBack, zNavPage } from '@/ZCGUI/libs/zRouter'
+import { zNavBack, zNavPage } from '../../libs/zRouter'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import { useUniAppSystemRectInfo } from '../../libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
 /**
@@ -131,10 +131,10 @@ const clickBackEvent = () => {
 
   if (zType.isPromise(shouldBack)) {
     shouldBack
-      .then(res => {
+      .then((res) => {
         if (res) zNavBack(props.indexUrl)
       })
-      .catch(err => {
+      .catch((err) => {
         z.error(`zNavbar beforeBack 函数执行出错: ${err}`)
       })
   } else {
@@ -162,10 +162,10 @@ const clickHomeEvent = () => {
 
   if (zType.isPromise(shouldBack)) {
     shouldBack
-      .then(res => {
+      .then((res) => {
         if (res) zNavPage(props.indexUrl, 'reLaunch')
       })
-      .catch(err => {
+      .catch((err) => {
         z.error(`zNavbar beforeHome 函数执行出错: ${err}`)
       })
   } else {
@@ -204,7 +204,9 @@ const navbarStyle = computed<CSSProperties>(() => {
   if (props?.opacity !== undefined) style.opacity = props.opacity
 
   // 设置文字颜色
-  style.color = zColor.getTypeColor(props.textColor || zColor.getTypeColor('primary'))
+  style.color = zColor.getTypeColor(
+    props.textColor || zColor.getTypeColor('primary')
+  )
 
   return style
 })
@@ -322,7 +324,8 @@ const rightOperationStyle = computed<CSSProperties>(() => {
   if (props.height) style.height = z.addUnit(props.height)
 
   // 设置宽度
-  if (props.rightOperationWidth) style.width = z.addUnit(props.rightOperationWidth)
+  if (props.rightOperationWidth)
+    style.width = z.addUnit(props.rightOperationWidth)
 
   return style
 })
