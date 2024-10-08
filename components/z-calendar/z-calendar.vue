@@ -3,6 +3,16 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+// #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -769,6 +779,11 @@ type itemStyleType = (status: CalendarItemDateStatus) => CSSProperties
 const itemStyle = computed<itemStyleType>(() => {
   return (status: CalendarItemDateStatus) => {
     const style: CSSProperties = {}
+    if (props.mode === 'range') {
+      style.borderRadius = '0'
+    } else {
+      style.borderRadius = '50%'
+    }
 
     if (status === 'active') {
       if (props.activeBgColor) {
@@ -922,7 +937,7 @@ const itemStyle = computed<itemStyleType>(() => {
   background-color: @cw;
   color: #1a1a1a;
   .operation {
-    width: 95%;
+    width: 100%;
     padding: 20rpx;
     .year {
       font-size: 34rpx;
@@ -931,11 +946,11 @@ const itemStyle = computed<itemStyleType>(() => {
     }
   }
   .week-text {
-    width: 92%;
+    width: 100%;
     padding: 10rpx 30rpx;
   }
   .data {
-    width: 92%;
+    width: 100%;
     background-color: #eeeeee;
     padding: 0rpx 30rpx;
     transition: height 0.3s linear;
@@ -971,11 +986,10 @@ const itemStyle = computed<itemStyleType>(() => {
         width: 100%;
         height: 100%;
         .date {
-          width: calc(100% / 7 - 12rpx);
+          width: calc(100% / 7);
           height: auto;
-          padding-bottom: calc(100% / 7 - 12rpx);
-          border-radius: 50%;
-          margin: 6rpx;
+          padding-bottom: calc(100% / 7);
+          margin: 0;
           display: flex;
           justify-content: center;
           align-items: center;
