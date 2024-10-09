@@ -3,6 +3,16 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+// #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -15,6 +25,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 /**
@@ -23,7 +34,6 @@ import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
  * @param: navigator	页脚导航信息
  * @param: textColor	内容字体颜色
  * @param: size  页脚字体尺寸大小
- * @param: navigatorTextColor  导航信息字体颜色
  * @param: offsetBottom  页脚距离底部的距离
  * @param: fixed  是否固定在底部
  * @param: fixedMode  固定在底部的方式
@@ -58,7 +68,6 @@ interface PropsType extends PropsTypeHook {
   navigator?: FooterNavigatorData
   textColor?: string
   size?: string
-  navigatorTextColor?: string
   offsetBottom?: string
   fixed?: boolean
   fixedMode?: footerFixedMode
@@ -112,7 +121,11 @@ const footerStyle = computed<CSSProperties>(() => {
   if (props.fixed) {
     style.left = 0
     style.bottom = 0
-    style.position = 'fixed'
+    if (props.fixedMode === 'container') {
+      style.position = 'absolute'
+    } else {
+      style.position = 'fixed'
+    }
   }
 
   return style
@@ -123,7 +136,8 @@ const contentStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   // 设置颜色
-  if (props.textColor) style.color = props.textColor || '#666666'
+  if (props.textColor)
+    style.color = zColor.getTypeColor(props.textColor || '#666666')
 
   return style
 })
@@ -134,7 +148,8 @@ const navigatorStyle = computed<FooterNavigatorStyleType>(() => {
     const style: CSSProperties = {}
 
     // 设置颜色
-    if (item.textColor) style.color = item.textColor || '#666666'
+    if (item.textColor)
+      style.color = zColor.getTypeColor(item.textColor || '#666666')
 
     return style
   }
@@ -146,7 +161,7 @@ const navigatorData = computed<FooterNavigatorData>(() => {
     return {
       title: nav.title || '',
       url: nav?.url || '',
-      textColor: nav?.textColor ? nav?.textColor : '',
+      textColor: nav?.textColor ? zColor.getTypeColor(nav?.textColor) : '',
     }
   })
 })

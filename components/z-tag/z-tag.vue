@@ -78,9 +78,9 @@ const zTagStyle = computed(() => {
     borderRadius: z.addUnit(props.radius),
     borderWidth: '1px',
     borderStyle: 'solid',
-    borderColor: props.plainBorderColor
-      ? props.plainBorderColor
-      : zColor.getTypeColor(props.type),
+    borderColor: zColor.getTypeColor(
+      props.plainBorderColor ? props.plainBorderColor : props.type
+    ),
     padding: '0 10px',
   }
   return style
@@ -88,7 +88,7 @@ const zTagStyle = computed(() => {
 
 const zTagCloseStyle = computed(() => {
   let style = {
-    backgroundColor: props.closeColor,
+    backgroundColor: zColor.getTypeColor(props.closeColor),
     width: '21px',
     height: '21px',
   }
@@ -148,7 +148,7 @@ const zTagTextStyle = computed(() => {
         : props.size === 'normal'
         ? '14px'
         : '12px',
-    color: props.color ? props.color : '',
+    color: props.color ? zColor.getTypeColor(props.color) : '',
     padding: '1px 2px',
     backgroundColor: '',
   }

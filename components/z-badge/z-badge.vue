@@ -7,6 +7,7 @@
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-badge 徽标组件
@@ -89,8 +90,8 @@ const badgeStyle = computed(() => {
     style.top = z.addUnit(props.position[0])
     style.right = z.addUnit(props.position[0])
   }
-  if (props.bgColor) style.backgroundColor = props.bgColor
-  if (props.color) style.color = props.color
+  if (props.bgColor) style.backgroundColor = zColor.getTypeColor(props.bgColor)
+  if (props.color) style.color = zColor.getTypeColor(props.color)
 
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })
