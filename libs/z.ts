@@ -172,9 +172,9 @@ const z = {
       return `${value}px`
     } else if (typeof value === 'string') {
       // 如果传入的是字符串，先尝试将其转换为数字
-      const numericValue = zTest.number(value)
+      const numericValue = parseFloat(value)
       // 如果转换后的结果是有效数字，则添加 'px' 单位并返回
-      if (numericValue) {
+      if (!isNaN(numericValue)) {
         return `${numericValue}px`
       }
       // 如果转换后的结果不是有效数字，则直接返回原字符串
