@@ -26,6 +26,47 @@ const zColor = {
       case 'disabled':
         return `rgba(0,0,0,0.5)`
 
+      case 'bgDefault':
+        return '#f3f4f6'
+      case 'grayLight':
+        return '#f8f7f8'
+      case 'colorInfo':
+        return '#909399'
+      case 'colorPrimary':
+        return '#409eff'
+      case 'colorPrimaryLight':
+        return 'rgb(236, 245, 255)'
+      case 'colorPrimaryText':
+        return '#303133'
+      case 'colorRegularText':
+        return '#606266'
+      case 'colorBorderBase':
+        return '#dcefe6'
+      case 'colorBorderLighter':
+        return '#ebeef5'
+      case 'colorError':
+        return '#f56c6c'
+      case 'colorBackgroundBase':
+        return '#f5f7fa'
+      case 'colorSuccess':
+        return '#67c23a'
+      case 'colorWarning':
+        return '#e6a23c'
+      case 'colorPlaceholder':
+        return '#c0c4cc'
+      case 'colorGray':
+        return 'rgb(228, 231, 237)'
+      case 'colorRed':
+        return 'red'
+      case 'colorOrange':
+        return 'rgb(248, 108, 2)'
+      case 'colorPurple':
+        return 'rgb(192, 29, 221)'
+      case 'colorCyan':
+        return 'rgb(93, 252, 225)'
+      case 'colorLightCyan':
+        return 'rgb(0, 207, 253)'
+
       case 'cp1':
         return '#D8F3FF'
       case 'cp2':

@@ -94,7 +94,7 @@ const assistColorStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   if (props.mode === 'subTitle') {
-    style.color = zColor.getTypeColor(props.assistColor || 'colorPrimaryLight')
+    style.color = zColor.getTypeColor(props.assistColor || 'cp4')
   } else {
     style.backgroundColor = zColor.getTypeColor(
       props.assistColor || zColor.getTypeColor('primary')
