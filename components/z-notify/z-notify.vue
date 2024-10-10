@@ -17,6 +17,7 @@ import {
 import z from '../../libs/z'
 import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { ComponentType, NotifyOptions } from './z-notify'
 /**
  * @description: z-notify 消息通知组件传参
  * @param: offsetTop 距离顶部的距离，防止使用了自定义顶部导航栏后，notify 被遮挡，单位为 px
@@ -26,40 +27,6 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
-
-type ComponentType = 'primary' | 'success' | 'warning' | 'danger' | 'info'
-
-type NotifyShowPosition = '' | 'top' | 'center' | 'bottom'
-
-/**
- * @description notify options配置项
- */
-export interface NotifyOptions {
-  /**
-   * @description 消息内容
-   */
-  msg: string
-  /**
-   * @description 消息类型
-   */
-  type?: Omit<ComponentType, ''>
-  /**
-   * @description 通知的位置
-   */
-  position?: NotifyShowPosition
-  /**
-   * @description 背景颜色
-   */
-  bgColor?: string
-  /**
-   * @description 文字颜色
-   */
-  textColor?: string
-  /**
-   * @description 自动关闭时间
-   */
-  duration?: number
-}
 
 interface PropsType extends PropsTypeHook {
   offsetTop: number
