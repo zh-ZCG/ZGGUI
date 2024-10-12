@@ -3,7 +3,6 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
-// #ifdef MP-WEIXIN
 <script lang="ts">
 export default {
   options: {
@@ -12,7 +11,6 @@ export default {
   },
 }
 </script>
-// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -937,7 +935,7 @@ const itemStyle = computed<itemStyleType>(() => {
   background-color: @cw;
   color: #1a1a1a;
   .operation {
-    width: 100%;
+    width: auto;
     padding: 20rpx;
     .year {
       font-size: 34rpx;
@@ -946,11 +944,11 @@ const itemStyle = computed<itemStyleType>(() => {
     }
   }
   .week-text {
-    width: 100%;
+    width: auto;
     padding: 10rpx 30rpx;
   }
   .data {
-    width: 100%;
+    width: auto;
     background-color: #eeeeee;
     padding: 0rpx 30rpx;
     transition: height 0.3s linear;
