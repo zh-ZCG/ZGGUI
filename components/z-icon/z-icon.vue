@@ -27,8 +27,8 @@ import z from '../../libs/z'
  * @param: size 图标大小,默认16px
  * @param: width name为图片路径时图片宽度,单位px
  * @param: height name为图片路径时图片高度,单位px
- * @param: classPrefix 类名前缀，用于自定义图标,默认'icon'
- * @param: iconFamilyName 类名，用于自定义图标,默认'iconfont'
+ * @param: classPrefix 类名前缀，用于自定义图标,默认'z'
+ * @param: iconFamilyName 类名，用于自定义图标,默认'ZGGUI'
  * @param: mode 图片裁剪、缩放的模式，与原生image mode属性相同
  * @param: stop 是否阻止事件传播 (默认 false)
  * @param: otherStyle 其他样式
@@ -62,8 +62,8 @@ const props = withDefaults(defineProps<PropsType>(), {
   bold: false,
   width: 40,
   height: 40,
-  classPrefix: 'icon',
-  iconFamilyName: 'iconfont',
+  classPrefix: 'z',
+  iconFamilyName: 'ZGGUI',
   stop: false,
 })
 
@@ -107,7 +107,6 @@ const iconClass = computed(() => {
 
   classes.push(props.classPrefix + '-' + props.name)
   classes.push(props.iconFamilyName)
-  // classes.push(props.classPrefix) 在使用自定义图标时，记得带上iconfont（与官网相似）
 
   classesCopy = classes.join(' ')
   return classesCopy
@@ -120,8 +119,6 @@ const iconStyle = computed(() => {
   } as any
   style.fontSize = props.size ? z.addUnit(props.size) : 'inherit'
   style.fontWeight = props.bold ? 'bold' : 'normal'
-  // style.width = props.width ? z.addUnit(props.width) : z.addUnit(props.size)
-  // style.height = props.height ? z.addUnit(props.height) : z.addUnit(props.size)
 
   if (props.color) {
     style.color = props.color
