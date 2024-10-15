@@ -19,6 +19,7 @@ import {
   InjectionKey,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import { noticeBarKey } from '../../components/z-notice-bar/index'
 import zColumnNoticeBar from '../../components/z-column-notice-bar/z-column-notice-bar.vue'
@@ -101,10 +102,10 @@ const commonStyle = computed<NoticeBarCommonColorStyle>(() => {
     if (type === 'normal') {
       // 设置颜色
       if (props.bgColor) {
-        style.backgroundColor = props.bgColor || '#fff'
+        style.backgroundColor = zColor.getTypeColor(props.bgColor || '#fff')
       }
       if (props.textColor) {
-        style.color = props.textColor
+        style.color = zColor.getTypeColor(props.textColor)
       } else if (props.bgColor) {
         style.color = '#409eff'
       }
@@ -112,13 +113,13 @@ const commonStyle = computed<NoticeBarCommonColorStyle>(() => {
       if (props.fontSize) style.fontSize = z.addUnit(props.fontSize)
     } else if (type === 'leftIcon') {
       if (props.leftIconColor) {
-        style.color = props.leftIconColor || '#409eff'
+        style.color = zColor.getTypeColor(props.leftIconColor || '#409eff')
       }
       if (props.fontSize) style.fontSize = z.addUnit(props.fontSize)
       if (props.leftIconSize) style.fontSize = z.addUnit(props.leftIconSize)
     } else if (type === 'rightIcon') {
       if (props.rightIconColor) {
-        style.color = props.rightIconColor || '#409eff'
+        style.color = zColor.getTypeColor(props.rightIconColor || '#409eff')
       }
       if (props.fontSize)
         style.fontSize = `calc(${z.addUnit(props.fontSize)} * 1.2)`

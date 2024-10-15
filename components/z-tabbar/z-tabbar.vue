@@ -149,7 +149,7 @@ async function setPlaceholderHeight() {
   // 延时一定时间
   await z.sleep(20)
   // #ifndef APP-NVUE
-  z.getDomInfo('#z-tabbar-content', current).then((res: any) => {
+  z.getDomInfo('#z-tabbar-content', current as any).then((res: any) => {
     // 修复IOS safearea bottom 未填充高度
     placeholderHeight.value = res.height ? res.height : 50
   })
@@ -285,7 +285,7 @@ const hasBulgeButton = ref<boolean>(false)
 const setBulgeCircle = async (itemRectInfo: TabbarItemRect) => {
   const { left } = itemRectInfo
   try {
-    const rectInfo = await z.getDomInfo(`#z-tabbar-content`, current)
+    const rectInfo = await z.getDomInfo(`#z-tabbar-content`, current as any)
 
     const { left: tabbarRectLeft } = rectInfo
     let width = itemRectInfo.width
