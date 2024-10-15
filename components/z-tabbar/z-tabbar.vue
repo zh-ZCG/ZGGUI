@@ -19,6 +19,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zType from '../../libs/zType'
 import zColor from '../../libs/zColor'
 import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 import { propsHook, PropsTypeHook, openPage } from '../../libs/zHooks'
@@ -95,7 +96,7 @@ watch(
   () => props.modelValue,
   (val) => {
     nextTick(() => {
-      setActiveItem(val)
+      setActiveItemByValue(val)
     })
   }
 )
@@ -197,8 +198,37 @@ const updateActiveId = (uid: number, changeEmit = false) => {
     })
   }
 }
+// 设置当前被点击Item
+const setActiveItem = (uid: number) => {
+  // 是否有切换拦截
+  if (!props.beforeSwitch) {
+    updateActiveId(uid, true)
+    return
+  }
 
-const setActiveItem = (value?: string | number) => {
+  const index = items.value.findIndex((item) => item.uid === uid)
+  const shouldSwitch = props.beforeSwitch(index)
+  const isPromiseOrBoolean = [
+    zType.isPromise(shouldSwitch),
+    zType.isBoolean(shouldSwitch),
+  ].includes(true)
+
+  if (!isPromiseOrBoolean) {
+    z.error('zTabbar beforeSwitch切换前拦截函数必须返回Promise或者Boolean')
+    return
+  }
+
+  if (zType.isPromise(shouldSwitch)) {
+    shouldSwitch.then((res) => {
+      if (res) updateActiveId(uid, true)
+    })
+  } else {
+    if (shouldSwitch) updateActiveId(uid, true)
+  }
+}
+
+// 根据modelValue设置当前激活的Item
+const setActiveItemByValue = (value?: string | number) => {
   if (value === undefined) {
     // 如果没有传递任何值则设置第一个Item为激活状态
     updateActiveId(items.value[0].uid)
@@ -207,7 +237,7 @@ const setActiveItem = (value?: string | number) => {
   let item: TabbarItemContext | undefined
   // 如果类型是number，则先通过索引进行查找
   if (typeof value === 'number') {
-    item = items.value.find((item) => item.uid === value)
+    item = items.value?.[value]
   }
   // 如果没有找到，则通过name查找
   if (!item) {
@@ -222,7 +252,7 @@ const setActiveItem = (value?: string | number) => {
 }
 
 defineExpose({
-  setActiveItem,
+  setActiveItem: setActiveItemByValue,
 })
 
 interface TabbarItemContext {
