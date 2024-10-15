@@ -42,6 +42,7 @@ import {
  * @param: frosted 背景毛玻璃效果(默认false，支付宝小程序无效)
  * @param: activeColor 选中标签的颜色（默认 '#409eff' ）
  * @param: inactiveColor 未选中标签的颜色（默认 '#1a1a1a' ）
+ * @param: beforeSwitch 切换前回调
  * @param: fixed 是否固定在底部（默认 true ）
  * @param: placeholder fixed定位固定在底部时，是否生成一个等高元素防止塌陷（默认 true ）
  * @param: otherStyle lable的样式
@@ -49,6 +50,10 @@ import {
  * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
+
+type TabbarSwitchBeforeSwitchFunc = (
+  index: number
+) => Promise<boolean> | boolean
 
 interface PropsType extends PropsTypeHook {
   modelValue?: string | number
@@ -62,6 +67,7 @@ interface PropsType extends PropsTypeHook {
   frosted?: boolean
   activeColor?: string
   inactiveColor?: string
+  beforeSwitch?: TabbarSwitchBeforeSwitchFunc
   fixed?: boolean
   placeholder?: boolean
 }
