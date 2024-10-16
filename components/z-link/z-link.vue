@@ -4,7 +4,7 @@
  * Copyright (c) 2024, All Rights Reserved. 
 -->
 <script lang="ts" setup>
-import { ref, getCurrentInstance, watch, computed } from 'vue'
+import { ref, getCurrentInstance, watch, computed, nextTick } from 'vue'
 import type { Ref, PropType } from 'vue'
 import z from '../../libs/z'
 import zColor from '../../libs/zColor'
@@ -71,6 +71,26 @@ const zLinkStyle = computed(() => {
 })
 
 function clickLink() {
+  // #ifdef APP-PLUS
+  plus.runtime.openURL(props.href)
+  // #endif
+  // #ifdef H5
+  window.open(props.href)
+  // #endif
+  // #ifdef MP
+  uni.setClipboardData({
+    data: props.href,
+    success: () => {
+      uni.hideToast()
+      nextTick(() => {
+        uni.showToast({
+          title: props.tips,
+          icon: 'none',
+        })
+      })
+    },
+  })
+  // #endif
   emits('click')
 }
 </script>

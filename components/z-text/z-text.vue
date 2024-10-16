@@ -3,8 +3,18 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+ // #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
-import { ref, getCurrentInstance, watch, computed } from 'vue'
+import { ref, getCurrentInstance, watch, computed, CSSProperties } from 'vue'
 import type { Ref, PropType } from 'vue'
 import z from '../../libs/z'
 import zTest from '../../libs/zTest'
@@ -70,7 +80,7 @@ interface PropsType {
   align?: 'left' | 'center' | 'right' // 文本对其方式
   wordWrap?: 'break-word' | 'normal' | 'anywhere' // 文字换行
   margin?: string | number | object // 外边距，与原生外边距设置相同
-  format?: string | Function // 格式化规则
+  format?: string | Function // 格式化规则,设为'encrypt'为脱敏
   openType?: string // 小程序的打开方式
   otherstyle?: object // 其他样式
   //以下为button开放功能
@@ -135,17 +145,33 @@ const textStyle = computed(() => {
   return style
 })
 
-const textContentStyle = computed(() => {
-  let style = {
+const textContentStyle = computed<any>(() => {
+  let style: any = {
     textDecoration: props.decoration,
     fontWeight: props.bold ? 'bold' : 'normal',
     wordWrap: props.wordWrap,
     fontSize: z.addUnit(props.size),
     display: !isNvue.value && props.block ? 'block' : '',
-    color: props.type ? zColor.getTypeColor(props.type) : props.color,
+    color: props.type ? zColor.getTypeColor(props.type) : zColor.getTypeColor(props.color),
     lines: isNvue.value && props.lines ? props.lines : '',
     lineHeight: props.lineHeight ? z.addUnit(props.lineHeight) : '',
   }
+
+  if (props.lines) {
+    if (!isNvue.value) {
+        style['display']= '-webkit-box !important'
+        style['overflow']= 'hidden'
+        style['text-overflow']= 'ellipsis'
+        style['word-break']= 'break-all'
+        style['-webkit-line-clamp']= props.lines
+        style['-webkit-box-orient']= 'vertical !important'
+    } else if (isNvue.value) {
+     style.textOverflow='ellipsis'
+     style.overflow= 'hidden'
+      style.flex= '1'
+    }
+  }
+
   return z.deepMerge(style, props.otherstyle ? props.otherstyle : {})
 })
 
@@ -286,7 +312,7 @@ function launchapp(res: any) {
     ></zLink>
     <button
       v-else-if="props.openType && isWx"
-      class="z-reset-button df fww aic toe"
+      class="z-reset-button df fww toe"
       style="font-size: 16px; color: #1a1a1a"
       :style="textContentStyle"
       :openType="props.openType"
@@ -319,14 +345,16 @@ function launchapp(res: any) {
 .z-reset-button {
   padding: 0;
   background-color: transparent;
+
   /* #ifndef APP-PLUS */
   font-size: inherit;
   line-height: inherit;
   color: inherit;
   /* #endif */
-  /* #ifdef APP-NVUE */
   border-width: 0;
-  /* #endif */
+}
+button::after{
+  border:none
 }
 
 /* #ifndef APP-NVUE */
