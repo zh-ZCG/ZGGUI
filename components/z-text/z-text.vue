@@ -336,7 +336,7 @@ function launchapp(res: any) {
       {{ showValue }}
     </text>
     <div v-if="props.suffixIcon">
-      <zIcon :name="prefixIcon" :otherStyle="props.iconStyle"></zIcon>
+      <zIcon :name="suffixIcon" :otherStyle="props.iconStyle"></zIcon>
     </div>
   </div>
 </template>
