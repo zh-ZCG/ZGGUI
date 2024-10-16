@@ -13,7 +13,7 @@ import { zImage } from '../../libs/types/zImage'
 
 /**
  * @description: z-image 图片组件传参
- * @param: fade 是否开启图片淡入效果 默认 true
+ * @param: fade 是否开启图片淡入效果 默认 false
  * @param: src 图片路径/地址
  * @param: mode image裁剪模式，与原生相同(默认 'aspectFill')
  * @param: width 图片宽度，默认150
@@ -63,7 +63,7 @@ interface EmitsType {
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
-  fade: true,
+  fade: false,
   mode: 'aspectFill',
   width: 150,
   height: 150,
@@ -101,6 +101,7 @@ const bgColor = ref({})
 
 onMounted(() => {
   //挂载完成展示
+  //如果你发现好像设置fade没用，大概率是因为组件已经加载完了，你图片还没来导致的
   show.value = true
   isLoading.value = true
 })
@@ -170,7 +171,7 @@ function onErrorHandler(e: Event) {
 </script>
 
 <template>
-  <zTransition :show="show" :mode="'fade'" :duration="props.fade ? 300 : 0">
+  <zTransition :show="show" :mode="'fade'" :duration="props.fade ? 1000 : 0">
     <div
       class="pr ofh"
       :style="imageStyle"
