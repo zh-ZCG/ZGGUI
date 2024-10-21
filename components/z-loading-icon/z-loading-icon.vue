@@ -13,7 +13,7 @@ import zColor from '../../libs/zColor'
  * @description: z-loading-icon 加载图标传参
  * @param: show 是否显示加载图标（默认true）
  * @param: vertical  图标与文字是否垂直排列 (默认false,即横向)
- * @param: mode 选择旋转模式 半圆：semicircle 圆型：circle 花朵型：flower(默认)
+ * @param: mode 选择旋转模式 半圆：semicircle 圆型：circle(默认) 花朵型：flower
  * @param: size 图标大小,默认16px
  * @param: color 动画颜色，mode为flower有效
  * @param: textColor 文字颜色，默认(#1a1a1a)
@@ -84,7 +84,9 @@ const zLoadingIconStyle = computed(() => {
 const otherBorderColor = computed(() => {
   const lightColor = zColor.colorGradient(props.color, '#ffffff', 100)[80]
   if (props.mode === 'circle') {
-    return props.inCircleColor ? props.inCircleColor : lightColor
+    return zColor.getTypeColor(
+      props.inCircleColor ? props.inCircleColor : lightColor
+    )
   } else {
     return 'transparent'
   }
@@ -92,13 +94,13 @@ const otherBorderColor = computed(() => {
 
 const zLoadingIconDetail = computed(() => {
   let style = {
-    color: props.color,
+    color: zColor.getTypeColor(props.color),
     width: z.addUnit(props.size),
     height: z.addUnit(props.size),
-    borderTopColor: props.color,
-    borderBottomColor: otherBorderColor.value,
-    borderLeftColor: otherBorderColor.value,
-    borderRightColor: otherBorderColor.value,
+    borderTopColor: zColor.getTypeColor(props.color),
+    borderBottomColor: zColor.getTypeColor(otherBorderColor.value),
+    borderLeftColor: zColor.getTypeColor(otherBorderColor.value),
+    borderRightColor: zColor.getTypeColor(otherBorderColor.value),
     'animation-duration': `${props.duration}ms`,
     'animation-timing-function':
       props.mode === 'semicircle' || props.mode === 'circle'
@@ -164,7 +166,7 @@ function addEventListenerToWebview() {
       v-if="props.textValue"
       :style="{
         'font-size': z.addUnit(props.textSize),
-        color: props.textColor,
+        color: zColor.getTypeColor(props.textColor),
       }"
     >
       {{ props.textValue }}

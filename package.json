@@ -1,6 +1,6 @@
 {
   "name": "zgg-ui",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "基于 Vue 3、UniApp 和 TypeScript 开发的多端适配移动端 UI 组件库，旨在提供丰富的组件集合，帮助开发者快速构建多端响应式的移动应用界面",
   "repository": {
     "type": "git",

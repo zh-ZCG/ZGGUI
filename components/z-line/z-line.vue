@@ -17,10 +17,11 @@ export default {
 <script lang="ts" setup>
 import { computed } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @param: show,是否展示默认true
- * @param: width（默认row横向）为宽度，如果是col（垂直方向）则为高度,默认长度为100%,厚度为1px
+ * @param: width（默认row横向）为宽度，如果是col（垂直方向）则为高度,默认长度为100%,厚度为2px
  * @param: direction 方向 默认为row横向，改为col为竖向
  * @param: color 线条颜色，默认'#eeeeee'
  * @param: hairline 是否显示细线条 (默认 true )
@@ -53,7 +54,7 @@ const props = withDefaults(defineProps<PropsType>(), {
 const lineStyle = computed(() => {
   let style = {
     width: '',
-    borderColor: props.color,
+    borderColor: zColor.getTypeColor(props.color),
     margin: props.margin,
     borderBottomStyle: '',
     borderBottomWidth: '',
@@ -63,12 +64,12 @@ const lineStyle = computed(() => {
     transform: '',
   }
   if (props.direction == 'row') {
-    style.borderBottomWidth = '1px'
+    style.borderBottomWidth = '2px'
     style.borderBottomStyle = props.borderStyle
     style.width = z.addUnit(props.width)
     if (props.hairline) style.transform = 'scaleY(0.5)'
   } else {
-    style.borderLeftWidth = '1px'
+    style.borderLeftWidth = '2px'
     style.borderLeftStyle = props.borderStyle
     style.height = z.addUnit(props.width)
     if (props.hairline) style.transform = 'scaleX(0.5)'

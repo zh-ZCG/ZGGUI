@@ -74,8 +74,8 @@ interface PropsType extends PropsTypeHook {
 }
 
 interface EmitsType {
-  (e: 'update:modelValue'): void
-  (e: 'change'): void
+  (e: 'update:modelValue', value: number): void
+  (e: 'change', value: number): void
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
@@ -177,9 +177,13 @@ const updateActiveUid = (uid: number, changeEmit = false) => {
 
   updateOffsetPosition(itemIndex)
 
-  emits('update:modelValue')
-  if (changeEmit) {
-    emits('change')
+  if (zType.isEmpty(value)) {
+    z.error('zTabs 激活的索引不存在')
+  } else {
+    emits('update:modelValue', Number(value))
+    if (changeEmit) {
+      emits('change', Number(value))
+    }
   }
 }
 
