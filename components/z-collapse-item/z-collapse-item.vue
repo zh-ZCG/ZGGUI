@@ -172,7 +172,7 @@ const arrowStyle = computed<CSSProperties>(() => {
   .title {
     position: relative;
     height: 100rpx;
-    padding: 0rpx 30rpx;
+    padding: 0rpx 20rpx;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -183,7 +183,7 @@ const arrowStyle = computed<CSSProperties>(() => {
   }
   .content {
     position: relative;
-    padding: 0 30rpx;
+    padding: 30rpx;
     height: auto;
     transition: opacity 0.3s ease;
   }
