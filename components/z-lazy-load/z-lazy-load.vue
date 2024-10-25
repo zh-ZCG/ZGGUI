@@ -16,6 +16,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { zImage } from '../../libs/types/zImage'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import { useObserver } from '../../libs/Hooks/z-use-observe'
@@ -50,8 +51,6 @@ interface EmitsType {
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  // height: 225,
-  // width: 225,
   mode: 'aspectFill',
   threshold: 100,
   transition: true,
@@ -60,7 +59,11 @@ const props = withDefaults(defineProps<PropsType>(), {
 const emits = defineEmits<EmitsType>()
 
 const lazyLoadStyle = computed<CSSProperties>(() => {
-  const style: CSSProperties = {}
+  const style: CSSProperties = {
+    minHeight: '1rpx',
+    backgroundColor: zColor.getTypeColor('cgray5'),
+    color:zColor.getTypeColor('cgray4')
+  }
 
   if (showImage && imageStatus.value === 'loaded') {
     style.backgroundColor = 'transparent'
@@ -79,8 +82,12 @@ const zLazyLoadImageStyle = computed<CSSProperties>(() => {
     opacity: 0,
   }
   if (imageStatus.value === 'loaded' && props.transition) {
-    style.animation = 'show-image-animation 0.25s ease both'
+    style.animationName = 'show-image-animation'
+    style.animationDuration = '0.25s'
+    style.animationTimingFunction = 'ease'
+    style.animationFillMode = 'both'
   } else if (imageStatus.value === 'loaded' && !props.transition) {
+    style.animation=''
     style.opacity = 1
   }
 
@@ -119,6 +126,7 @@ const initObserver = async () => {
       threshold.value < 0
         ? -Math.abs(threshold.value)
         : Math.abs(threshold.value)
+    
     connectObserver(
       `#${componentId}`,
       (res) => {
@@ -173,8 +181,7 @@ onUnmounted(() => {
   disconnectObserver()
 })
 </script>
-
-// #ifdef MP-WEIXIN
+ // #ifdef MP-WEIXIN
 <script lang="ts">
 export default {
   options: {
@@ -184,7 +191,6 @@ export default {
 }
 </script>
 // #endif
-
 <template>
   <div :id="componentId" class="pr z-full-style" :style="lazyLoadStyle">
     <!-- 加载中 -->
@@ -200,8 +206,9 @@ export default {
     <!-- 正式显示的图片 -->
     <div v-if="showImage && imageStatus !== 'error'" class="z-full-style">
       <image
-        :style="zLazyLoadImageStyle"
+        style="opacity: 0;"
         class="z-full-style db"
+        :class="imageStatus=='loaded'?[transition?'image-animation':'image-no-animation']:''"
         :src="src"
         :mode="mode"
         @load="handleImageLoadedSuccess"
@@ -230,12 +237,29 @@ export default {
   }
 }
 
+.image-animation{
+animation: show-image-animation 0.25s ease both;
+}
+
+.image-no-animation{
+opacity: 1;
+}
+
 @keyframes loading-icon-animation {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes show-image-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 </style>

@@ -134,10 +134,10 @@ const zButtonColorStyle = computed(() => {
   if (props.color) {
     if (props.plain) {
       style.backgroundColor = '#fff'
-      style.color = props.color
+      style.color = zColor.getTypeColor(props.color)
     } else {
       style.color = '#fff'
-      style.backgroundColor = props.color
+      style.backgroundColor = zColor.getTypeColor(props.color)
     }
     if (props.color.indexOf('gadient') !== -1) {
       style.borderTopWidth = 0
@@ -145,13 +145,16 @@ const zButtonColorStyle = computed(() => {
       style.borderBottomWidth = 0
       style.borderLeftWidth = 0
       if (!props.plain) {
-        style.backgroundImage = props.color
+        style.backgroundImage = zColor.getTypeColor(props.color)
       }
     } else {
-      style.borderColor = props.color
+      style.borderColor = zColor.getTypeColor(props.color)
       style.borderWidth = '1px'
       style.borderStyle = 'solid'
     }
+  } else if (props.type) {
+    style.color = '#fff'
+    style.backgroundColor = zColor.getTypeColor(props.type)
   }
   return style
 })
@@ -231,16 +234,16 @@ const zButtonStyle = computed(() => {
 
 const loadingColor = computed(() => {
   if (props.plain) {
-    return props.color ? props.color : zColor.getTypeColor(props.type)
+    return zColor.getTypeColor(props.color ? props.color : props.type)
   }
   return '#C8C8C8'
 })
 
 const iconColor = computed(() => {
   /**镂空有color用color否则用主题 */
-  if (props.iconColor) return props.iconColor
+  if (props.iconColor) return zColor.getTypeColor(props.iconColor)
   if (props.plain) {
-    return props.color ? props.color : zColor.getTypeColor(props.type)
+    return zColor.getTypeColor(props.color ? props.color : props.type)
   } else {
     return props.type == 'info' ? '#000000' : '#ffffff'
   }
@@ -285,11 +288,11 @@ const nvueTextStyle = computed(() => {
     marginLeft: '0px',
   }
   if (props.color) {
-    style.color = props.plain ? props.color : '#fff'
+    style.color = zColor.getTypeColor(props.plain ? props.color : '#fff')
   }
   style.fontSize = z.addUnit(textSize.value)
   if (props.plain) {
-    style.color = props.color ? props.color : zColor.getTypeColor(props.type)
+    style.color = zColor.getTypeColor(props.color ? props.color : props.type)
   } else {
     style.color = props.type == 'info' ? '#1a1a1a' : '#ffffff'
   }
