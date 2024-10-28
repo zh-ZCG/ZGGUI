@@ -3,6 +3,16 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+ // #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -15,6 +25,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zLine from '../../components/z-line/z-line.vue'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
@@ -52,7 +63,7 @@ interface EmitsType {
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  borderStyle: 'dashed',
+  borderStyle: 'solid',
   hairline: true,
   dot: false,
   textPosition: 'center',
@@ -66,7 +77,7 @@ const emits = defineEmits<EmitsType>()
 const textStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
     fontSize: z.addUnit(props.textSize),
-    color: props.textColor,
+    color: zColor.getTypeColor(props.textColor)
   }
   return style
 })
@@ -103,7 +114,7 @@ function click() {
     @tap.stop="click"
   >
     <zLine
-      :color="lineColor"
+      :color="zColor.getTypeColor(lineColor)"
       :otherStyle="leftLineStyle"
       :hairline="hairline"
       :borderStyle="borderStyle"
@@ -113,7 +124,7 @@ function click() {
       {{ text }}
     </text>
     <zLine
-      :color="lineColor"
+      :color="zColor.getTypeColor(lineColor)"
       :otherStyle="rightLineStyle"
       :hairline="hairline"
       :borderStyle="borderStyle"

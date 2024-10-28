@@ -188,10 +188,8 @@ const updateSliderRectInfo = (item: SubsectionItemContext) => {
       sliderRectInfo.value.width += 2
     }
   }
-  activeColor.value = z.isEmptyDoubleVariableInDefault(
-    item.activeColor,
-    props.activeColor,
-    ''
+  activeColor.value = zColor.getTypeColor(
+    z.isEmptyDoubleVariableInDefault(item.activeColor, props.activeColor, '')
   )
 }
 

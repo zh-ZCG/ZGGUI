@@ -135,10 +135,12 @@ onUnmounted(() => {
 })
 
 const activeColor = computed<string>(() =>
-  z.isEmptyDoubleVariableInDefault(
-    props.activeColor,
-    subsectionContext?.activeColor,
-    ''
+  zColor.getTypeColor(
+    z.isEmptyDoubleVariableInDefault(
+      props.activeColor,
+      subsectionContext?.activeColor,
+      ''
+    )
   )
 )
 const subsectionMode = computed<subsectionMode>(() =>
