@@ -17,6 +17,7 @@ export default {
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import type { Ref, PropType } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-icon 图标组件传参
@@ -121,7 +122,7 @@ const iconStyle = computed(() => {
   style.fontWeight = props.bold ? 'bold' : 'normal'
 
   if (props.color) {
-    style.color = props.color
+    style.color = zColor.getTypeColor(props.color)
   }
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })

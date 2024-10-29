@@ -14,7 +14,7 @@ import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
 
 /**
  * @description: z-popup 弹出层组件
- * @param: show 是否显示弹窗 默认false
+ * @param: modelValue 是否显示弹窗
  * @param: overlay  是否显示遮罩层（z-overlay组件），默认true
  * @param: mode 弹出方向 默认底部弹出（bottom），可选值（left、top、right、bottom、center）
  * @param: width 当mode为left||right||center 请设置弹出宽度 默认50vw，最好设置为与插槽宽度相同,否则溢出隐藏
@@ -25,6 +25,8 @@ import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
  * @param: clickCloseOverlay 点击遮罩层关闭（默认true）
  * @param: zoom 是否增加缩放效果在居中(mode==center)时（默认true）
  * @param: zIndex 弹出层层级（默认510）
+ * @param: closeable 是否显示关闭图标
+ * @param: closeIconPos 关闭图标的位置，默认（top-right）、top-left、bottom-left、bottom-right
  * @param: borderRadius 弹出层圆角值（默认0），注意如果是bottom弹出，则圆角为top-left&&top-right,如果居中则四个角都是圆角
  * @param: safeStatus	是否留出顶部安全距离（状态栏高度） （默认 false ）
  * @param: safeBottom	是否为iPhoneX留出底部安全距离 （默认 true ）
@@ -37,7 +39,7 @@ import zIphoneBottom from '../../components/z-iphone-bottom/z-iphone-bottom.vue'
  * @example:
  */
 interface PropsType {
-  show: boolean
+  modelValue: boolean
   overlay?: boolean
   mode?: string
   width?: string | number
@@ -48,6 +50,8 @@ interface PropsType {
   clickCloseOverlay?: boolean
   zoom?: boolean
   zIndex?: number | string
+  closeable?: boolean
+  closeIconPos?:string
   borderRadius?: number | string
   safeStatus?: boolean
   safeBottom?: boolean
@@ -56,21 +60,24 @@ interface PropsType {
 
 interface EmitsType {
   (e: 'close'): void //点击遮罩关闭事件回调，
+  (e:'overlay-click'):void
   (e: 'click'): void
   (e: 'open'): void
+  (e:'update:modelValue',value:boolean):void
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
-  show: false,
   overlay: true,
   mode: 'bottom',
-  width: '50vw',
+  width: '300px',
   duration: 200,
   overlayDuration: 300,
   overlayOpacity: 0.5,
   clickCloseOverlay: true,
   zoom: true,
   zIndex: 510,
+  closeable: false,
+  closeIconPos:'top-right',
   borderRadius: 0,
   safeStatus: false,
   safeBottom: true,
@@ -156,14 +163,7 @@ const contentStyle = computed(() => {
       style['justify-content'] = 'center'
       break
     }
-    case 'center': {
-      style.width = z.addUnit(props.width)
-      style['display'] = 'flex'
-      style['flex-direction'] = 'column'
-      style['justify-content'] = 'center'
-      break
-    }
-    case 'right': {
+     case 'right': {
       style.height = '100vh'
       style.width = z.addUnit(props.width)
       style['display'] = 'flex'
@@ -171,12 +171,19 @@ const contentStyle = computed(() => {
       style['justify-content'] = 'center'
       break
     }
+    case 'center': {
+      style.width = z.addUnit(props.width)
+      style['display'] = 'flex'
+      style['flex-direction'] = 'column'
+      style['justify-content'] = 'center'
+      break
+    }
     case 'top': {
-      style.width = '100vw'
+      style.width = z.addUnit(props.width)
       break
     }
     case 'bottom': {
-      style.width = '100vw'
+      style.width = z.addUnit(props.width)
       break
     }
   }
@@ -195,14 +202,25 @@ const contentStyle = computed(() => {
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })
 
-/**
- * 点击遮罩回调
- */
-function clickOverlay() {
-  if (props.clickCloseOverlay) {
+// 更新模态框的状态
+  const updateModelValue = (value: boolean) => {
+    emits('update:modelValue', value)
+  }
+
+  // 点击关闭按钮
+  const onClickCloseBtn = () => {
+    updateModelValue(false)
     emits('close')
   }
-}
+
+  // 点击遮罩层关闭模态框
+  function clickOverlay(){
+    if (props.clickCloseOverlay) {
+      updateModelValue(false)
+      emits('close')
+      emits('overlay-click')
+    }
+  }
 
 /**
  * 动画点击回调方法
@@ -221,6 +239,26 @@ function clickTransition() {
 function afterEnter() {
   emits('open')
 }
+
+const show = ref(false)
+
+watch(
+    () => props.modelValue,
+    (value) => {
+      if (value) {
+        show.value = true
+        emits('open')
+      } else {
+        show.value = false
+        emits('close')
+      }
+    },
+    {
+      immediate: true,
+    }
+  )
+
+
 </script>
 
 <template>
@@ -244,10 +282,48 @@ function afterEnter() {
       <div :style="[contentStyle]" class="pr bgw ofh" @tap.stop="1">
         <zStatusBar v-if="props.safeStatus"></zStatusBar>
         <slot></slot>
+        <div
+					v-if="closeable"
+					@tap.stop="onClickCloseBtn"
+					class="pa"
+					:class="['close-' + closeIconPos]"
+					hover-class="close-hover"
+					hover-stay-time="150"
+				>
+					<z-icon
+						name="cuowu"
+						color="#909399"
+						size="18"
+						bold
+					></z-icon>
+				</div>
         <zIphoneBottom v-if="props.safeBottom"></zIphoneBottom>
       </div>
     </zTransition>
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.z-popup{
+  .close-top-left{
+    top: 15px;
+				left: 15px;
+  }
+  .close-top-right{
+    top: 15px;
+				right: 15px;
+  }
+  .close-bottom-left{
+    bottom: 15px;
+				left: 15px;
+  }
+  .close-bottom-right{
+    bottom: 15px;
+				right: 15px;
+  }
+  .close-hover{
+  opacity: 0.4;
+}
+}
+
+</style>
