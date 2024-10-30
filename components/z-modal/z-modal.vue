@@ -234,8 +234,8 @@ const NewCancelStyle = ref<ModalBtnStyle>({})
 watch(
   () => confirmStyle,
   (value) => {
-    NewConfirmStyle.value.bgColor = value.value.bgColor
-    NewConfirmStyle.value.color = value.value.color
+    NewConfirmStyle.value.bgColor = zColor.getTypeColor(value.value.bgColor??'')
+    NewConfirmStyle.value.color = zColor.getTypeColor(value.value.color??'')
   },
   {
     deep: true,
@@ -244,8 +244,8 @@ watch(
 watch(
   () => cancelStyle,
   (value) => {
-    NewCancelStyle.value.bgColor = value.value.bgColor
-    NewCancelStyle.value.color = value.value.color
+    NewCancelStyle.value.bgColor = zColor.getTypeColor(value.value.bgColor??'')
+    NewCancelStyle.value.color = zColor.getTypeColor(value.value.color??'')
   },
   {
     deep: true,
@@ -304,7 +304,7 @@ defineExpose({
 
 <template>
   <zPopup
-    :show="openModal"
+    v-model="openModal"
     :mode="'center'"
     borderRadius="0"
     width="80%"

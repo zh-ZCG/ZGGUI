@@ -22,12 +22,6 @@ import { isBoolean } from '../../libs/lodash'
 import { isPromise } from '@vue/shared'
 /**
  * @description: z-action-sheet 操作菜单组件传参
- * @param: bgColor 背景颜色 （默认 'transparent' ）
- * @param: height		 分割高度, （默认 20px ）
- * @param: marginTop	与上一个组件的距离，（ 默认 0px ）
- * @param: marginBottom  与下一个组件的距离，（默认 0px ）
- * @param: otherStyle 其他的样式
- *
  * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
@@ -207,7 +201,7 @@ defineExpose({
 
 <template>
   <zPopup
-    :show="openPopup"
+    v-model="openPopup"
     :overlay="overlay"
     :zIndex="zIndex"
     :clickCloseOverlay="false"

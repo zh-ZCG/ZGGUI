@@ -293,7 +293,7 @@ const carKeyboardSwitchLang = () => {
     mode="bottom"
     :overlayOpacity="0"
     :popup="false"
-    :show="props.show"
+    v-model="props.show"
     @close="popupClose"
     :zIndex="props.zIndex"
     :otherStyle="{

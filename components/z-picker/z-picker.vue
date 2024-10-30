@@ -489,7 +489,7 @@ function pickend() {
 
 <template>
   <zPopup
-    :show="openPopup"
+    v-model="openPopup"
     :overlay="mask"
     :zIndex="zIndex"
     @close="closePopupEvent"
