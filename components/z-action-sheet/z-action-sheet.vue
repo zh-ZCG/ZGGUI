@@ -62,6 +62,10 @@ interface ActionSheetOptions {
    */
   mask?: boolean
   /**
+   * @description 点击蒙层是否允许关闭
+   */
+  maskClosable?: boolean
+  /**
    * @description 点击取消按钮触发的回调函数，返回 false 或者返回 Promise 且被 reject 则取消关闭
    */
   cancel?: () => (Promise<boolean> | void) | boolean
@@ -100,6 +104,7 @@ const defaultOptions: ActionSheetOptions = {
   title: '',
   cancelText: '取 消',
   mask: true,
+  maskClosable: false,
   cancel: undefined,
   select: undefined,
 }
@@ -126,12 +131,17 @@ const overlay = computed(() => {
   return options.mask === undefined ? true : options.mask
 })
 
+// 点击遮罩是否允许关闭
+const overlayClosable = computed(() => {
+  return options.maskClosable ?? false
+})
+
 // 弹出popup弹框
 const openPopup = ref<boolean>(false)
 
 // popup弹框关闭事件
 const popupCloseEvent = () => {
-  if (!options.cancel) {
+  if (!options.cancel || overlayClosable.value) {
     openPopup.value = false
     return
   }
@@ -204,8 +214,8 @@ defineExpose({
     v-model="openPopup"
     :overlay="overlay"
     :zIndex="zIndex"
-    :clickCloseOverlay="false"
-    @close="popupCloseEvent"
+    :clickCloseOverlay="overlayClosable"
+    @overlay-click="popupCloseEvent"
   >
     <div class="pr z-action-sheet">
       <!-- 标题 -->
