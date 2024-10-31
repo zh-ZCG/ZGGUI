@@ -1,5 +1,5 @@
 <!--
- * @Description: z-bubbleBox 气泡弹窗组件
+ * @Description: z-bubble-box 气泡弹窗组件
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
@@ -14,17 +14,17 @@ import {
   nextTick,
   CSSProperties,
 } from 'vue'
-import z from '../../libs/z'
-import zColor from '../../libs/zColor'
+import z from 'zgg-ui/libs/z'
+import zColor from 'zgg-ui/libs/zColor'
 import zOverlay from '../../components/z-overlay/z-overlay.vue'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import {
   BubbleBoxOptionData,
   BubbleBoxOptionItemData,
-} from '../../components/z-bubbleBox/z-bubbleBox'
-import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+} from '../../components/z-bubble-box/z-bubble-box'
+import { propsHook, PropsTypeHook } from 'zgg-ui/libs/zHooks'
 /**
- * @description: z-bubbleBox 气泡弹窗组件传参
+ * @description: z-bubble-box 气泡弹窗组件传参
  * @param: options 气泡弹出框选项数据
  * @param: position		气泡弹出框位置
  * @param: width	气泡弹出框宽度
@@ -120,6 +120,23 @@ const bubbleOptionClickEvent = (
   if (props.autoClose) closeBubbleOptions()
 }
 
+const bubbleOptions = computed<BubbleBoxOptionData>(() => {
+  return props.options.map((item) => {
+    const textColor = z.isEmptyDoubleVariableInDefault(
+      item.textColor,
+      props.textColor,
+      '#1a1a1a'
+    )
+
+    return {
+      text: item.text || '',
+      icon: item?.icon || '',
+      disabled: props.disabled || item.disabled || false,
+      color: zColor.getTypeColor(textColor ?? 'primary'),
+    }
+  })
+})
+
 // 选项的类
 const optionsClass = computed<string>(() => {
   const cls: string[] = [
@@ -134,7 +151,7 @@ const optionsClass = computed<string>(() => {
 const optionsStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
-  style.backgroundColor = props.bgColor || zColor.getTypeColor('cw')
+  style.backgroundColor = zColor.getTypeColor(props.bgColor || 'cw')
 
   if (props.zIndex) style.zIndex = props.zIndex
 
@@ -154,7 +171,7 @@ const optionsAuxiliaryElementClass = computed<string>(() => {
 const optionsAuxiliaryElementStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
-  style.borderColor = props.bgColor || zColor.getTypeColor('cw')
+  style.borderColor = zColor.getTypeColor(props.bgColor || 'cw')
 
   // 根据不同的位置，设置不同的边框样式
   if (props.position === 'top') {
@@ -189,32 +206,18 @@ const optionItemClass = computed<OptionsClassType>(() => {
     return cls.join(' ')
   }
 })
+
 // 选项item的样式
 const optionItemStyle = computed<OptionsStyleType>(() => {
   return (item: BubbleBoxOptionItemData) => {
     const style: CSSProperties = {}
 
-    style.color = item.color || zColor.getTypeColor('primary')
+    style.color = zColor.getTypeColor(item.color ?? 'primary')
 
     if (props.optionItemPadding) style.padding = props.optionItemPadding
 
     return style
   }
-})
-
-const bubbleOptions = computed<BubbleBoxOptionData>(() => {
-  return props.options.map((item) => {
-    const textColor = ref(
-      z.isEmptyDoubleVariableInDefault(item.textColor, props.textColor)
-    )
-
-    return {
-      text: item.text || '',
-      icon: item?.icon || '',
-      disabled: props.disabled || item.disabled || false,
-      color: props.textColor ? props.textColor : zColor.getTypeColor('primary'),
-    }
-  })
 })
 </script>
 
