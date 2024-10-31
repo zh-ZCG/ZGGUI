@@ -3,10 +3,21 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+// #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import { ref, getCurrentInstance, watch, computed } from 'vue'
 import zLine from '../../components/z-line/z-line.vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 
 /**
  * @description: z-popupBar 弹出层的操作栏传参
@@ -61,7 +72,7 @@ const emits = defineEmits<EmitsType>()
 
 const leftStyle = computed(() => {
   let style = {
-    color: props.leftColor,
+    color: zColor.getTypeColor(props.leftColor),
   }
 
   return style
@@ -69,7 +80,7 @@ const leftStyle = computed(() => {
 
 const rightStyle = computed(() => {
   let style = {
-    color: props.rightColor,
+    color: zColor.getTypeColor(props.rightColor),
   }
 
   return style
@@ -77,20 +88,21 @@ const rightStyle = computed(() => {
 
 const popupBarStyle = computed(() => {
   let style = {
-    borderTopLeftRadius: props.borderRadius,
-    borderTopRightRadius: props.borderRadius,
+    borderTopLeftRadius: z.addUnit(props.borderRadius ?? 0),
+    borderTopRightRadius: z.addUnit(props.borderRadius ?? 0),
     fontSize: '16px',
     height: '42px',
+    width: '100%',
   } as any
   if (z.isClassOrStyle(props.bgColor) === 'style') {
-    style.backgroundColor = props.bgColor
+    style.backgroundColor = zColor.getTypeColor(props.bgColor)
   }
 
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })
 
 const popupBarClass = computed(() => {
-  let classArr = []
+  let classArr: string[] = []
   if (z.isClassOrStyle(props.bgColor) === 'class') {
     classArr.push(props.bgColor)
   }
@@ -99,38 +111,40 @@ const popupBarClass = computed(() => {
 </script>
 
 <template>
-  <div
-    ref="z-popupBar"
-    id="z-popupBar"
-    :style="[popupBarStyle]"
-    :class="popupBarClass"
-    class="dfr jcsb aic"
-    v-if="props.show"
-    @touchmove.stop.prevent="1"
-  >
+  <div class="dfc aic" style="width: 100%">
     <div
-      class="leftClass"
-      :style="[leftStyle]"
-      @tap="props.disabled ? 1 : emits('clickLeft')"
+      ref="z-popupBar"
+      id="z-popupBar"
+      :style="[popupBarStyle]"
+      :class="popupBarClass"
+      class="dfr jcsb aic"
+      v-if="props.show"
+      @touchmove.stop.prevent="1"
     >
-      <div :style="props.disabled ? 'opacity:0.5' : ''">
-        {{ props.leftValue }}
+      <div
+        class="leftClass"
+        :style="[leftStyle]"
+        @tap="props.disabled ? 1 : emits('clickLeft')"
+      >
+        <div :style="props.disabled ? 'opacity:0.5' : ''">
+          {{ props.leftValue }}
+        </div>
+      </div>
+      <div class="f1 valueClass tac ofh wsnw tofe" style="">
+        {{ props.centerValue }}
+      </div>
+      <div
+        class="rightClass"
+        :style="[rightStyle]"
+        @tap="props.disabled ? 1 : emits('clickRight')"
+      >
+        <div :style="props.disabled ? 'opacity:0.5' : ''">
+          {{ props.rightValue }}
+        </div>
       </div>
     </div>
-    <div class="f1 valueClass tac ofh wsnw tofe" style="">
-      {{ props.centerValue }}
-    </div>
-    <div
-      class="rightClass"
-      :style="[rightStyle]"
-      @tap="props.disabled ? 1 : emits('clickRight')"
-    >
-      <div :style="props.disabled ? 'opacity:0.5' : ''">
-        {{ props.rightValue }}
-      </div>
-    </div>
+    <zLine :show="props.borderBottom"></zLine>
   </div>
-  <zLine :show="props.borderBottom"></zLine>
 </template>
 
 <style lang="less" scoped>
