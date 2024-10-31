@@ -180,6 +180,8 @@ const indicatorBlockStyle = computed<(distance: number) => CSSProperties>(
       <scroll-view
         class="scroll-view"
         scroll-x
+        enhanced="true"
+        :show-scrollbar="false"
         @scroll="scrollViewScrollEvent"
         @scrolltoupper="scrollToLeftEvent"
         @scrolltolower="scrollToRightEvent"

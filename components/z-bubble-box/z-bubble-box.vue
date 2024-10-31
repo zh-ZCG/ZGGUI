@@ -241,7 +241,12 @@ const optionItemStyle = computed<OptionsStyleType>(() => {
           :style="optionsAuxiliaryElementStyle"
         ></div>
         <!-- 选项内容 -->
-        <scroll-view class="scroll-view" scroll-y>
+        <scroll-view
+          class="scroll-view"
+          enhanced="true"
+          :show-scrollbar="false"
+          scroll-y
+        >
           <div class="options-content">
             <div
               v-for="(item, index) in bubbleOptions"

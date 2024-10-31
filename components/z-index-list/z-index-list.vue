@@ -383,6 +383,8 @@ const titleStyle = computed<CSSProperties>(() => {
     <scroll-view
       class="scroll-view pr"
       scroll-y
+      enhanced="true"
+      :show-scrollbar="false"
       :scroll-top="scrollViewTopValue"
     >
       <div

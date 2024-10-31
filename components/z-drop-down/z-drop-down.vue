@@ -123,7 +123,12 @@ const contentStyle = computed<CSSProperties>(() => {
         ]"
         :style="contentStyle"
       >
-        <scroll-view class="scroll-view" scroll-y>
+        <scroll-view
+          class="scroll-view"
+          enhanced="true"
+          :show-scrollbar="false"
+          scroll-y
+        >
           <slot></slot>
         </scroll-view>
       </div>

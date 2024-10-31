@@ -377,6 +377,8 @@ const barStyle = computed<CSSProperties>(() => {
       :style="{
         height: z.addUnit(height || '100%'),
       }"
+      enhanced="true"
+      :show-scrollbar="false"
       :scroll-x="scroll"
       scroll-with-animation
       :scroll-left="scrollLeft"
