@@ -12,7 +12,7 @@ import z from '../../libs/z'
 /**
  * @description: z-overlay 遮罩层
  * @param: show 是否展示遮罩层
- * @param: opacity  遮罩层不透明度 默认0.5，例如：rgba（0，0，0，0.5）
+ * @param: opacity  遮罩层不透明度 默认0.5，
  * @param: duration 动画时长,默认300ms
  * @param: zIndex 层级高度，默认500
  * @param: otherStyle 其他样式
@@ -31,6 +31,7 @@ interface PropsType {
 
 interface EmitsType {
   (e: 'click'): void
+  (e: 'update:show', value: boolean): void
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
@@ -44,6 +45,7 @@ const emits = defineEmits<EmitsType>()
 
 /**触发点击 */
 function clickOverlay() {
+  emits('update:show', false)
   emits('click')
 }
 

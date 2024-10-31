@@ -72,7 +72,7 @@ if (!swipeActionContext) {
   z.error('zSwipeActionItem 请在zSwipeAction 中使用 zSwipeActionItem')
 }
 
-const componentId = `z-swipe-action-item`
+const componentId = `z-swipe-action-item-${uid}`
 const optionComponentClass = `${componentId}-option`
 
 function optionItemClass(item: SwipeActionItemOption) {
@@ -228,7 +228,6 @@ const onTouchEnd = (event: any) => {
 // 关闭菜单
 const closeOptionsMenu = () => {
   isSwipe.value = false
-  updateAllItemOptionStatus()
   contentRightDistance.value = 0
 }
 
@@ -295,22 +294,19 @@ interface OptionsData {
   disabled: boolean
 }
 
-type OptionClassValue = (index: number) => string
 type OptionStyleValue = (index: number) => CSSProperties
 
 // 菜单配置项
 const options = computed<OptionsData[]>(() => {
   return props.options.map((item) => {
-    const textColor = ref(item.textColor)
-    const bgColor = ref(item.bgColor)
     return {
       icon: item.icon ? item.icon : '',
       text: item.text ? item.text : '',
       textColor: {
-        style: item.textColor ? item.textColor : '',
+        style: zColor.getTypeColor(item.textColor ? item.textColor : ''),
       },
       bgColor: {
-        style: item.bgColor ? item.bgColor : '',
+        style: zColor.getTypeColor(item.bgColor ? item.bgColor : ''),
       },
       round: item.round ? item.round : false,
       disabled: item.disabled ? item.disabled : false,

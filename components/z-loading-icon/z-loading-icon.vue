@@ -56,7 +56,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   textSize: 16,
   timingFunction: 'ease-in-out',
   duration: 1000,
-  inCircleColor: '#409eff',
+  inCircleColor: '#666666',
 })
 
 const emits = defineEmits<EmitsType>()

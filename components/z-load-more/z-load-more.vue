@@ -17,6 +17,7 @@ import {
 } from 'vue'
 import type { Ref } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zLine from '../../components/z-line/z-line.vue'
 import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
@@ -28,7 +29,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param 	fontSize		字体大小（默认 16 ）
  * @param 	iconSize		图标大小（默认 19 ）
  * @param 	color			字体颜色（默认 '#666666' ）
- * @param 	loadingIcon		加载图标（默认 'circle' ）
+ * @param 	loadingIcon		加载图标（默认 'flower' ）
  * @param 	loadmoreText	加载前的提示语（默认 '加载更多' ）
  * @param 	loadingText		加载中提示语（默认 '正在加载···' ）
  * @param 	nomoreText		没有更多的提示语（默认 '没有更多了' ）
@@ -102,10 +103,10 @@ const dot = ref<string>('●')
 
 const loadTextStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    color: props.color,
+    color: zColor.getTypeColor(props.color),
     fontSize: z.addUnit(props.fontSize),
     lineHeight: z.addUnit(props.fontSize),
-    backgroundColor: props.bgColor,
+    backgroundColor: zColor.getTypeColor(props.bgColor),
   }
   return style
 })
@@ -133,7 +134,7 @@ function loadMore() {
     :style="[
       z.addStyle(otherStyle),
       {
-        backgroundColor: bgColor,
+        backgroundColor: zColor.getTypeColor(bgColor),
         marginBottom: z.addUnit(marginBottom),
         marginTop: z.addUnit(marginTop),
         height: z.addUnit(height),
@@ -142,7 +143,7 @@ function loadMore() {
   >
     <zLine
       :width="'140rpx'"
-      :color="lineColor"
+      :color="zColor.getTypeColor(lineColor)"
       :borderStyle="dashed"
       v-if="line"
     ></zLine>
@@ -151,9 +152,9 @@ function loadMore() {
       :class="status == 'loadmore' || status == 'nomore' ? 'z-more' : ''"
       class="dfr jcc aic z-loadmore-content"
     >
-      <div class="z-loadmore-content-icon" v-if="status === 'loading' && icon">
+      <div :style="showText?'margin-right:8px':''" v-if="status === 'loading' && icon">
         <zLoadingIcon
-          :color="iconColor"
+          :color="zColor.getTypeColor(iconColor)"
           :size="iconSize"
           :mode="loadingIcon"
         ></zLoadingIcon>
@@ -174,7 +175,7 @@ function loadMore() {
     </div>
     <zLine
       :width="'140rpx'"
-      :color="lineColor"
+      :color="zColor.getTypeColor(lineColor)"
       :borderStyle="dashed"
       v-if="line"
     ></zLine>
@@ -185,9 +186,6 @@ function loadMore() {
 .z-loadmore {
   .z-loadmore-content {
     margin: 0 15px;
-    .z-loadmore-content-icon {
-      margin-right: 8px;
-    }
     .z-loadmore-content-dot {
       font-size: 17px;
       color: @info;
