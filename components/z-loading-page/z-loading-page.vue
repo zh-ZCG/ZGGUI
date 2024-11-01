@@ -7,6 +7,7 @@
 import { ref, onMounted, getCurrentInstance, computed } from 'vue'
 import type { Ref } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zLoadingIcon from '../../components/z-loading-icon/z-loading-icon.vue'
 import zTransition from '../../components/z-transition/z-transition.vue'
 
@@ -67,7 +68,7 @@ const emits = defineEmits<EmitsType>()
       left: 0,
       right: 0,
       bottom: 0,
-      backgroundColor: bgColor,
+      backgroundColor: zColor.getTypeColor(bgColor),
       display: 'flex',
     }"
   >
@@ -88,7 +89,7 @@ const emits = defineEmits<EmitsType>()
             v-else
             :mode="mode"
             :size="z.addUnit(iconSize)"
-            :inCircleColor="loadingColor"
+            :inCircleColor="zColor.getTypeColor(loadingColor)"
           ></zLoadingIcon>
         </div>
         <slot>
@@ -96,7 +97,7 @@ const emits = defineEmits<EmitsType>()
             class="text"
             :style="{
               fontSize: z.addUnit(fontSize),
-              color: color,
+              color: zColor.getTypeColor(color),
             }"
           >
             {{ loadingText }}

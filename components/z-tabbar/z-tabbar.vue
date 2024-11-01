@@ -131,6 +131,8 @@ const tabbarStyle = computed(() => {
     style.bottom = '0'
     style.left = '0'
     style.right = '0'
+  } else {
+    style.position = 'relative'
   }
   return z.deepMerge(style, props.otherStyle)
 })
@@ -378,31 +380,29 @@ provide(
 </script>
 
 <template>
-  <div class="dfc jcc z-tabbar" ref="z-tabbar" id="z-tabbar">
+  <div
+    class="dfc z-tabbar-content"
+    ref="z-tabbar-content"
+    id="z-tabbar-content"
+    :class="props.frosted ? 'frosted' : ''"
+    @tap.stop="1"
+    :style="[tabbarStyle]"
+  >
     <div
-      class="dfc z-tabbar-content"
-      ref="z-tabbar-content"
-      id="z-tabbar-content"
-      :class="props.frosted ? 'frosted' : ''"
-      @tap.stop="1"
-      :style="[tabbarStyle]"
-    >
-      <div
-        v-if="hasBulgeButton"
-        class="z-tabbar-content-bulge"
-        :style="zTabbarContentBulge"
-      ></div>
-      <div :style="zTabbarContentDetailStyle"></div>
-      <div class="pa dfr jcsa aic fwnw z-tabbar-content-detail">
-        <slot></slot>
-      </div>
-    </div>
-    <div
-      v-if="props.fixed && props.placeholder"
-      :style="zTabbarPlaceholderStyle"
+      v-if="hasBulgeButton"
+      class="z-tabbar-content-bulge"
+      :style="zTabbarContentBulge"
     ></div>
-    <zIphoneBottom v-if="props.safeAreaInsetBottom"></zIphoneBottom>
+    <div :style="zTabbarContentDetailStyle"></div>
+    <div class="pa dfr jcsa aic fwnw z-tabbar-content-detail">
+      <slot></slot>
+    </div>
   </div>
+  <div
+    v-if="props.fixed && props.placeholder"
+    :style="zTabbarPlaceholderStyle"
+  ></div>
+  <zIphoneBottom v-if="props.safeAreaInsetBottom"></zIphoneBottom>
 </template>
 
 <style lang="less" scoped>

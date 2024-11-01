@@ -45,6 +45,7 @@ import zColor from '../../libs/zColor'
  * @param: bulgeBgColor 突起按钮得背景颜色（type|string）
  * @param: bulgeTextColor 突起按钮得图标颜色（type|string）
  * @param: disabled 是否禁止点击
+ * @param: iconSize tabbar图标大小
  * @param: fontSize tabbar标题大小
  * @param: otherStyle 其他样式
  *
@@ -255,7 +256,7 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
         <div class="z-tabbar-item-bulge" :style="bulgeStyle(itemRectInfo)">
           <zIcon
             :name="isActive ? props.activeIcon : props.inActiveIcon"
-            :size="props.iconSize"
+            :size="z.addUnit(props.iconSize)"
           ></zIcon>
         </div>
       </template>
@@ -266,7 +267,7 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
         >
           <zIcon
             :name="isActive ? props.activeIcon : props.inActiveIcon"
-            :size="props.iconSize"
+            :size="z.addUnit(props.iconSize)"
           ></zIcon>
           <!-- 角标 -->
           <zBadge

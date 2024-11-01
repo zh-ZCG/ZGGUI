@@ -339,7 +339,7 @@ const tabsStyle = computed<CSSProperties>(() => {
 
   // 设置背景颜色
   if (props.bgColor) {
-    style.backgroundColor = props.bgColor || '#fff'
+    style.backgroundColor = zColor.getTypeColor(props.bgColor || '#fff')
   }
 
   // 设置高度
@@ -358,7 +358,7 @@ const barStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   // 设置滑块颜色
-  style.backgroundColor = props.barColor || zColor.getTypeColor('primary')
+  style.backgroundColor = zColor.getTypeColor(props.barColor || 'primary')
 
   // 设置滑块的宽度
   if (props.barWidth) style.width = z.addUnit(props.barWidth)

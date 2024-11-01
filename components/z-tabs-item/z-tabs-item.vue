@@ -197,11 +197,13 @@ onUnmounted(() => {
   tabsContext?.removeItem(uid)
 })
 
-const normalColor = computed<string | undefined>(
-  () => props.color || tabsContext?.color
+const normalColor = computed<string | undefined>(() =>
+  zColor.getTypeColor(props.color || (tabsContext?.color ?? '#1a1a1a'))
 )
-const activeColor = computed<string | undefined>(
-  () => props.activeColor || tabsContext?.activeColor
+const activeColor = computed<string | undefined>(() =>
+  zColor.getTypeColor(
+    props.activeColor || (tabsContext?.activeColor ?? 'primary')
+  )
 )
 const activeBold = computed<boolean>(() =>
   z.isEmptyVariableInDefault(tabsContext?.activeBold, true)
@@ -242,14 +244,14 @@ const tabsItemStyle = computed<CSSProperties>(() => {
   // 设置颜色
   if (isActive.value) {
     if (activeColor.value) {
-      style.color = activeColor.value || zColor.getTypeColor('primary')
+      style.color = zColor.getTypeColor(activeColor.value || 'primary')
     }
     if (activeFontSize.value) {
       style.fontSize = z.addUnit(activeFontSize.value)
     }
   } else {
     if (normalColor.value) {
-      style.color = normalColor.value || zColor.getTypeColor('primary')
+      style.color = zColor.getTypeColor(normalColor.value || 'primary')
     }
   }
 
@@ -280,8 +282,8 @@ const tabsItemStyle = computed<CSSProperties>(() => {
             :fontSize="badgeConfig.fontSize"
             :showZero="badgeConfig.showZero"
             :rightAngle="badgeConfig.rightAngle"
-            :bgColor="badgeConfig.bgColor"
-            :color="badgeConfig.color"
+            :bgColor="zColor.getTypeColor(badgeConfig.bgColor)"
+            :color="zColor.getTypeColor(badgeConfig.color)"
             :maxNum="badgeConfig.maxNum"
             :reversal="badgeConfig.reversal"
             :otherStyle="badgeConfig.otherStyle"
