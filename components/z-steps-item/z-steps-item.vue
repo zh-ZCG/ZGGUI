@@ -109,11 +109,11 @@ onUnmounted(() => {
 
 const stepsContext = inject(stepsContextKey)
 
-const normalColor = computed<string | undefined>(
-  () => props.color || stepsContext?.color
+const normalColor = computed<string | undefined>(() =>
+  zColor.getTypeColor(props.color || (stepsContext?.color ?? ''))
 )
-const activeColor = computed<string | undefined>(
-  () => props.activeColor || stepsContext?.activeColor
+const activeColor = computed<string | undefined>(() =>
+  zColor.getTypeColor(props.activeColor || (stepsContext?.activeColor ?? ''))
 )
 
 // step对应的类
@@ -130,13 +130,9 @@ const stepStyle = computed<CSSProperties>(() => {
 
   // 设置颜色
   if (isActive.value) {
-    style.color = zColor.getTypeColor(
-      activeColor.value || zColor.getTypeColor('primary')
-    )
+    style.color = zColor.getTypeColor(activeColor.value || 'primary')
   } else {
-    style.color = zColor.getTypeColor(
-      normalColor.value || zColor.getTypeColor('info')
-    )
+    style.color = zColor.getTypeColor(normalColor.value || 'info')
   }
 
   return style
@@ -162,19 +158,17 @@ const modeStyle = computed<StepModeStyle>(() => {
     if (stepMode.value === 'dot') {
       if (isActive.value) {
         style.backgroundColor = zColor.getTypeColor(
-          activeColor.value || zColor.getTypeColor('primary')
+          activeColor.value || 'primary'
         )
       } else {
-        style.backgroundColor = zColor.getTypeColor(
-          normalColor.value || zColor.getTypeColor('info')
-        )
+        style.backgroundColor = zColor.getTypeColor(normalColor.value || 'info')
       }
     }
 
     if (stepMode.value === 'number') {
       if (isActive.value) {
         style.backgroundColor = zColor.getTypeColor(
-          activeColor.value || zColor.getTypeColor('primary')
+          activeColor.value || 'primary'
         )
         style.color = zColor.getTypeColor('cw')
       }
@@ -182,14 +176,10 @@ const modeStyle = computed<StepModeStyle>(() => {
 
     if (stepMode.value === 'dotIcon') {
       if (isActive.value && selector === 'icon') {
-        style.color = zColor.getTypeColor(
-          activeColor.value || zColor.getTypeColor('primary')
-        )
+        style.color = zColor.getTypeColor(activeColor.value || 'primary')
       }
       if (!isActive.value && selector === 'dot') {
-        style.backgroundColor = zColor.getTypeColor(
-          normalColor.value || zColor.getTypeColor('info')
-        )
+        style.backgroundColor = zColor.getTypeColor(normalColor.value || 'info')
       }
     }
 
@@ -208,13 +198,9 @@ const lineStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   if (isActive.value) {
-    style.backgroundColor = zColor.getTypeColor(
-      activeColor.value || zColor.getTypeColor('primary')
-    )
+    style.backgroundColor = zColor.getTypeColor(activeColor.value || 'primary')
   } else {
-    style.backgroundColor = zColor.getTypeColor(
-      normalColor.value || zColor.getTypeColor('info')
-    )
+    style.backgroundColor = zColor.getTypeColor(normalColor.value || 'info')
   }
 
   return style

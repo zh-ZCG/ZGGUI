@@ -26,7 +26,13 @@ import {
 } from 'vue'
 import z from '../../libs/z'
 import zColor from '../../libs/zColor'
-import type { ExtractPropTypes } from 'vue'
+import {
+  IndexListDataItemData,
+  IndexListDataItem,
+  IndexListKeys,
+  IndexListData,
+} from './z-index-list'
+
 import { useUniAppSystemRectInfo } from '../../libs/use-uniapp-system-rect-info/use-uniapp-system-rect-info'
 import { useComponentSize } from '../../libs/use-component-size/use-component-size'
 import { useTouch } from '../../libs/use-Touch/use-Touch'
@@ -46,52 +52,6 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * @example:
  */
-const indexListKeys = [
-  'a',
-  'b',
-  'c',
-  'd',
-  'e',
-  'f',
-  'g',
-  'h',
-  'i',
-  'j',
-  'k',
-  'l',
-  'm',
-  'n',
-  'o',
-  'p',
-  'q',
-  'r',
-  's',
-  't',
-  'u',
-  'v',
-  'w',
-  'x',
-  'y',
-  'z',
-  '#',
-] as const
-
-type IndexListKeys = (typeof indexListKeys)[number]
-
-interface IndexListDataItem<T = any> {
-  title: string
-  data: IndexListDataItemData<T>[]
-}
-
-type IndexListData<T = any> = Partial<
-  Record<IndexListKeys, IndexListDataItem<T>>
->
-
-type IndexListDataItemData<T = any> = T & {
-  star?: boolean
-}
-
-//////
 
 interface IndexListDataItemType {
   key: string
