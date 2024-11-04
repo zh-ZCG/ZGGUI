@@ -346,7 +346,7 @@ const placeholderStyle = computed<string>(() => {
 
 // 输入框所属类
 const inputClass = computed<string>(() => {
-  const cls: string[] = ['z-input']
+  const cls: string[] = ['z-input','dfr','aic']
 
   // 禁止输入
   if (disabled.value && props.type !== 'select') cls.push('disabled')
@@ -382,7 +382,7 @@ const inputStyle = computed<CSSProperties>(() => {
 
   // 设置高度
   if (props.height) style.height = z.addUnit(props.height)
-  if (props.width) style.width = z.addUnit(props.width)
+  if (props.width) style.width = `calc(${z.addUnit(props.width)} - 32rpx)`
 
   // 设置边框颜色
   if (props.border && props.borderColor && validateState.value !== 'error')

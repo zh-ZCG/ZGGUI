@@ -3,6 +3,16 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+// #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -525,9 +535,11 @@ defineExpose({
   margin-bottom: 26rpx;
   .z-form-item-wrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     width: 100%;
     .label {
+      width: 100%;
       flex-shrink: 0;
       padding: 0rpx 16rpx 0rpx 0rpx;
     }
@@ -546,6 +558,7 @@ defineExpose({
       }
     }
     .content {
+      width: 100%;
       flex-grow: 1;
     }
   }
