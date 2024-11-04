@@ -161,13 +161,6 @@ const switchClass = computed<string>(() => {
 
   // 禁止状态
   if (props.disabled) cls.push('disabled')
-
-  // 设置switch按钮的激活与未激活状态的颜色
-  if (selected.value) {
-    if (props.activeColor) cls.push(props.activeColor)
-  } else {
-    if (props.inactiveColor) cls.push(props.inactiveColor)
-  }
   return cls.join(' ')
 })
 
@@ -179,19 +172,16 @@ const switchStyle = computed<CSSProperties>(() => {
 
   // 设置switch按钮的激活与未激活状态的颜色
   if (selected.value) {
-    if (props.activeColor) {
-      style.backgroundColor =
-        props.activeColor || zColor.getTypeColor('primary')
-    }
+    style.backgroundColor = zColor.getTypeColor(props.activeColor || 'primary')
     if (props.activeTextColor) {
-      style.color = props.activeTextColor
+      style.color = zColor.getTypeColor(props.activeTextColor)
     }
   } else {
-    if (props.inactiveColor) {
-      style.backgroundColor = props.inactiveColor || 'rgba(0,0,0,0.3)'
-    }
+    style.backgroundColor = zColor.getTypeColor(
+      props.inactiveColor || 'rgba(0,0,0,0.3)'
+    )
     if (props.inactiveTextColor) {
-      style.color = props.inactiveTextColor
+      style.color = zColor.getTypeColor(props.inactiveTextColor)
     }
   }
 
@@ -321,6 +311,7 @@ const switchStyle = computed<CSSProperties>(() => {
 }
 .normal {
   height: 50rpx;
+  width: 95rpx;
   font-size: 28rpx;
   padding: 6rpx;
   .dot {

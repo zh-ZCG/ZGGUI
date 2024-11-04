@@ -15,6 +15,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import { useTouch } from '../../libs/use-Touch/use-Touch'
 import { useFormItem } from '../../components/z-form/types'
@@ -102,10 +103,12 @@ const itemStyle = computed<ItemStyleType>(() => {
       style.padding = `0rpx calc(${z.addUnit(props.gutter)} / 2)`
 
     if (type === 'active') {
-      if (!item.color.class) style.color = item.color.style || '#409eff'
+      if (!item.color.class)
+        style.color = zColor.getTypeColor(item.color.style || '#409eff')
     }
     if (type === 'inactive') {
-      if (!item.color.class) style.color = item.color.style || '#666666'
+      if (!item.color.class)
+        style.color = zColor.getTypeColor(item.color.style || '#666666')
     }
 
     return style
@@ -157,15 +160,15 @@ const generateRateItemData = () => {
       active: {
         icon: configData.activeIcon,
         color: {
-          class: props.activeColor ? props.activeColor : '',
-          style: props.activeColor ? props.activeColor : '',
+          class: props.activeColor ? props.activeColor : 'primary',
+          style: props.activeColor ? props.activeColor : 'primary',
         },
       },
       inactive: {
         icon: configData.inactiveIcon,
         color: {
-          class: props.inactiveColor ? props.inactiveColor : '',
-          style: props.inactiveColor ? props.inactiveColor : '',
+          class: props.inactiveColor ? props.inactiveColor : 'primary',
+          style: props.inactiveColor ? props.inactiveColor : 'primary',
         },
       },
     })
@@ -353,7 +356,11 @@ onMounted(() => {
         class="zRateItem"
         :style="itemStyle('inactive', item.inactive)"
       >
-        <zIcon :size="size" :name="item.inactive.icon"></zIcon>
+        <zIcon
+          :color="props.inactiveColor"
+          :size="size"
+          :name="item.inactive.icon"
+        ></zIcon>
       </div>
     </div>
     <!-- 选中显示的图标 -->
@@ -370,7 +377,11 @@ onMounted(() => {
         class="zRateItem"
         :style="itemStyle('active', item.active)"
       >
-        <zIcon :size="size" :name="item.active.icon"></zIcon>
+        <zIcon
+          :color="props.activeColor"
+          :size="size"
+          :name="item.active.icon"
+        ></zIcon>
       </div>
     </div>
   </div>

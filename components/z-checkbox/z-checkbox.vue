@@ -125,8 +125,10 @@ const labelDisabled = computed(
 const border = computed(() => props?.border || checkboxGroup?.border || false)
 
 // radio激活时的颜色
-const activeColor = computed(
-  () => props?.activeColor || checkboxGroup?.activeColor
+const activeColor = computed(() =>
+  zColor.getTypeColor(
+    (props?.activeColor || checkboxGroup?.activeColor) ?? 'primary'
+  )
 )
 
 // 判断复选框组中是否包含某个值
@@ -210,9 +212,9 @@ const checkboxStyle = computed<selectedStyle>(() => {
     // 设置激活时的颜色
     if (selected) {
       if (border.value)
-        style.borderColor = activeColor.value || zColor.getTypeColor('primary')
+        style.borderColor = zColor.getTypeColor(activeColor.value || 'primary')
       if (activeColor.value) {
-        style.color = activeColor.value || zColor.getTypeColor('primary')
+        style.color = zColor.getTypeColor(activeColor.value || 'primary')
       }
     }
 
@@ -250,8 +252,9 @@ const checkboxCheckedBoxStyle = computed<selectedStyle>(() => {
   return (selected: boolean) => {
     const style: CSSProperties = {}
     if (selected || props.indeterminate) {
-      style.backgroundColor =
-        activeColor.value || zColor.getTypeColor('primary')
+      style.backgroundColor = zColor.getTypeColor(
+        activeColor.value || 'primary'
+      )
     }
     return style
   }

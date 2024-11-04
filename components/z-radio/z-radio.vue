@@ -93,7 +93,7 @@ const border = computed(
 
 // radio激活时的颜色
 const activeColor = computed(
-  () => props?.activeColor || radioGroupContext?.activeColor
+  () => zColor.getTypeColor((props?.activeColor || radioGroupContext?.activeColor)??'primary')
 )
 
 // 判断是否为单选组
@@ -159,9 +159,9 @@ const radioStyle = computed<(selected: boolean) => CSSProperties>(() => {
 
     // 设置激活时的颜色
     if (selected) {
-      if (border.value) style.borderColor = zColor.getTypeColor('info')
+      if (border.value) style.borderColor = zColor.getTypeColor(activeColor.value || 'primary')
       if (activeColor.value) {
-        style.color = activeColor.value || zColor.getTypeColor('primary')
+        style.color = zColor.getTypeColor(activeColor.value || 'primary')
       }
     }
 
@@ -267,7 +267,6 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
     }
   }
   .z-radio-selected {
-    padding: 2rpx;
     &::after {
       transform: translate(-50%, -50%) scale(1);
     }
@@ -301,7 +300,6 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
     }
   }
   .z-radio-selected {
-    padding: 2rpx;
     &::after {
       transform: translate(-50%, -50%) scale(1);
     }
@@ -338,7 +336,6 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
     }
   }
   .z-radio-selected {
-    padding: 2rpx;
     &::after {
       transform: translate(-50%, -50%) scale(1);
     }
@@ -347,6 +344,7 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
 
 .z-radio-border {
   border: 2rpx solid #e6e6e6;
+  box-sizing: border-box;
 }
 
 .z-radio-no-border {
