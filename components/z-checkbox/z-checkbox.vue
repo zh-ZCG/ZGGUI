@@ -49,7 +49,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @example:
  */
 
-type zCheckBoxSizeType = 'small' | 'normal' | 'large' | ''
+type zCheckBoxSizeType = 'small' | 'normal' | 'large' | ''|number|string
 
 type zCheckBoxShapes = 'square' | 'circle'
 

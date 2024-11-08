@@ -190,7 +190,7 @@ const cellRightValueStyle = computed(() => {
   if (props.size) {
     switch (props.size) {
       case 'large': {
-        style.fontSize = '16px'
+        style.fontSize = '1'
         break
       }
       case 'normal': {
