@@ -28,6 +28,7 @@ import {
   useFormSize,
   useFormDisabled,
 } from '../../components/z-form/types'
+import { useComponentSize } from '../../libs/use-component-size/use-component-size'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-checkbox 复选框组件传参
@@ -49,7 +50,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @example:
  */
 
-type zCheckBoxSizeType = 'small' | 'normal' | 'large' | ''|number|string
+type zCheckBoxSizeType = 'small' | 'normal' | 'large' | ''|number
 
 type zCheckBoxShapes = 'square' | 'circle'
 
@@ -93,6 +94,9 @@ const size = useFormSize(
     z.isEmptyDoubleVariableInDefault(props?.size, checkboxGroup?.size)
   )
 )
+
+// 解析尺寸
+const { sizeType } = useComponentSize(size.value)
 
 // 复选框选框的形状
 const checkedShape = computed(() =>
@@ -186,7 +190,11 @@ const checkboxClass = computed<selectedClass>(() => {
     if (disabled.value || maxDisabled.value) cls.push('z-checkbox-disabled')
 
     // 设置尺寸
-    if (size.value) cls.push(`z-checkbox-${size.value}`)
+    if (sizeType.value == 'custom') {
+      
+    } else {
+     if (size.value) cls.push(`z-checkbox-${size.value}`) 
+    }
 
     // 激活样式
     if (selected) {
@@ -209,6 +217,12 @@ const checkboxStyle = computed<selectedStyle>(() => {
   return (selected: boolean) => {
     const style: CSSProperties = {}
 
+    // 设置尺寸
+    if (sizeType.value == 'custom') {
+      style.padding=`${(Number(size.value))-16}rpx ${(Number(size.value))-10}rpx`
+      style.fontSize=`${(Number(size.value))}rpx`
+    }     
+
     // 设置激活时的颜色
     if (selected) {
       if (border.value)
@@ -226,24 +240,35 @@ const checkboxStyle = computed<selectedStyle>(() => {
 // 复选框选框所属类
 const checkboxCheckedBoxClass = computed<selectedClass>(() => {
   return (selected: boolean) => {
-    const cls: string[] = [
-      `z-checked-box-${size.value ? size.value : 'default'}`,
-    ]
-
-    // 复选框选框的形状
-    if (checkedShape.value)
-      cls.push(
-        `z-checked-box-${size.value ? size.value : 'default'}-${
-          checkedShape.value
-        }`
-      )
-
-    if (selected || props.indeterminate) {
-      cls.push('z-checkbox-border z-checked-box-selected')
+    if (sizeType.value == 'custom') {
+      const cls: string[] = [
+        `z-checked-box-other`,
+      ]
+      if (selected || props.indeterminate) {
+        cls.push('z-checkbox-border z-checked-box-selected')
+      } else {
+        cls.push('z-checkbox-border z-checkbox-disabled')
+      }
+      return cls.join(' ')
     } else {
-      cls.push('z-checkbox-border z-checkbox-disabled')
+      const cls: string[] = [
+        `z-checked-box-${size.value ? size.value : 'default'}`,
+      ]
+
+      // 复选框选框的形状
+      if (checkedShape.value)
+        cls.push(
+          `z-checked-box-${size.value ? size.value : 'default'}-${checkedShape.value
+          }`
+        )
+
+      if (selected || props.indeterminate) {
+        cls.push('z-checkbox-border z-checked-box-selected')
+      } else {
+        cls.push('z-checkbox-border z-checkbox-disabled')
+      }
+      return cls.join(' ')
     }
-    return cls.join(' ')
   }
 })
 
@@ -256,6 +281,23 @@ const checkboxCheckedBoxStyle = computed<selectedStyle>(() => {
         activeColor.value || 'primary'
       )
     }
+
+    if(selected){
+      style.border=`4rpx solid ${zColor.getTypeColor(activeColor.value)}`
+    }
+
+    if (sizeType.value == 'custom') {
+      if (checkedShape.value == 'circle') {
+        style.borderRadius = '50%'
+        style.fontSize = `calc(${size.value}rpx * 0.85)`
+      } else if (checkedShape.value == 'square') {
+        style.borderRadius = '4rpx'
+        style.fontSize = `${size.value}rpx`
+      }
+      style.width=`${size.value}rpx`
+      style.height=`${size.value}rpx`
+    }
+
     return style
   }
 })
@@ -447,8 +489,30 @@ const checkboxCheckedBoxStyle = computed<selectedStyle>(() => {
   }
 }
 
+.z-checked-box-other{
+  flex-shrink: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+  transition: all 0.3s ease-in-out;
+  .z-checked-box-indeterminate {
+    &::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 50%;
+      height: 2rpx;
+      background-color: #fff;
+      transform: translate(-50%, -50%);
+    }
+  }
+}
+
 .z-checkbox-border {
-  border: 2rpx solid #e6e6e6;
+  border: 2rpx solid #666666;
   padding: 5rpx;
 }
 
