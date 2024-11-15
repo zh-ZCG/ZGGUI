@@ -15,6 +15,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import dayjs from '../../libs/dayjs'
@@ -309,10 +310,10 @@ const itemStyle = computed<WeekCalendarItemStyle>(() => {
     const style: CSSProperties = {}
 
     if (status === 'active') {
-      style.backgroundColor = props.activeBgColor
+      style.backgroundColor = zColor.getTypeColor(props.activeBgColor)
 
       if (props.activeTextColor) {
-        style.color = props.activeTextColor
+        style.color = zColor.getTypeColor(props.activeTextColor)
       } else if (!props.activeBgColor && !props.activeTextColor) {
         style.color = '#fff'
       }

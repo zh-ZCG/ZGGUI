@@ -16,6 +16,7 @@ import {
   toRef,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import { useLongPress } from '../../libs/Hooks/z-use-long-press'
 import {
@@ -236,8 +237,10 @@ const numberBoxOperationWrapperStyle = computed<OperationWrapperStyle>(() => {
     style.fontSize = getNumberBoxSize('fontSize', '* 1.2')
 
     // 设置背景颜色和字体颜色
-    if (!props.bgColor) style.backgroundColor = props.bgColor || '#e6e6e6'
-    if (props.textColor) style.color = props.textColor
+    style.backgroundColor = zColor.getTypeColor(props.bgColor || '#e6e6e6')
+    if (props.textColor) style.color = zColor.getTypeColor(props.textColor)
+
+    if(props.height) style.height = z.addUnit(props.height)
 
     // 设置操作按钮的宽高
     if (type === 'minus' || type === 'plus') {

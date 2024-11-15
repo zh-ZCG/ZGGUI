@@ -29,6 +29,7 @@ import {
 import zType from '../../libs/zType'
 import { trim } from '../../libs/lodash'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zIcon from '../../components/z-icon/z-icon.vue'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 import { useToggle } from '../../libs/use-Toggle/use-Toggle'
@@ -303,7 +304,7 @@ const clearClickEvent = () => {
 // 更新输入框内容
 const _updateInputText = (value: string) => {
   value = props.trim ? trim(value) : value
-  // inputText.value = value
+  inputText.value = value
   emits('update:modelValue', _formatInputText(value))
   nextTick(() => {
     emits('input', _formatInputText(value))
@@ -386,7 +387,7 @@ const inputStyle = computed<CSSProperties>(() => {
 
   // 设置边框颜色
   if (props.border && props.borderColor && validateState.value !== 'error')
-    style.borderColor = props.borderColor
+    style.borderColor = zColor.getTypeColor(props.borderColor)
 
   if (!zType.isEmpty(props.otherStyle)) Object.assign(style, props.otherStyle)
 
@@ -404,7 +405,7 @@ const wordLimitStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   if (props.wordLimitColor) {
-    style.color = props.wordLimitColor || '#666666'
+    style.color = zColor.getTypeColor(props.wordLimitColor || '#666666')
   }
 
   return style
@@ -483,8 +484,8 @@ const wordLimitStyle = computed<CSSProperties>(() => {
         <zIcon :name="passwordIcon"></zIcon>
       </div>
       <!-- 清除按钮 -->
-      <div v-else-if="clearable && inputText" @tap.stop="clearClickEvent">
-        <zIcon name="cuowu"></zIcon>
+      <div v-else-if="clearable&&inputText" @tap.stop="clearClickEvent">
+        <zIcon name="cuowu-circle"></zIcon>
       </div>
       <!-- 错误提示图标 -->
       <div

@@ -44,14 +44,22 @@ type Arrayable<T> = T | T[]
 
 type PickerValueType = string | number | Array<string | number>
 type PickerDataType = string | number | object
-type PickerData = Arrayable<Array<PickerDataType>>
+type PickerDataProps = Arrayable<Array<PickerDataType> | object>
+type PickerData = Array<Array<PickerDataItem>>
+
+  interface PickerDataItem {
+  label: string | number
+  value: string | number
+  originalData: any
+  children?: Array<PickerDataItem>
+}
 
 const PickerModes = ['signle', 'multiple', 'cascade'] as const
 type PickerMode = (typeof PickerModes)[number]
 interface PropsType {
   modelValue?: PickerValueType
   open?: boolean
-  data?: PickerData
+  data?: Array<PickerDataProps>
   labelKey?: string
   valueKey?: string
   childrenKey?: string
@@ -100,10 +108,12 @@ const operationBtnStyle = computed<PickerOperationBtnStyle>(() => {
     const style: CSSProperties = {}
 
     if (type === 'cancel') {
-      style.color = props.cancelColor || zColor.getTypeColor('error')
+      style.color = zColor.getTypeColor(props.cancelColor || 'error')
       style.marginLeft = '30rpx'
+      style.marginRight = '30rpx'
     } else if (type === 'confirm') {
-      style.color = props.confirmColor || zColor.getTypeColor('primary')
+      style.color = zColor.getTypeColor(props.confirmColor || 'primary')
+      style.marginLeft = '30rpx'
       style.marginRight = '30rpx'
     }
     if (state.value) {
@@ -118,15 +128,8 @@ const operationBtnStyle = computed<PickerOperationBtnStyle>(() => {
   }
 })
 
-const resetPickerdivIndex = () => {
+const resetPickerViewIndex = () => {
   initDefaultPickerIndex()
-}
-
-interface PickerDataItem {
-  label: string | number
-  value: string | number
-  originalData: any
-  children?: Array<PickerDataItem>
 }
 
 // 显示popup弹框
@@ -173,11 +176,11 @@ const _generateData = (
   if (isObject(data)) {
     const originalData = z.deepClone(data)
     if (Object.prototype.hasOwnProperty.call(originalData, props.childrenKey)) {
-      delete (originalData as { [key: string]: any })[props.childrenKey]
+      delete originalData[props.childrenKey]
     }
     return {
-      label: (data as { [key: string]: any })[props.labelKey],
-      value: (data as { [key: string]: any })[props.valueKey],
+      label: data[props.labelKey],
+      value: data[props.valueKey],
       originalData,
     }
   } else {
@@ -238,8 +241,8 @@ const initDefaultPickerIndex = () => {
   // 如果没有设置默认值，则默认选中第一项
   if (
     props.modelValue === undefined ||
-    (isArray(props.modelValue) &&
-      !(props.modelValue as Array<number | string>).length)
+    (!props.modelValue && ['multiple', 'cascade'].includes(pickerMode)) ||
+    (isArray(props.modelValue) &&!(props.modelValue as Array<string|number>).length)
   ) {
     indexValue = Array.from({ length: pickerData.value.length }, () => 0)
   } else {
@@ -258,10 +261,12 @@ const initDefaultPickerIndex = () => {
         return ~pickerIndex ? pickerIndex : 0
       })
     } else {
-      const index = (pickerData.value[0] as PickerDataType[]).findIndex(
-        (item: any) => item.value === props.modelValue
-      )
-      indexValue = [index === -1 ? 0 : index]
+      indexValue = pickerData.value.map((_, k: number) => {
+          const index = pickerData.value[k].findIndex(
+            (item) => item.value === props.modelValue
+          )
+          return index === -1 ? 0 : index
+        })
     }
   }
   currentPickerIndex.value = indexValue
@@ -323,14 +328,13 @@ watch(
 // 获取当前选中的值
 const _getCurrentPickerValue = (): PickerValueType => {
   if (pickerMode === 'signle' && !isArray((props.data as any[])[0])) {
-    return (pickerData.value as any)[0][currentPickerIndex.value[0]].value
+    return pickerData.value[0][currentPickerIndex.value[0]].value
   } else {
-    // currentPickerIndex.value.splice(pickerData.value.length)
     const pickerIndex = z.deepClone(currentPickerIndex.value)
     pickerIndex.splice(pickerData.value.length)
     return pickerIndex.map((item, index) => {
-      return (pickerData.value as any)[index][item]?.value
-        ? (pickerData.value as any)[index][item]?.value
+      return pickerData.value[index][item]?.value
+        ? pickerData.value[index][item]?.value
         : 0
     })
   }
@@ -342,12 +346,11 @@ const _getCurrentPickerOriginData = (): any => {
     return (pickerData.value as any)[0][currentPickerIndex.value[0]]
       .originalData
   } else {
-    // currentPickerIndex.value.splice(pickerData.value.length)
     const pickerIndex = z.deepClone(currentPickerIndex.value)
     pickerIndex.splice(pickerData.value.length)
     return pickerIndex.map((item, index) => {
-      return (pickerData.value as any)[index][item]?.originalData
-        ? (pickerData.value as any)[index][item]?.originalData
+      return pickerData.value[index][item]?.originalData
+        ? pickerData.value[index][item]?.originalData
         : undefined
     })
   }
@@ -434,7 +437,6 @@ const pickerViewChangeEvent = (e: any) => {
   const value = _getCurrentPickerValue()
   const originData = _getCurrentPickerOriginData()
   emits('change', value, changePickerColumnIndex, originData)
-  // emits('update:modelValue', value)
 }
 
 // 重置指定位置的数据
@@ -468,7 +470,7 @@ defineExpose({
   /**
    * 重置选择器的值
    */
-  resetPickerdivIndex,
+  resetPickerViewIndex,
   /**
    * 重置指定位置选择器的值
    */

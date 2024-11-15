@@ -1,5 +1,5 @@
 <!--
- * @Description: z-date-picker 时间选择组件
+ * @Description: z-date-time-picker 时间选择组件
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
@@ -22,7 +22,7 @@ import dayjs from '../../libs/dayjs'
 import zPicker from '../../components/z-picker/z-picker.vue'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
- * @description: z-date-picker 时间选择组件传参
+ * @description: z-date-time-picker 时间选择组件传参
  * @param: modelValue 日期时间选择器绑定的值，支持的格式YYYY/MM/DD HH:mm:ss YYYY-MM-DD HH:mm:ss
  * @param: open		 显示隐藏日期时间选择器
  * @param: mode	日期时间选择器类型

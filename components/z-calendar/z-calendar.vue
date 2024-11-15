@@ -25,6 +25,7 @@ import {
   PropType,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { MAX_SAFE_INTEGER } from '../../libs/zMath'
 import { isNumber } from '../../libs/lodash/is-number'
 import { isString } from '@vue/shared'
@@ -48,6 +49,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param	showLunar			是否显示农历
  * @param rangeStartDesc			当 mode 为 range 时，开始时间的提示信息
  * @param	rangeEndDesc			当 mode 为 range 时，结束时间的提示信息
+ * @param	restart			是否重新计算日历位置，在使用popup时，应为开始并未渲染所以样式高度有问题，使用restart即可解决
  *
  * @event change-year 		年份切换事件
  * @event change-month 		月份切换事件
@@ -75,6 +77,7 @@ interface PropsType extends PropsTypeHook {
   showLunar?: boolean
   rangeStartDesc?: string
   rangeEndDesc?: string
+  restart?: boolean
 }
 
 interface EmitsType {
@@ -94,6 +97,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   allowChangeMonth: true,
   rangeStartDesc: '开始',
   rangeEndDesc: '结束',
+  restart: false,
 })
 
 const emits = defineEmits<EmitsType>()
@@ -282,6 +286,17 @@ const updateModelValue = (changeEmit = true) => {
   }
 }
 
+watch(
+  () => props.restart,
+  (newVal) => {
+    if (newVal) {
+      nextTick(() => {
+        getDateItemComponentRectInfo()
+      })
+    }
+  }
+)
+
 // 当前月份在中数据中的索引
 const currentMonthIndex = computed(() => {
   return calendarData.value.findIndex(
@@ -301,21 +316,22 @@ const calendarId = `z-calendar-${current?.uid}`
 const singleDateItemHeight = ref<number>(0)
 
 // 日期容器的高度
-const dateContainerHeight = computed<number>(
-  () => Math.ceil(currentMonthDateLength.value / 7) * singleDateItemHeight.value
-)
+const dateContainerHeight = computed<number>(() => {
+  return (
+    Math.ceil(currentMonthDateLength.value / 7) * singleDateItemHeight.value
+  )
+})
 
 let initCount = 0
 // 获取单个日期容器的信息
 const getDateItemComponentRectInfo = async () => {
   try {
     const rectInfo = await z.getDomInfo(`#${calendarId}`, current)
-
     initCount = 0
     singleDateItemHeight.value =
       ((rectInfo.width ? rectInfo.width : 30) - 30) / 7 || 0
     if (props.mode === 'date' || props.mode === 'multi') {
-      singleDateItemHeight.value += uni.upx2px(12)
+      singleDateItemHeight.value += uni.upx2px(4)
     }
   } catch (err) {
     if (initCount > 10) {
@@ -785,25 +801,25 @@ const itemStyle = computed<itemStyleType>(() => {
 
     if (status === 'active') {
       if (props.activeBgColor) {
-        style.backgroundColor = props.activeBgColor
+        style.backgroundColor = zColor.getTypeColor(props.activeBgColor)
       }
 
       if (props.activeTextColor) {
-        style.color = props.activeTextColor
+        style.color = zColor.getTypeColor(props.activeTextColor)
       } else if (!props.activeBgColor && !props.activeTextColor) {
         style.color = '#fff'
       }
     } else if (status === 'range') {
       if (props.rangeBgColor) {
-        style.backgroundColor = props.rangeBgColor
+        style.backgroundColor = zColor.getTypeColor(props.rangeBgColor)
       } else {
-        style.backgroundColor = props.activeBgColor
+        style.backgroundColor = zColor.getTypeColor(props.activeBgColor)
       }
 
       if (props.rangeTextColor) {
-        style.color = props.rangeTextColor
+        style.color = zColor.getTypeColor(props.rangeTextColor)
       } else {
-        style.color = props.activeTextColor
+        style.color = zColor.getTypeColor(props.activeTextColor)
       }
     } else if (status === 'disabled') {
       style.opacity = 0.5

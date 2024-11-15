@@ -48,7 +48,7 @@ import {
  * @param: modelValue 已上传的图片列表绑定值，传递的是图片的url地址
  * @param: disabled		 禁止上传
  * @param: action	图片上传地址
- * @param: name  图片上传的字段名称
+ * @param: name  图片上传的字段名称，默认image
  * @param: header  图片上传的header, header 中不能设置 Referer
  * @param: formData  图片上传HTTP 请求中其他额外的 form data
  * @param: limit  最大允许上传个数
@@ -116,7 +116,7 @@ interface EmitsType {
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
   modelValue: () => [],
-  name: 'file',
+  name: 'image',
   header: () => ({}),
   formData: () => ({}),
   limit: 9,

@@ -400,8 +400,9 @@ const sliderStyle = computed<CSSProperties>(() => {
   if (props.sliderHeight) style.height = z.addUnit(props.sliderHeight)
 
   // 设置未激活时的颜色
-  style.backgroundColor =
-    props.inactiveColor || zColor.getTypeColor('colorSliderDefault')
+  style.backgroundColor = zColor.getTypeColor(
+    props.inactiveColor || 'colorSliderDefault'
+  )
 
   return style
 })
@@ -418,7 +419,7 @@ const activeSliderStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
 
   // 设置激活时的颜色
-  style.backgroundColor = props.activeColor || zColor.getTypeColor('primary')
+  style.backgroundColor = zColor.getTypeColor(props.activeColor || 'primary')
 
   // 激活时显示对应的宽度
   if (mode.value === 'single') {

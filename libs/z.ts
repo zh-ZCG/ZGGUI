@@ -685,27 +685,29 @@ const z = {
   //   }
   // },
   /**
-   * 检查变量是否为 undefined 或 null，如果是，则返回默认值；否则返回变量本身。
+   * 检查变量是否为 undefined 或 null 或 ''，如果是，则返回默认值；否则返回变量本身。
    *
    * @param variable - 要检查的变量。
-   * @param defaultValue - 如果变量为 undefined 或 null 时返回的默认值。默认值为 undefined。
-   * @returns 如果变量为 undefined 或 null，则返回 defaultValue；否则返回变量。
+   * @param defaultValue - 如果变量为 undefined 或 null 或 '' 时返回的默认值。默认值为 undefined。
+   * @returns 如果变量为 undefined 或 null 或 ''，则返回 defaultValue；否则返回变量。
    */
   isEmptyVariableInDefault: <T = any>(
     variable: any,
     defaultValue: any = undefined
   ): T => {
-    return variable === undefined || variable === null ? defaultValue : variable
+    return variable === undefined || variable === null || variable === ''
+      ? defaultValue
+      : variable
   },
 
   /**
-   * 检查两个变量中的一个是否为 undefined 或 null。如果第一个变量为 undefined 或 null，则检查第二个变量；
-   * 如果第二个变量也为 undefined 或 null，则返回默认值；否则返回第一个不为 undefined 或 null 的变量。
+   * 检查两个变量中的一个是否为 undefined 或 null 或 ''。如果第一个变量为 undefined 或 null 或 ''，则检查第二个变量；
+   * 如果第二个变量也为 undefined 或 null 或 ''，则返回默认值；否则返回第一个不为 undefined 或 null 或 '' 的变量。
    *
    * @param variable1 - 要检查的第一个变量。
    * @param variable2 - 要检查的第二个变量。
-   * @param defaultValue - 如果两个变量都为 undefined 或 null 时返回的默认值。默认值为 undefined。
-   * @returns 如果第一个变量为 undefined 或 null，则返回第二个变量的值（如果第二个变量也为 undefined 或 null，则返回 defaultValue）；否则返回第一个变量。
+   * @param defaultValue - 如果两个变量都为 undefined 或 null 或 '' 时返回的默认值。默认值为 undefined。
+   * @returns 如果第一个变量为 undefined 或 null 或 ''，则返回第二个变量的值（如果第二个变量也为 undefined 或 null 或 ''，则返回 defaultValue）；否则返回第一个变量。
    */
   isEmptyDoubleVariableInDefault: <T = any>(
     variable1: any,

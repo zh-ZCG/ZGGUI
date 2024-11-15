@@ -68,6 +68,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   readonly: false,
   inactiveIcon: 'star1',
   activeIcon: 'star3',
+  activeColor: 'primary',
   validateEvent: true,
 })
 

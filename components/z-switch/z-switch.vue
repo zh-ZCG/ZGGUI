@@ -272,14 +272,12 @@ const switchStyle = computed<CSSProperties>(() => {
   .active-content {
     padding-right: calc(40rpx * 0.9 + 4rpx);
     padding-left: 4rpx;
-    //transform: scale(0) translateX(100%);
     animation-name: switch-content-animation-active;
     .text {
       height: 100%;
       display: flex;
       align-items: center;
       width: max-content;
-      //opacity: 0;
       animation-duration: 0.3s;
       animation-timing-function: ease;
       animation-fill-mode: forwards;
@@ -311,7 +309,7 @@ const switchStyle = computed<CSSProperties>(() => {
 }
 .normal {
   height: 50rpx;
-  width: 95rpx;
+  min-width: 95rpx;
   font-size: 28rpx;
   padding: 6rpx;
   .dot {

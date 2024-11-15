@@ -3,6 +3,7 @@ import zType from '../../libs/zType'
 import zTest from '../../libs/zTest'
 import z from '../../libs/z'
 import { watch, ref } from 'vue'
+import zImageUpload from './z-image-upload.vue'
 
 export type ImageUploadSizeTypes = 'original' | 'compressed'
 
@@ -13,6 +14,8 @@ export type ImageExtensions = 'jpg' | 'jpeg' | 'png' | 'gif' | 'webp' | 'ico'
 export type ImageUploadFile = UniApp.ChooseImageSuccessCallbackResultFile | File
 
 export type ImageUploadList = Array<ImageUploadListItem>
+
+export type ImageUploadInstance = InstanceType<typeof zImageUpload>
 
 export interface ImageUploadListItem {
   url: string

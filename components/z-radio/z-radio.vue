@@ -349,6 +349,6 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
 
 .z-radio-no-border {
   // 如果没有border则不设置内边距
-  padding: 0;
+  padding: 2rpx;
 }
 </style>

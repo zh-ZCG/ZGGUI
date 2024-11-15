@@ -61,7 +61,7 @@ interface EmitsType {
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  show: false,
+  show: true,
   type: 'primary',
   size: 'normal',
   radius: '3px',
