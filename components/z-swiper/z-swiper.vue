@@ -3,6 +3,16 @@
  * @Author: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  * Copyright (c) 2024, All Rights Reserved. 
 -->
+ // #ifdef MP-WEIXIN
+<script lang="ts">
+export default {
+  options: {
+    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
+    virtualHost: true,
+  },
+}
+</script>
+// #endif
 <script lang="ts" setup>
 import {
   ref,
@@ -15,6 +25,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-swiper 轮播组件传参
@@ -111,22 +122,19 @@ const indicatorColorStyle = computed<IndicatorColorStyle>(() => {
     const style: CSSProperties = {}
 
     if (props.indicatorType === 'number') {
-      if (props.indicatorBgColor) {
-        style.backgroundColor = props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)'
-      }
+        style.backgroundColor = zColor.getTypeColor(props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)')
+    
       if (props.indicatorTextColor) {
-        style.color = props.indicatorTextColor
+        style.color = zColor.getTypeColor(props.indicatorTextColor)
       } else if (!props.indicatorTextColor && !props.indicatorBgColor) {
         style.color = '#fff'
       }
     } else {
       if (active) {
-        if (props.indicatorActiveBgColor)
-          style.backgroundColor = props.indicatorActiveBgColor || '#fff'
+          style.backgroundColor = zColor.getTypeColor(props.indicatorActiveBgColor || '#fff')
       } else {
-        if (props.indicatorBgColor)
           style.backgroundColor =
-            props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)'
+            zColor.getTypeColor(props.indicatorBgColor || 'rgba(0, 0, 0, 0.25)')
       }
     }
 
@@ -172,22 +180,11 @@ const itemClickHandle = () => {
 }
 </script>
 
-// #ifdef MP-WEIXIN
-<script lang="ts">
-export default {
-  options: {
-    // 在微信小程序中将组件节点渲染为虚拟节点，更加接近Vue组件的表现(不会出现shadow节点下再去创建元素)
-    virtualHost: true,
-  },
-}
-</script>
-// #endif
-
 <template>
   <div class="pr z-swiper" :style="swiperStyle" @tap.stop="itemClickHandle">
-    <div class="z-swiper-wrapper" :style="swiperStyle">
+    <div class="z-swiper-wrapper">
       <swiper
-        class="swiper"
+        class="swiper-view"
         :current="currentSwiperIndex"
         :autoplay="autoplay"
         :interval="interval"
@@ -200,7 +197,7 @@ export default {
         <swiper-item
           v-for="(item, index) in swiperData"
           :key="index"
-          class="swiper-item"
+          class="swiper-view-item"
         >
           <slot :active="index === currentSwiperIndex" :data="item" />
         </swiper-item>
@@ -246,23 +243,23 @@ export default {
 </template>
 
 <style lang="less" scoped>
+/deep/ .swiper-view-item view {
+  width: 100%;
+  height: 100%;
+}
 .z-swiper {
   width: 100%;
   height: 100%;
   .z-swiper-wrapper {
     width: 100%;
     height: 100%;
-    .swiper {
+    .swiper-view {
       width: 100%;
       height: 100%;
-      .swiper-item {
+      .swiper-view-item {
         width: 100%;
         height: 100%;
         overflow: visible !important;
-        > view {
-          width: 100%;
-          height: 100%;
-        }
       }
     }
   }

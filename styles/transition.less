@@ -27,6 +27,13 @@ class名称请设置为z-{{name}}-状态，avtive设置为 z-{{name}}-状态-act
   opacity: 0;
 }
 
+.z-fade-zoom-enter,
+.z-fade-zoom-leave-to {
+  transform: scale(0.95);
+  opacity: 0;
+}
+
+
 .z-fade-zoom-enter-active,
 .z-fade-zoom-leave-active {
   transition-property: transform, opacity;
@@ -103,26 +110,7 @@ class名称请设置为z-{{name}}-状态，avtive设置为 z-{{name}}-状态-act
   transition-property: transform;
 }
 
-@keyframes tabbarItemAnimation {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.2);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes show-image-animation {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+.z-zoom-enter,
+.z-zoom-leave-to {
+  transform: scale(0.95)
 }

@@ -13,22 +13,21 @@ import {
   watch,
   nextTick,
   onUnmounted,
+  CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-count-to 数字跳转组件传参
- * @param: startVal 开始数值（默认0）
- * @param: endVal		目标数值（默认0）
- * @param: duration		动画持续时间，单位ms（默认1500）
- * @param: autoplay 设置数值后自动开始滚动 （默认 true ）
+ * @param: start 开始数值（默认0）
+ * @param: end		目标数值（默认0）
+ * @param: duration		动画执行时间，单位毫秒，默认1500
+ * @param: textColor	文字颜色
  * @param: decimals 显示小数位数，（默认0），如果设置了startVal，endVal，该参数应该等于他们的小数位数
- * @param: decimal		十进制分割 （ 默认 "." ）
- * @param: useEasing		滚动结束，缓慢结尾（默认true）
- * @param: color 字体颜色（默认'#1a1a1a'）
  * @param: fontSize		字体大小，单位px（默认16px）
- * @param: bold		是否加粗（默认false）
- * @param: separator		千位分隔符（达到1000后分割例如1,000，默认无）
+ * @param: decimalSeparator		小数点的分隔符
+ * @param: thousandsSeparator		千分位的分隔符，如果不填写则为没有千分位
  * @param: otherStyle 其他的样式
  *
  * @event: end 滚动到目标后触发
@@ -37,17 +36,14 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  */
 
 interface PropsType extends PropsTypeHook {
-  startVal?: string | number
-  endVal?: string | number
-  duration?: string | number
-  autoplay?: boolean
-  decimals?: string | number
-  decimal?: string
-  useEasing?: boolean
-  color?: string
+  start?: string | number
+  end?: string | number
+  duration?: number
+  decimals?: number
+  textColor?: string
   fontSize?: string | number
-  bold?: boolean
-  separator?: string
+  decimalSeparator?: string
+  thousandsSeparator?: string
 }
 
 interface EmitsType {
@@ -56,222 +52,142 @@ interface EmitsType {
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  startVal: 0,
-  endVal: 0,
+  start: 0,
+  end: 0,
   duration: 1500,
-  autoplay: true,
   decimals: 0,
-  decimal: '.',
-  useEasing: true,
-  color: '#1a1a1a',
+  textColor: '#1a1a1a',
   fontSize: 22,
-  bold: false,
-  separator: '',
+  decimalSeparator: '.',
 })
 
 const emits = defineEmits<EmitsType>()
 
-const localStartVal = ref(props.startVal)
-const displayValue = ref(formatNumber(props.startVal))
-const printVal = ref(0)
-const paused = ref(false) // 是否暂停
-const localDuration = ref(Number(props.duration))
-const startTime = ref(0) // 开始的时间
-const timestamp = ref(0) // 时间戳
-const remaining = ref(0) // 停留的时间
-const rAF = ref<string | number | NodeJS.Timeout | undefined>(undefined)
-const lastTime = ref(0) // 上一次的时间
+// 开始值
+const startValue = computed<number>(() =>
+  Number(z.isEmptyVariableInDefault(props.start, 0))
+)
+// 结束值
+const endValue = computed<number>(() =>
+  Number(z.isEmptyVariableInDefault(props.end, 0))
+)
+// 判断是往下计数还是往上计数
+const countDown = computed<boolean>(() => startValue.value > endValue.value)
 
-const countDown = computed<boolean>(() => {
-  return props.startVal > props.endVal
-})
-
-watch(
-  () => props.startVal,
-  () => {
-    props.autoplay && start()
-  }
+// 动画执行时间
+const duration = computed<number>(() =>
+  z.isEmptyVariableInDefault(props.duration, 1500)
 )
 
-watch(
-  () => props.endVal,
-  () => {
-    props.autoplay && start()
-  }
-)
+// 待显示的内容
+const content = ref<string>('')
 
-onMounted(() => {
-  props.autoplay && start()
-})
-
-/**
- * 缓动函数，用于计算缓动效果的当前值。
- * @param t - 当前时间。
- * @param b - 起始值。
- * @param c - 变化量（结束值 - 起始值）。
- * @param d - 持续时间。
- * @returns 计算出的缓动效果当前值。
- */
-function easingFn(t: number, b: number, c: number, d: number): number {
-  // 计算缓动效果的当前值
-  return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
-}
-function requestAnimationFrame(callback: Function) {
-  const currTime = new Date().getTime()
-  // 为了使setTimteout的尽可能的接近每秒60帧的效果
-  const timeToCall = Math.max(0, 16 - (currTime - lastTime.value))
-  const id = setTimeout(() => {
-    callback(currTime + timeToCall)
-  }, timeToCall)
-  lastTime.value = currTime + timeToCall
-  return id
-}
-function cancelAnimationFrame(
-  id: string | number | NodeJS.Timeout | undefined
-) {
-  clearTimeout(id)
-}
-// 开始滚动数字
-function start() {
-  localStartVal.value = props.startVal
-  startTime.value = 0
-  localDuration.value = Number(props.duration)
-  paused.value = false
-  rAF.value = requestAnimationFrame(count)
-}
-// 暂定状态，重新再开始滚动；或者滚动状态下，暂停
-function reStart() {
-  if (paused.value) {
-    resume()
-    paused.value = false
-  } else {
-    stop()
-    paused.value = true
+// 格式化需要显示的内容
+const _formatContent = (value: number) => {
+  const throusandNumberReg = /(\d+)(\d{3})/
+  const valueStr = value.toFixed(props.decimals)
+  const valueArr = valueStr.split('.')
+  let firestValue = valueArr[0]
+  let secondValue = ''
+  if (valueArr.length > 1) {
+    secondValue = `${z.isEmptyVariableInDefault(props.decimalSeparator, '.')}${
+      valueArr[1]
+    }`
   }
-}
-// 暂停
-function stop() {
-  cancelAnimationFrame(rAF.value)
-}
-// 重新开始(暂停的情况下)
-function resume() {
-  if (!remaining.value) return
-  startTime.value = 0
-  localDuration.value = remaining.value
-  localStartVal.value = printVal.value
-  requestAnimationFrame(count)
-}
-// 重置
-function reset() {
-  startTime.value = 0
-  cancelAnimationFrame(rAF.value)
-  displayValue.value = formatNumber(props.startVal)
-}
-function count(timestampCopy: number) {
-  if (!startTime.value) startTime.value = timestampCopy
-  timestamp.value = timestampCopy
-  const progress = timestampCopy - startTime.value
-  remaining.value = localDuration.value - progress
-  if (props.useEasing) {
-    if (countDown.value) {
-      printVal.value =
-        Number(localStartVal.value) -
-        easingFn(
-          progress,
-          0,
-          Number(localStartVal.value) - Number(props.endVal),
-          localDuration.value
-        )
-    } else {
-      printVal.value = easingFn(
-        progress,
-        Number(localStartVal.value),
-        Number(props.endVal) - Number(localStartVal.value),
-        localDuration.value
+  if (props?.thousandsSeparator) {
+    while (throusandNumberReg.test(firestValue)) {
+      firestValue = firestValue.replace(
+        throusandNumberReg,
+        `$1${props.thousandsSeparator}$2`
       )
     }
-  } else {
-    if (countDown.value) {
-      printVal.value =
-        Number(localStartVal.value) -
-        (Number(localStartVal.value) - Number(props.endVal)) *
-          (progress / localDuration.value)
-    } else {
-      printVal.value =
-        Number(localStartVal.value) +
-        (Number(props.endVal) - Number(localStartVal.value)) *
-          (progress / localDuration.value)
-    }
   }
+
+  return `${firestValue}${secondValue}`
+}
+
+// 计算缓动动画时间函数
+function _easeOutCubic(t: number, b: number, c: number, d: number) {
+  return (c * (-Math.pow(2, (-10 * t) / d) + 1) * 1024) / 1023 + b
+}
+
+/* 数值动画操作 start */
+// 动画执行开始时间
+let startTime: number | null = null
+// 开始执行动画
+const countToAnimation = () => {
+  if (!startTime) startTime = Date.now()
+  const elapsed = Date.now() - startTime
+  let currentValue = 0
   if (countDown.value) {
-    printVal.value =
-      printVal.value < Number(props.endVal)
-        ? Number(props.endVal)
-        : printVal.value
+    currentValue =
+      startValue.value -
+      _easeOutCubic(
+        elapsed,
+        0,
+        startValue.value - endValue.value,
+        duration.value
+      )
+    currentValue = currentValue < endValue.value ? endValue.value : currentValue
   } else {
-    printVal.value =
-      printVal.value > Number(props.endVal)
-        ? Number(props.endVal)
-        : printVal.value
+    currentValue = _easeOutCubic(
+      elapsed,
+      startValue.value,
+      endValue.value - startValue.value,
+      duration.value
+    )
+    currentValue = currentValue > endValue.value ? endValue.value : currentValue
   }
-  displayValue.value = formatNumber(printVal.value) || '0'
-  if (progress < localDuration.value) {
-    rAF.value = requestAnimationFrame(count)
+  content.value = _formatContent(currentValue)
+  if (elapsed < duration.value) {
+    // 使用settimeout来模拟requestAnimationFrame
+    setTimeout(countToAnimation, 16)
   } else {
+    // 动画执行结束
     emits('end')
   }
 }
-// 判断是否数字
-function isNumber(val: string): boolean {
-  return !isNaN(parseFloat(val))
-}
-function formatNumber(num: string | number) {
-  // 将num转为Number类型，因为其值可能为字符串数值，调用toFixed会报错
-  num = Number(num)
-  num = num.toFixed(Number(props.decimals))
-  num += ''
-  const x = num.split('.')
-  let x1 = x[0]
-  const x2 = x.length > 1 ? props.decimal + x[1] : ''
-  const rgx = /(\d+)(\d{3})/
-  if (props.separator && !isNumber(props.separator)) {
-    while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + props.separator + '$2')
-    }
+/* 数值动画操作 end */
+
+// 监听endValue和startValue的变化
+watch(
+  [endValue, startValue],
+  () => {
+    startTime = null
+    countToAnimation()
+  },
+  {
+    immediate: true,
   }
-  return x1 + x2
-}
-onUnmounted(() => {
-  cancelAnimationFrame(rAF.value)
+)
+
+// countTo对应的类
+const countToClass = computed<string>(() => {
+  const cls: string[] = ['z-count-to']
+
+  return cls.join(' ')
 })
 
-defineExpose({
-  start,
-  reStart,
-  stop,
-  resume,
-  reset,
+// countTo对应的样式
+const countToStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {}
+
+  style.color = zColor.getTypeColor(props.textColor || 'primary')
+
+  if (props.fontSize) style.fontSize = z.addUnit(props.fontSize)
+
+  return style
 })
 </script>
 
 <template>
-  <text
-    class="z-count-to"
-    :style="{
-      fontSize: z.addUnit(props.fontSize),
-      fontWeight: props.bold ? 'bold' : 'normal',
-      color: props.color,
-    }"
-  >
-    {{ displayValue }}
-  </text>
+  <div :class="[countToClass]" :style="countToStyle">
+    {{ content }}
+  </div>
 </template>
 
 <style lang="less" scoped>
 .z-count-to {
-  /* #ifndef APP-NVUE */
-  display: inline-flex;
-  /* #endif */
-  text-align: center;
+  display: inline-block;
 }
 </style>

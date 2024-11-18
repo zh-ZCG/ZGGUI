@@ -54,7 +54,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   decimal: '.',
   color: '#1a1a1a',
   fontSize: 22,
-  separator: '',
+  separator: ',',
 })
 
 const emits = defineEmits<EmitsType>()
@@ -63,18 +63,11 @@ const countScrollStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
   if (props.fontSize) style.fontSize = z.addUnit(props.fontSize)
 
-  style.color = props.color
+  style.color = zColor.getTypeColor(props.color)
   style.height = style.fontSize
   style.padding = '6rpx 0'
   return style
 })
-
-const isEmptyVariableInDefault = <T = any>(
-  variable: any,
-  defaultValue: any = undefined
-): T => {
-  return variable === undefined || variable === null ? defaultValue : variable
-}
 
 const defaultNumberList = Array.from({ length: 10 }, (_, i) => String(i))
 
@@ -86,7 +79,7 @@ const activeIndex = ref<number[]>([])
 // 分割符保留字符
 const separator = computed<string[]>(() => {
   const { decimal, separator } = props
-  const separatorList = [decimal, isEmptyVariableInDefault(separator, '')]
+  const separatorList = [decimal, z.isEmptyVariableInDefault(separator, '')]
   return separatorList.filter((item) => item)
 })
 

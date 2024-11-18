@@ -653,38 +653,6 @@ const z = {
     })
   },
   /**
-* @description 获取父组件的参数，因为支付宝小程序不支持provide/inject的写法
-   this.$parent在非H5中，可以准确获取到父组件，但是在H5中，需要多次this.$parent.$parent.xxx
-   这里默认值等于undefined有它的含义，因为最顶层元素(组件)的$parent就是undefined，意味着不传name
-   值(默认为undefined)，就是查找最顶层的$parent
-*  @param {string|undefined} name 父组件的参数名
-*/
-  // $parent(
-  //   name = '',
-  //   current = getCurrentInstance()
-  // ): ComponentInternalInstance | null {
-  //   if (current) {
-  //     let parent = current.parent
-  //     // 通过while历遍，这里主要是为了H5需要多层解析的问题
-  //     while (parent) {
-  //       // 父组件
-  //       if (
-  //         parent.proxy &&
-  //         parent.proxy.$options &&
-  //         parent.proxy.$options.name !== name
-  //       ) {
-  //         // 如果组件的name不相等，继续上一级寻找
-  //         parent = parent.parent
-  //       } else {
-  //         return parent
-  //       }
-  //     }
-  //     return null
-  //   } else {
-  //     return null
-  //   }
-  // },
-  /**
    * 检查变量是否为 undefined 或 null 或 ''，如果是，则返回默认值；否则返回变量本身。
    *
    * @param variable - 要检查的变量。
@@ -718,6 +686,31 @@ const z = {
       variable1,
       z.isEmptyVariableInDefault(variable2, defaultValue)
     )
+  },
+  /**
+   * 截取指定长度的数值
+   * @param value 待截取的数值
+   * @param len 截取的长度
+   * @param prefixZero 如果只有一位是否添加0
+   * @returns 截取后的数值字符串
+   */
+  formatNumber(value: string | number, len = 2, prefixZero = true): string {
+    let number: number | string = 0
+    // 判断传入的值是什么类型
+    if (typeof value === 'string') {
+      // 如果为空字符串直接返回
+      if (value === '') return value
+      number = Number(value)
+    } else if (typeof value === 'number') {
+      number = value
+    }
+    if (Number.isNaN(number) || number === 0) return prefixZero ? '00' : '0'
+    const maxNumber = Math.pow(10, len) - 1
+    if (number > maxNumber) return `${maxNumber}+`
+    number = String(number)
+    return prefixZero
+      ? `00${number}`.slice(Math.max(0, number.length > 2 ? 2 : number.length))
+      : number
   },
 }
 

@@ -322,4 +322,18 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
   transition: all 0.3s ease;
   transform-origin: center center;
 }
+
+@keyframes tabbarItemAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 </style>

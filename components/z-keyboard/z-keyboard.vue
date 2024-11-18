@@ -21,7 +21,7 @@ import { propsHook, PropsTypeHook } from '../../libs/zHooks'
  * @param: modelValue 键盘输入绑定的值
  * @param: mode		键盘类型（默认number）
  * @param: carLang		车牌键盘中/英文模式，在 `mode` 为 `car` 时生效(默认cn)
- * @param: vibrate 点击按钮是否有震动效果（默认true）
+ * @param: vibrate 点击按钮是否有震动效果（默认false）
  * @param: longPressDelete 是否允许长按删除删除内容
  * @param: disabled		禁止键盘输入
  * @param: overlay	  是否显示遮罩层
@@ -63,7 +63,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   modelValue: '',
   mode: 'number',
   carLang: 'cn',
-  vibrate: true,
+  vibrate: false,
   longPressDelete: true,
   disabled: false,
   overlay: false,

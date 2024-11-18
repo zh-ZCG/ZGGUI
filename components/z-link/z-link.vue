@@ -48,7 +48,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   fontSize: 16,
   underLine: false,
   lineColor: '',
-  tips: '链接已复制，请使用浏览器打开',
+  tips: '链接已复制',
   text: '',
 })
 
@@ -65,7 +65,10 @@ const zLinkStyle = computed(() => {
     style.color = zColor.getTypeColor(props.type)
   }
   if (props.color) {
-    style.color = props.color
+    style.color = zColor.getTypeColor(props.color)
+  }
+  if (props.lineColor) {
+    style['text-decoration-color'] = zColor.getTypeColor(props.lineColor)
   }
   return z.deepMerge(style, props.otherstyle ? props.otherstyle : {})
 })

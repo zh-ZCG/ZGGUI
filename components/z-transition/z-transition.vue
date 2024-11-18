@@ -5,6 +5,7 @@
 -->
 <script lang="ts" setup>
 import { ref, watch, nextTick, computed } from 'vue'
+import z from '../../libs/z'
 
 /**
  * @description: z-transition 动画组件传参
@@ -93,40 +94,47 @@ function getClassNames(name: string) {
 }
 
 /**动画开始函数*/
-function Enter() {
+async function Enter() {
   const classNames = getClassNames(props.name)
   status.value = 'enter'
   emits('beforeEnter') //动画进入之前
-  begin.value = false
   begin.value = true
   name.value = classNames.enter
-  nextTick(() => {
+  await nextTick()
+  {
+    await z.sleep(20)
     emits('enter')
     isEnd.value = false
     emits('afterEnter')
     name.value = classNames.enterto
-  })
+  }
 }
 /**动画结束函数*/
-function Leave() {
+async function Leave() {
+  if (!begin.value) return
   const classNames = getClassNames(props.name)
   status.value = 'leave'
   emits('beforeLeave')
   name.value = classNames.leave
-  nextTick(() => {
+  await nextTick()
+  {
     isEnd.value = false
     emits('leave')
     setTimeout(() => {
       //组件结束后的处理事件
       if (isEnd.value) return
       isEnd.value = true
-      emits('afterLeave')
-      if (!props.show) {
+      if (status.value === 'leave') {
+        emits('afterLeave')
+      } else {
+        emits('afterEnter')
+      }
+      if (!props.show && begin.value) {
         begin.value = false
       }
     }, props.duration)
     name.value = classNames.leaveto
-  })
+  }
 }
 
 /**组件被点击函数 */

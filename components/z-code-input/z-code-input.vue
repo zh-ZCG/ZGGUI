@@ -15,259 +15,433 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
+import { useFormItem, useFormDisabled } from '../z-form/types'
 /**
  * @description: z-code-input 验证码输入组件传参
- * @param: 	maxlength			最大输入长度
- * @param: 	dot			是否用圆点填充
- * @param:	mode		显示模式，box-盒子模式(默认)，line-底部横线模式
- * @param: 	hairline	是否细边框
- * @param: 	space		字符间的距离
- * @param: 	value		预置值
- * @param: 	focus		是否自动获取焦点
- * @param: 	bold		字体和输入横线是否加粗
- * @param:	color		字体颜色
- * @param: 	fontSize		字体大小，单位px
- * @param: 	size				输入框的大小，宽等于高
- * @param: 	disabledKeyboard	是否隐藏原生键盘，如果想用自定义键盘的话，需设置此参数为true
- * @param:	borderColor			边框和线条颜色
- * @param: 	disabledDot			是否禁止输入"."符号
+ * @param: 	modelValue	验证码的值
+ * @param: 	length		验证码的长度
+ * @param:	width		每一个验证码输入框的宽度
+ * @param: 	focus	聚焦验证码输入框
+ * @param: 	disabled		禁止输入
+ * @param: 	password		隐藏输入内容
+ * @param: 	breath		当前激活的验证码输入框是否带呼吸效果
+ * @param: 	inputType		验证码输入框类型
+ * @param:	inactiveColor		未选中时的颜色
+ * @param: 	activeColor		选中时的颜色
+ * @param: 	validateEvent		输入时是否触发表单验证
  * @param:  otherStyle   其他的样式
  *
  * @tutorial: ZGGUI & ui.zcgnav.cn & zcgamazing@163.com
  *
- * @event	change	输入内容发生改变时触发
- * @event	finish	输入字符个数达maxlength值时触发
+ * @event	update:modelValue	更新内容
+ * @event	input	验证码输入事件
+ * @event	change	验证码发生改变事件
+ * @event	complete	验证码输入完成事件
  * @example:
  */
 
+type codeInputType =
+  | 'border'
+  | 'border-vline'
+  | 'border-hline'
+  | 'middle-vline'
+  | 'middle-hline'
+  | 'bottom-hline'
+
+type ColorType = 'text' | 'bg' | 'border'
+type ColorClass = (type: ColorType, active: boolean) => string
+type ColorStyle = (type: ColorType, active: boolean) => CSSProperties
+
 interface PropsType extends PropsTypeHook {
-  maxlength?: number
-  dot?: boolean
-  mode?: string
-  hairline?: boolean
-  space?: string | number
-  value?: string | number
+  modelValue?: string | number
+  length?: number
+  width?: string
   focus?: boolean
-  bold?: boolean
-  color?: string
-  fontSize?: string | number
-  size?: string | number
-  disabledKeyboard?: boolean
-  borderColor?: string
-  disabledDot?: boolean
+  disabled?: boolean
+  password?: boolean
+  breath?: boolean
+  inputType?: codeInputType
+  inactiveColor?: string
+  activeColor?: string
+  validateEvent?: boolean
 }
 
 interface EmitsType {
-  (e: 'change', value: any): void
+  (e: 'update:modelValue', value: any): void
   (e: 'input', value: any): void
-  (e: 'finish', value: any): void
+  (e: 'change', value: any): void
+  (e: 'complete'): void
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
   ...propsHook,
-  adjustPosition: true,
-  maxlength: 6,
-  dot: false,
-  mode: 'box',
-  hairline: false,
-  space: 10,
-  value: '',
-  focus: false,
-  bold: false,
-  color: '#666666',
-  fontSize: 18,
-  size: 35,
-  disabledKeyboard: false,
-  borderColor: '#cccccc',
-  disabledDot: true,
+  modelValue: '',
+  length: 4,
+  focus: true,
+  breath: true,
+  inputType: 'border',
+  validateEvent: true,
 })
 
 const emits = defineEmits<EmitsType>()
 
-const inputValue = ref('')
+const { formItem } = useFormItem()
 
-const isFocus = ref(props.focus)
-
+// 记录用户输入的值
+const inputValue = ref<string>('')
+// 验证码的值
+const codeValue = computed<string[]>(() =>
+  Array.from({ length: props.length }).map((_, i) =>
+    inputValue.value?.[i] !== undefined ? inputValue.value?.[i] : ''
+  )
+)
+// 当前激活的输入框索引
+const activeIndex = computed<number>(() => inputValue.value.length)
 watch(
-  () => props.value,
+  () => props.modelValue,
   (val) => {
-    inputValue.value = String(val).substring(0, props.maxlength)
+    inputValue.value = String(val !== undefined ? val : '')
   },
-  { immediate: true }
+  {
+    immediate: true,
+  }
 )
 
-// 根据长度，循环输入框的个数，因为头条小程序数值不能用于v-for
-const codeLength = computed(() => {
-  return new Array(props.maxlength)
-})
+// 禁止输入事件
+const disabled = useFormDisabled(
+  props.disabled || inputValue.value.length >= props.length
+)
 
-// 循环item的样式
-const itemStyle = computed(() => {
-  return (index: any) => {
-    const addUnit = z.addUnit
-    const style: CSSProperties = {
-      width: addUnit(props.size),
-      height: addUnit(props.size),
-    }
-    // 盒子模式下，需要额外进行处理
-    if (props.mode === 'box') {
-      // 设置盒子的边框，如果是细边框，则设置为0.5px宽度
-      style.border = `${props.hairline ? 0.5 : 1}px solid ${props.borderColor}`
-      // 如果盒子间距为0的话
-      if (z.getPx(props.space) === 0) {
-        // 给第一和最后一个盒子设置圆角
-        if (index === 0) {
-          style.borderTopLeftRadius = '3px'
-          style.borderBottomLeftRadius = '3px'
-        }
-        if (index === codeLength.value.length - 1) {
-          style.borderTopRightRadius = '3px'
-          style.borderBottomRightRadius = '3px'
-        }
-        // 最后一个盒子的右边框需要保留
-        if (index !== codeLength.value.length - 1) {
-          style.borderRight = 'none'
-        }
-      }
-    }
-    if (index !== codeLength.value.length - 1) {
-      // 设置验证码字符之间的距离，通过margin-right设置，最后一个字符，无需右边框
-      style.marginRight = addUnit(props.space)
+// 输入框输入的值发生改变
+const inputInputHandle = (e: any) => {
+  const {
+    detail: { value },
+  } = e
+  const tempValue = (value as string).slice(0, props.length)
+  if (value.length > props.length) {
+    nextTick(() => {
+      inputValue.value = tempValue
+    })
+  }
+  if (tempValue.length === props.length) {
+    emits('complete')
+  }
+
+  emits('update:modelValue', tempValue)
+
+  emits('input', tempValue)
+
+  if (props.validateEvent) {
+    formItem?.validate?.('input').catch((err) => {
+      z.error(err)
+    })
+  }
+}
+const inputChangeHandle = () => {
+  emits('change', inputValue.value)
+  if (props.validateEvent) {
+    formItem?.validate?.('change').catch((err) => {
+      z.error(err)
+    })
+  }
+}
+
+// 获取对应颜色的类
+const colorClass = computed<ColorClass>(() => {
+  return (type, active) => {
+    const cls: string[] = []
+
+    if (active) {
+      cls.push(`z-code-input-${type}-active`)
     } else {
-      // 最后一个盒子的有边框需要保留
-      style.marginRight = 0
+      cls.push(`z-code-input-${type}`)
+    }
+
+    return cls.join('')
+  }
+})
+const colorStyle = computed<ColorStyle>(() => {
+  return (type, active) => {
+    const style: CSSProperties = {}
+
+    switch (type) {
+      case 'text':
+        if (active) {
+          style.color = zColor.getTypeColor(props.activeColor || 'primary')
+        } else {
+          style.color = zColor.getTypeColor(props.inactiveColor || 'disabled')
+        }
+        break
+      case 'bg':
+        if (active) {
+          style.backgroundColor = zColor.getTypeColor(
+            props.activeColor || 'primary'
+          )
+        } else {
+          style.backgroundColor = zColor.getTypeColor(
+            props.inactiveColor || 'disabled'
+          )
+        }
+        break
+      case 'border':
+        if (active) {
+          style.borderColor = zColor.getTypeColor(
+            props.activeColor || 'primary'
+          )
+        } else {
+          style.borderColor = zColor.getTypeColor(
+            props.inactiveColor || 'disabled'
+          )
+        }
+        break
     }
 
     return style
   }
 })
 
-// 将输入的值，转为数组，给item历遍时，根据当前的索引显示数组的元素
-const codeArray = computed(() => {
-  return String(inputValue.value).split('')
-})
-
-// 下划线模式下，横线的样式
-const lineStyle = computed<CSSProperties>(() => {
+// 每一个验证码输入框的样式
+const inputItemStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {}
-  style.height = props.hairline ? '2px' : '4px'
-  style.width = z.addUnit(props.size)
-  // 线条模式下，背景色即为边框颜色
-  style.backgroundColor = props.borderColor
+
+  if (props?.width) {
+    style.width = z.addUnit(props.width)
+    style.fontSize = `calc(${style.width} * 0.6)`
+  }
+
   return style
 })
 
-// 监听输入框的值发生变化
-function inputHandler(e: any) {
-  const value = e.detail.value
-  inputValue.value = value
-  // 是否允许输入“.”符号
-  if (props.disabledDot) {
-    nextTick(() => {
-      inputValue.value = value.replace('.', '')
-    })
+// 保密点的样式
+const passwordDotStyle = computed<CSSProperties>(() => {
+  const style: CSSProperties = {}
+
+  if (props.password) {
+    style.width = props.width
+      ? `calc(${z.addUnit(props.width)} * 0.4)`
+      : '30rpx'
+    style.height = style.width
   }
-  // 未达到maxlength之前，发送change事件，达到后发送finish事件
-  emits('change', value)
-  // 修改通过v-model双向绑定的值
-  emits('input', value)
-  // 达到用户指定输入长度时，发出完成事件
-  if (String(value).length >= Number(props.maxlength)) {
-    emits('finish', value)
-  }
-}
+
+  return style
+})
 </script>
 
 <template>
-  <div class="z-code-input df pr ofh">
-    <div
-      class="item df jcc aic pr"
-      :style="[itemStyle(index)]"
-      v-for="(item, index) in codeLength"
-      :key="index"
-    >
-      <div class="dot" v-if="dot && codeArray.length > index"></div>
-      <text
-        v-else
-        :style="{
-          fontSize: z.addUnit(fontSize),
-          fontWeight: bold ? 'bold' : 'normal',
-          color: color,
-        }"
-      >
-        {{ codeArray[index] }}
-      </text>
-      <div class="line pa" v-if="mode === 'line'" :style="[lineStyle]"></div>
-      <!-- #ifndef APP-PLUS -->
-      <div
-        v-if="isFocus && codeArray.length === index"
-        :style="{ backgroundColor: color }"
-        class="cursor pa"
-      ></div>
-      <!-- #endif -->
-    </div>
+  <div class="z-code-input">
     <input
-      :disabled="disabledKeyboard"
+      v-model="inputValue"
       type="number"
+      :disabled="disabled"
       :focus="focus"
-      :value="inputValue"
-      :maxlength="maxlength"
-      adjustPosition="true"
-      class="input pa tal"
-      @input="inputHandler"
-      :style="{
-        height: z.addUnit(size),
-      }"
-      @focus="isFocus = true"
-      @blur="isFocus = false"
+      class="input pa"
+      @input="inputInputHandle"
+      @change="inputChangeHandle"
     />
+
+    <!-- 验证码输入框 -->
+    <div class="code-input pr df aic">
+      <div
+        v-for="(item, index) in codeValue"
+        :key="index"
+        class="item"
+        :style="inputItemStyle"
+      >
+        <div class="wrapper pr">
+          <div class="container pa df jcc aic">
+            <!-- 信息提示框 start -->
+            <!-- 根据不同的输入框类型显示不同的样式 -->
+            <!-- border -->
+            <div
+              v-if="inputType.startsWith('border')"
+              class="border"
+              :class="[
+                colorClass('border', index === activeIndex || item !== ''),
+                breath && inputType === 'border' && index === activeIndex
+                  ? 'breath'
+                  : '',
+              ]"
+              :style="
+                colorStyle('border', index === activeIndex || item !== '')
+              "
+            >
+              <div
+                v-if="inputType === 'border-vline' && index === activeIndex"
+                class="border-vline"
+                :class="[colorClass('bg', true), breath ? 'breath' : '']"
+                :style="colorStyle('bg', true)"
+              />
+              <div
+                v-if="inputType === 'border-hline' && index === activeIndex"
+                class="border-hline"
+                :class="[colorClass('bg', true), breath ? 'breath' : '']"
+                :style="colorStyle('bg', true)"
+              />
+            </div>
+            <!-- 居中水平 -->
+            <div
+              v-if="inputType === 'middle-hline' && item === ''"
+              class="middle-hline"
+              :class="[
+                colorClass('bg', index === activeIndex),
+                breath && index === activeIndex ? 'breath' : '',
+              ]"
+              :style="colorStyle('bg', index === activeIndex)"
+            />
+            <!-- 底部水平 -->
+            <div
+              v-if="inputType === 'bottom-hline' && item === ''"
+              class="bottom-hline"
+              :class="[
+                colorClass('bg', index === activeIndex),
+                breath && index === activeIndex ? 'breath' : '',
+              ]"
+              :style="colorStyle('bg', index === activeIndex)"
+            />
+            <!-- 居中垂直 -->
+            <div
+              v-if="inputType === 'middle-vline' && item === ''"
+              class="middle-vline"
+              :class="[
+                colorClass('bg', index === activeIndex),
+                breath && index === activeIndex ? 'breath' : '',
+              ]"
+              :style="colorStyle('bg', index === activeIndex)"
+            />
+            <!-- 信息提示框 end -->
+
+            <!-- 验证码值展示 -->
+            <div
+              v-if="item !== ''"
+              class="code-value"
+              :class="[colorClass('text', true), password ? 'dot' : '']"
+              :style="{ ...colorStyle('text', true), ...passwordDotStyle }"
+            >
+              {{ password ? '' : item }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <style lang="less" scoped>
 .z-code-input {
-  .item {
-    .dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 100px;
-      background-color: #606266;
-    }
-    .line {
-      bottom: 0;
-      height: 4px;
-      border-radius: 100px;
-      width: 40px;
-      background-color: #606266;
-    }
-    .cursor {
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 1px;
-      height: 40%;
-      animation: 1s z-cursor-flicker infinite;
-    }
-  }
+  position: relative;
+  width: 100%;
+  height: fit-content;
   .input {
-    left: -750rpx;
-    width: 1500rpx;
-    top: 0;
     background-color: transparent;
-  }
-}
-/* #ifndef APP-PLUS */
-@keyframes z-cursor-flicker {
-  0% {
+    left: -100%;
+    top: 0;
+    width: 200%;
+    height: 100%;
+    padding: 0rpx;
+    z-index: 2;
+    caret-color: transparent; // 隐藏光标
     opacity: 0;
   }
-  50% {
-    opacity: 1;
+  .code-input {
+    width: fit-content;
+    height: fit-content;
+    z-index: 1;
+    .item {
+      position: relative;
+      width: 80rpx;
+      font-size: calc(80rpx * 0.6);
+
+      & + .item {
+        margin-left: 20rpx;
+      }
+      .wrapper {
+        width: 100%;
+        height: 0rpx;
+        padding-bottom: 110%;
+        .container {
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          .border {
+            width: 100%;
+            height: 100%;
+            border-width: 4rpx;
+            border-style: solid;
+            border-radius: 15rpx;
+            .border-vline {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              width: 4rpx;
+              height: 40%;
+              transform: translate(-50%, -50%);
+            }
+            .border-hline {
+              position: absolute;
+              left: 50%;
+              top: 50%;
+              width: 40%;
+              height: 4rpx;
+              transform: translate(-50%, -50%);
+            }
+            .breath {
+              animation: breath-animation 1s ease-in-out infinite alternate;
+            }
+          }
+          .middle-vline {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 4rpx;
+            height: 60%;
+            transform: translate(-50%, -50%);
+          }
+          .middle-hline {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 60%;
+            height: 4rpx;
+            transform: translate(-50%, -50%);
+          }
+          .bottom-hline {
+            position: absolute;
+            left: 50%;
+            bottom: 10%;
+            width: 60%;
+            height: 4rpx;
+            transform: translate(-50%, -50%);
+          }
+          .breath {
+            animation: breath-animation 1s ease-in-out infinite alternate;
+          }
+          .code-value {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            line-height: 1;
+            transform: translate(-50%, -50%);
+            font-size: inherit;
+          }
+          .dot {
+            border-radius: 50%;
+            background-color: #666666;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes breath-animation {
+  0% {
+    opacity: 0.2;
   }
   100% {
-    opacity: 0;
+    opacity: 1;
   }
 }
-/* #endif */
 </style>
