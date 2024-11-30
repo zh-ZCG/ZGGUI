@@ -332,7 +332,7 @@ const inputSize = useFormSize(props.size)
 // 输入框placeholder样式
 const placeholderStyle = computed<string>(() => {
   const style: CSSProperties = {
-    color: '#e6e6e6',
+    color: '#666666',
   }
 
   if (!zType.isEmpty(props.placeholderStyle))
@@ -347,7 +347,7 @@ const placeholderStyle = computed<string>(() => {
 
 // 输入框所属类
 const inputClass = computed<string>(() => {
-  const cls: string[] = ['z-input','dfr','aic']
+  const cls: string[] = ['z-input', 'dfr', 'aic']
 
   // 禁止输入
   if (disabled.value && props.type !== 'select') cls.push('disabled')
@@ -484,7 +484,7 @@ const wordLimitStyle = computed<CSSProperties>(() => {
         <zIcon :name="passwordIcon"></zIcon>
       </div>
       <!-- 清除按钮 -->
-      <div v-else-if="clearable&&inputText" @tap.stop="clearClickEvent">
+      <div v-else-if="clearable && inputText" @tap.stop="clearClickEvent">
         <zIcon name="cuowu-circle"></zIcon>
       </div>
       <!-- 错误提示图标 -->

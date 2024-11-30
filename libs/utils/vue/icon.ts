@@ -1,7 +1,7 @@
 /**
  * 表单验证的图标状态显示
  */
-import { definePropType } from '../../../libs/utils'
+import { definePropType } from './prop'
 export const iconPropType = definePropType<string>([String])
 
 export const FormValidateIconsMap = {

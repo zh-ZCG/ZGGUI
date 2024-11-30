@@ -2,7 +2,7 @@
 import { warn } from 'vue'
 import { fromPairs } from '../../../../libs/lodash'
 import zType from '../../../../libs/zType'
-import { hasOwn } from '@vue/shared'
+import { hasOwn } from '../../zObject'
 
 import type { PropType } from 'vue'
 import type {

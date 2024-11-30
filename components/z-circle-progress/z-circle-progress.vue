@@ -15,6 +15,7 @@ import {
   CSSProperties,
 } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import { propsHook, PropsTypeHook } from '../../libs/zHooks'
 /**
  * @description: z-circle-progress 圆圈进度组件传参
@@ -66,12 +67,16 @@ const ringWidth = computed<number>(() => {
 
 // 圆环的颜色
 const circleColor = computed<string>(() => {
-  return props?.inactiveColor ? props?.inactiveColor : '#e6e6e6'
+  return zColor.getTypeColor(
+    props?.inactiveColor ? props?.inactiveColor : '#e6e6e6'
+  )
 })
 
 // 圆环激活时的颜色
 const activeCircleColor = computed<string>(() => {
-  return props?.activeColor ? props?.activeColor : '#01beff'
+  return zColor.getTypeColor(
+    props?.activeColor ? props?.activeColor : '#01beff'
+  )
 })
 
 // 动画执行时间

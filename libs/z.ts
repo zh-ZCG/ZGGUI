@@ -225,17 +225,6 @@ const z = {
     }
   },
   /**
-   *  判断传入的字符串参数是否是全局的class颜色，是则返回class，否则返回style
-   * @param value 主题标记
-   */
-  isClassOrStyle(str: string): 'class' | 'style' {
-    if (str.startsWith('c') || str.startsWith('bg')) {
-      return 'class'
-    } else {
-      return 'style'
-    }
-  },
-  /**
    * 阻塞代码，延时效果
    * @param value 延时时间 单位ms
    */

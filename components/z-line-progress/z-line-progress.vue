@@ -7,6 +7,7 @@
 import { ref, getCurrentInstance, watch, computed, onMounted } from 'vue'
 import type { Ref, PropType } from 'vue'
 import z from '../../libs/z'
+import zColor from '../../libs/zColor'
 import zMath from '../../libs/zMath'
 
 /**
@@ -35,7 +36,7 @@ interface EmitsType {}
 
 const props = withDefaults(defineProps<PropsType>(), {
   lineBgColor: '#ececec',
-  lineColor: 'bgs5',
+  lineColor: 'cs5',
   lineText: false,
   lineTextColor: '#fff',
   percent: 0,
@@ -52,17 +53,6 @@ const lineProgressStyle = computed(() => {
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
 })
 
-const lineProgressBackgroundClass = computed(() => {
-  let classArr = []
-  if (z.isClassOrStyle(props.lineBgColor) === 'class') {
-    classArr.push(props.lineBgColor)
-  }
-  if (z.isClassOrStyle(props.lineColor) === 'class') {
-    classArr.push(props.lineColor)
-  }
-  return classArr.join(' ')
-})
-
 const lineProgressBackgroundStyle = computed(() => {
   let style = {
     color: '',
@@ -72,21 +62,12 @@ const lineProgressBackgroundStyle = computed(() => {
   }
   style.height = z.addUnit(props.height)
   style.width = lineWidth.value
-  if (z.isClassOrStyle(props.lineBgColor) === 'style') {
-    style.backgroundColor = props.lineBgColor
-  }
-  if (z.isClassOrStyle(props.lineColor) === 'style') {
-    style.color = props.lineColor
-  }
-  return style
-})
 
-const lineProgressLineClass = computed(() => {
-  let classArr = []
-  if (z.isClassOrStyle(props.lineColor) === 'class') {
-    classArr.push(props.lineColor)
-  }
-  return classArr.join(' ')
+  style.backgroundColor = zColor.getTypeColor(props.lineBgColor)
+
+  style.color = zColor.getTypeColor(props.lineColor)
+
+  return style
 })
 
 const lineProgressLineStyle = computed(() => {
@@ -97,27 +78,17 @@ const lineProgressLineStyle = computed(() => {
   }
   style.height = z.addUnit(props.height)
   style.width = lineWidth.value
-  if (z.isClassOrStyle(props.lineColor) === 'style') {
-    style.backgroundColor = props.lineColor
-  }
-  return style
-})
+  style.backgroundColor = zColor.getTypeColor(props.lineColor)
 
-const lineProgressTextClass = computed(() => {
-  let classArr = []
-  if (z.isClassOrStyle(props.lineTextColor) === 'class') {
-    classArr.push(props.lineTextColor)
-  }
-  return classArr.join(' ')
+  return style
 })
 
 const lineProgressTextStyle = computed(() => {
   let style = {
     color: '',
   }
-  if (z.isClassOrStyle(props.lineTextColor) === 'style') {
-    style.color = props.lineTextColor
-  }
+  style.color = zColor.getTypeColor(props.lineTextColor)
+
   return style
 })
 
@@ -182,7 +153,6 @@ const nowPercent = computed(() => {
       class="f1"
       ref="z-line-progress-background"
       id="z-line-progress-background"
-      :class="lineProgressBackgroundClass"
       :style="[lineProgressBackgroundStyle]"
       style="border-radius: 100px"
     ></div>
@@ -190,14 +160,12 @@ const nowPercent = computed(() => {
       class="pa z-line-progress-line dfr aic jcfe"
       ref="z-line-progress-line"
       id="z-line-progress-line"
-      :class="lineProgressLineClass"
       :style="[lineProgressLineStyle]"
     >
       <slot>
         <text
           v-if="props.lineText"
           class="z-line-progress-text"
-          :class="lineProgressTextClass"
           :style="lineProgressTextStyle"
         >
           {{ nowPercent + '%' }}

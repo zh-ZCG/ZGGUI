@@ -46,7 +46,7 @@ interface PropsType extends PropsTypeHook {
   src?: string
   text?: string
   shape?: 'circle' | 'square'
-  size?: string | number
+  size?: number
   mode?: zImage['mode']
   bgColor?: string
   color?: string
@@ -69,7 +69,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   size: 40,
   mode: 'scaleToFill',
   bgColor: '#666666',
-  color: '#ffffff',
+  color: '#1a1a1a',
   fontSize: 16,
   icon: '',
   mpAvatar: false,
@@ -164,9 +164,9 @@ function clickAvatar() {
       {
         backgroundColor:
           text || icon
-            ? randomBgColor
+            ? zColor.getTypeColor(randomBgColor)
               ? colorArray[zMath.random(0, 19)]
-              : bgColor
+              : zColor.getTypeColor(bgColor)
             : 'transparent',
         width: z.addUnit(size),
         height: z.addUnit(size),
@@ -195,7 +195,7 @@ function clickAvatar() {
       <zIcon
         v-else-if="icon"
         :name="icon"
-        :size="fontSize"
+        :size="size - 5"
         :color="color"
       ></zIcon>
       <zText

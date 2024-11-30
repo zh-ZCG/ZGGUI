@@ -108,7 +108,7 @@ interface EmitsType {
 }
 
 const props = withDefaults(defineProps<PropsType>(), {
-  type: 'info',
+  type: 'primary',
   disabled: false,
   hairline: false,
   border: 5,
@@ -149,7 +149,7 @@ const zButtonColorStyle = computed(() => {
       style.color = '#fff'
       style.backgroundColor = zColor.getTypeColor(props.color)
     }
-    if (props.color.indexOf('gadient') !== -1) {
+    if (props.color.indexOf('gradient') !== -1) {
       style.borderTopWidth = 0
       style.borderRightWidth = 0
       style.borderBottomWidth = 0

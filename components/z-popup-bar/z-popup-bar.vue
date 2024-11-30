@@ -94,19 +94,10 @@ const popupBarStyle = computed(() => {
     height: '42px',
     width: '100%',
   } as any
-  if (z.isClassOrStyle(props.bgColor) === 'style') {
-    style.backgroundColor = zColor.getTypeColor(props.bgColor)
-  }
+
+  style.backgroundColor = zColor.getTypeColor(props.bgColor)
 
   return z.deepMerge(style, props.otherStyle ? props.otherStyle : {})
-})
-
-const popupBarClass = computed(() => {
-  let classArr: string[] = []
-  if (z.isClassOrStyle(props.bgColor) === 'class') {
-    classArr.push(props.bgColor)
-  }
-  return classArr.join(' ')
 })
 </script>
 
@@ -116,7 +107,6 @@ const popupBarClass = computed(() => {
       ref="z-popupBar"
       id="z-popupBar"
       :style="[popupBarStyle]"
-      :class="popupBarClass"
       class="dfr jcsb aic"
       v-if="props.show"
       @touchmove.stop.prevent="1"

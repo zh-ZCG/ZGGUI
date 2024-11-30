@@ -173,7 +173,7 @@ export default {
 // #endif
 
 <template>
-  <div
+  <view
     :id="componentId"
     class="z-row-notice-bar pr"
     :animation="animationData"
@@ -182,7 +182,7 @@ export default {
     <div :id="componentTextId" class="data wsnw">
       {{ data }}
     </div>
-  </div>
+  </view>
 </template>
 
 <style lang="less" scoped>

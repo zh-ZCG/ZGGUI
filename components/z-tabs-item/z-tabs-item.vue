@@ -224,9 +224,6 @@ const tabsItemClass = computed<string>(() => {
   } else {
   }
 
-  // 设置可以滚动
-  if (tabsContext?.scroll) cls.push('scroll')
-
   // 是否有设置滑块
   if (!tabsContext?.showBar) cls.push('no-bar')
 
@@ -253,6 +250,14 @@ const tabsItemStyle = computed<CSSProperties>(() => {
     if (normalColor.value) {
       style.color = zColor.getTypeColor(normalColor.value || 'primary')
     }
+  }
+
+  // 设置可以滚动
+  if (tabsContext?.scroll){
+    style.flex= 'auto'
+    style.flexGrow= '1'
+    style.flexShrink= '0'
+    style.padding= '0rpx 30rpx'
   }
 
   return style
@@ -310,12 +315,6 @@ const tabsItemStyle = computed<CSSProperties>(() => {
 }
 .bold {
   font-weight: 800;
-}
-.scroll {
-  flex: auto;
-  flex-grow: 1;
-  flex-shrink: 0;
-  padding: 0rpx 30rpx;
 }
 .no-bar {
   .content {
