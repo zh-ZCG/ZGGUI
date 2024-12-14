@@ -535,7 +535,6 @@ defineExpose({
   margin-bottom: 26rpx;
   .z-form-item-wrapper {
     display: flex;
-    flex-direction: column;
     align-items: center;
     width: 100%;
     .label {
