@@ -80,7 +80,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   modelValue: 0,
   size: 'normal',
   min: 0,
-  max: 100,
+  max: 99999999,
   step: 1,
   longPress: true,
   longPressInterval: 250,
