@@ -352,7 +352,7 @@ onMounted(() => {
     <!-- 背景颜色 -->
     <div :class="navbarBgClass" :style="navbarBgStyle" />
     <!-- 容器 -->
-    <div class="wrapper" :style="navbarWrapperStyle">
+    <div class="navbarWrapper" :style="navbarWrapperStyle">
       <!-- 返回按钮区域 -->
       <div
         v-if="navbackButtonType !== 'none'"
@@ -441,7 +441,7 @@ onMounted(() => {
     -webkit-backdrop-filter: blur(20rpx);
   }
   /* #endif */
-  .wrapper {
+  .navbarWrapper {
     position: absolute;
     left: 0;
     top: 0;
