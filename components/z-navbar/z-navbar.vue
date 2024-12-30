@@ -39,6 +39,7 @@ import { useUniAppSystemRectInfo } from '../../libs/use-uniapp-system-rect-info/
  * @param: beforeHome  返回首页前回调
  * @param: indexUrl  首页地址
  * @param: fixed  是否固定在顶部
+ * @param: fixedToTopHeight  固定之后距离顶部高度（用于分别状态栏和导航栏）
  * @param: placeholder  在固定模式下是否开启占位
  * @param: zIndex  ZIndex
  * @param: otherStyle 其他的样式
@@ -71,6 +72,7 @@ interface PropsType extends PropsTypeHook {
   beforeHome?: Function
   indexUrl?: string
   fixed?: boolean
+  fixedToTopHeight?: number
   placeholder?: boolean
   zIndex?: number
 }
@@ -89,6 +91,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   center: true,
   indexUrl: '/pages/index/index',
   placeholder: true,
+  fixedToTopHeight: 20,
   zIndex: 1300,
 })
 
@@ -207,6 +210,9 @@ const navbarStyle = computed<CSSProperties>(() => {
   style.color = zColor.getTypeColor(
     props.textColor || zColor.getTypeColor('primary')
   )
+
+  //如果固定设置距离顶部的大小
+  if (props.fixed) style.top = z.addUnit(props.fixedToTopHeight)
 
   return style
 })
@@ -527,7 +533,6 @@ onMounted(() => {
 .z-navbar-fixed {
   position: fixed;
   left: 0;
-  top: 0;
 }
 .z-navbar-shadow {
   box-shadow: 0px 5px 30px -9.5px rgba(0, 0, 0, 0.1);
