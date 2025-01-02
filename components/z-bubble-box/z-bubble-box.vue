@@ -304,7 +304,7 @@ const optionItemStyle = computed<OptionsStyleType>(() => {
               bottom: 0;
               width: 90%;
               height: 1rpx;
-              background-color: @grayLight;
+              background-color: #f8f7f8;
               transform: translate(-50%, -50%);
             }
 
