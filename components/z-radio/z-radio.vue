@@ -343,7 +343,7 @@ const radioDotStyle = computed<(selected: boolean) => CSSProperties>(() => {
 }
 
 .z-radio-border {
-  border: 2rpx solid #e6e6e6;
+  border: 2rpx solid #666666;
   box-sizing: border-box;
 }
 
