@@ -175,4 +175,8 @@ provide(
   </div>
 </template>
 
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.z-collapse {
+  width: 100%;
+}
+</style>
