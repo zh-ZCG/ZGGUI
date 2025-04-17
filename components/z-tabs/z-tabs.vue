@@ -38,6 +38,7 @@ import { useOrderedChildren } from '../../libs/Hooks/z-use-order-children'
  * @param: modelValue  tabs绑定的值，与tabsItem name属性对应值，如果tabsItem没有设置name，则默认为索引值
  * @param: height  tabs高度
  * @param: barWidth  滑块的宽度
+ * @param: width  组件宽度
  * @param: bgColor 背景颜色
  * @param: barColor  bar滑块颜色
  * @param: bottomShadow  显示底部阴影
@@ -63,6 +64,7 @@ interface PropsType extends PropsTypeHook {
   modelValue?: string | number
   height?: string
   barWidth?: string
+  width?:string
   bgColor?: string
   barColor?: string
   bottomShadow?: boolean
@@ -83,6 +85,7 @@ const props = withDefaults(defineProps<PropsType>(), {
   modelValue: 0,
   height: '80rpx',
   barWidth: '40rpx',
+  width:'100%',
   bottomShadow: true,
   scroll: true,
   bar: true,
@@ -348,6 +351,9 @@ const tabsStyle = computed<CSSProperties>(() => {
     if (props.offsetTop) {
       style.height = `calc(${style.height} + ${props.offsetTop}px)`
     }
+  }
+  if (props.width) {
+    style.width = z.addUnit(props.width)
   }
 
   return style
