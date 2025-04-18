@@ -44,6 +44,8 @@ import zColor from '../../libs/zColor'
  * @param: bulge 是否突起显示按钮
  * @param: bulgeBgColor 突起按钮得背景颜色（type|string）
  * @param: bulgeTextColor 突起按钮得图标颜色（type|string）
+ * @param: classPrefix z-icon 类名前缀，用于自定义图标,默认'icon'
+ * @param: iconFamilyName z-icon 类名，用于自定义图标,默认'iconfont'
  * @param: disabled 是否禁止点击
  * @param: iconSize tabbar图标大小
  * @param: fontSize tabbar标题大小
@@ -66,6 +68,8 @@ interface PropsType extends PropsTypeHook {
   bulge?: boolean
   bulgeBgColor?: string
   bulgeTextColor?: string
+  classPrefix?: string
+  iconFamilyName?: string
   disabled?: boolean
   iconSize?: number | string
   fontSize?: number | string
@@ -87,6 +91,8 @@ const props = withDefaults(defineProps<PropsType>(), {
   bulge: false,
   bulgeBgColor: '#aaaaaa',
   bulgeTextColor: '#fff',
+  classPrefix: 'icon',
+  iconFamilyName: 'iconfont',
   disabled: false,
   iconSize: '28px',
   fontSize: '12px',
@@ -255,6 +261,8 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
       <template v-if="props.bulge">
         <div class="z-tabbar-item-bulge" :style="bulgeStyle(itemRectInfo)">
           <zIcon
+            :classPrefix="props.classPrefix"
+            :iconFamilyName="props.iconFamilyName"
             :name="isActive ? props.activeIcon : props.inActiveIcon"
             :size="z.addUnit(props.iconSize)"
           ></zIcon>
@@ -266,6 +274,8 @@ const zTabbarItemTextStyle = computed<CSSProperties>(() => {
           class="z-tabbar-item-icon"
         >
           <zIcon
+          :classPrefix="props.classPrefix"
+            :iconFamilyName="props.iconFamilyName"
             :name="isActive ? props.activeIcon : props.inActiveIcon"
             :size="z.addUnit(props.iconSize)"
           ></zIcon>
