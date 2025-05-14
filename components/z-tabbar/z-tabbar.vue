@@ -333,7 +333,7 @@ const zTabbarContentBulge = computed<CSSProperties>(() => {
  */
 const zTabbarPlaceholderStyle = computed<CSSProperties>(() => {
   const style: CSSProperties = {
-    position: 'relative',
+    position: 'fixed',
     left: 0,
     top: 0,
     backgroundColor: 'transparent',
